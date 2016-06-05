@@ -2,6 +2,7 @@ package cliente;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import planDeAhorro.PlanDeAhorro;
 
@@ -14,7 +15,7 @@ public class Cliente {
 	private String direccion;
 	private String mail;
 	private Date fechaIngreso;
-	private ArrayList<PlanDeAhorro> planes;
+	private List<PlanDeAhorro> planes;
 	
 	public Cliente(String unNombre, String unApellido, Integer unDni, Date unaFechaNac,
 			       String unaDireccion, String unMail, Date unaFechaIngreso) {

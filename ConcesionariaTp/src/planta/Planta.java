@@ -6,7 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import modelo.Modelo;
-import stock.StockDeModelo;
+import stockDeModelo.StockDeModelo;
 
 public class Planta implements Observer{
 	

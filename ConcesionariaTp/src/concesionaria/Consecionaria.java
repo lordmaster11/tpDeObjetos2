@@ -10,11 +10,11 @@ import cliente.Cliente;
 import fabrica.Fabrica;
 import modelo.Modelo;
 import planta.Planta;
-import stock.StockDeModelo;
+import stockDeModelo.StockDeModelo;
 
 public class Consecionaria implements GoogleMap, Observer{
 	
-	private ArrayList<Cliente> clientes;
+	private List<Cliente> clientes;
 	private Fabrica fabrica;
 	private GoogleMap mapa;
 	private List<StockDeModelo> stocks;

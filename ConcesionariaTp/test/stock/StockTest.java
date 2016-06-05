@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import modelo.Modelo;
 import planta.Planta;
+import stockDeModelo.StockDeModelo;
 
 public class StockTest {
 

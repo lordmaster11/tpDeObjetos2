@@ -1,8 +1,9 @@
 package planDeAhorro;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import adjudicacion.Adjudicacion;
+import adjudicacion.Adjudicacion2;
 import cliente.Cliente;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
@@ -11,13 +12,13 @@ public class PlanDeAhorro {
 
 	private Integer numeroGrupo;
 	private Modelo modelo;
-	private ArrayList<Cliente> suscriptos;
+	private List<Cliente> suscriptos;
 	private Financiamiento financiamiento;
-	private Adjudicacion adjudicacion;
+	private Adjudicacion2 adjudicacion;
 	
 	
 	public PlanDeAhorro(Integer unNumero, Modelo unModelo, Financiamiento unFinanciamiento,
-			            Adjudicacion unaAdjudicacion) {
+			            Adjudicacion2 unaAdjudicacion) {
 		this.numeroGrupo = unNumero;
 		this.modelo = unModelo;
 		this.financiamiento = unFinanciamiento;
@@ -35,6 +36,6 @@ public class PlanDeAhorro {
 	}
 
 	public ArrayList<Cliente> getSubscriptos() {
-		return suscriptos;
+		return (ArrayList<Cliente>) suscriptos;
 	}
 }
