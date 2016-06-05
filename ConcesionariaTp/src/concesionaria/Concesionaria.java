@@ -12,14 +12,14 @@ import modelo.Modelo;
 import planta.Planta;
 import stockDeModelo.StockDeModelo;
 
-public class Consecionaria implements GoogleMap, Observer{
+public class Concesionaria implements GoogleMap, Observer{
 	
 	private List<Cliente> clientes;
 	private Fabrica fabrica;
 	private GoogleMap mapa;
 	private List<StockDeModelo> stocks;
 	
-	public Consecionaria(Fabrica unaFabrica) {
+	public Concesionaria(Fabrica unaFabrica) {
 		this.clientes = new ArrayList<Cliente>();
 		this.stocks = new ArrayList<StockDeModelo>();
 	}
@@ -34,7 +34,7 @@ public class Consecionaria implements GoogleMap, Observer{
 	}
 
 	@Override
-	public Float calcularDistancia(Planta unaPlanta, Consecionaria consecionaria) {
+	public Float calcularDistancia(Planta unaPlanta, Concesionaria consecionaria) {
 		return 100f;
 	}
 	

@@ -9,11 +9,13 @@ import org.junit.Test;
 import modelo.Modelo;
 import planta.Planta;
 import stockDeModelo.StockDeModelo;
+import concesionaria.Concesionaria;
 
 public class StockTest {
 
 	StockDeModelo stockTest;
 	Modelo modeloMock;
+	Concesionaria concesionariaMock;
 	
 	@Before
 	public void setUp(){
@@ -29,6 +31,16 @@ public class StockTest {
 		stockTest.agregarCantidad();
 		
 		assertTrue(stockTest.getCantidad()==2);
+	}
+	
+	public void testQuitarCantidad(){
+		
+		Planta plantaMock = mock(Planta.class);
+		stockTest.addObserver(concesionariaMock);
+		stockTest.agregarCantidad();
+		stockTest.quitarCantidad();
+		
+		assertTrue(stockTest.getCantidad()==555);
 	}
 
 }
