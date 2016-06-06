@@ -38,6 +38,6 @@ public class Modelo implements Observer{
 	}
 
 	public void setPrecio(Float precioNuevo) {
-		this.precioInicial = precioNuevo;
+		this.precioVenta = precioNuevo;
 	}
 }
