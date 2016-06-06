@@ -47,10 +47,4 @@ public class StockTest {
 		assertTrue(stockTest.getCantidad()==1);
 	}
 	
-	@Test
-	public void testGetNombreDelModelo(){
-		Modelo modeloMock = new Modelo ("Peugeot 206", 2000, 4, "Full", 60000f);
-		assertTrue(modeloMock.getNombre()=="Peugeot 206");
-	}
-	
 }
