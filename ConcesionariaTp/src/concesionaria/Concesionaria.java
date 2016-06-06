@@ -26,16 +26,16 @@ public class Concesionaria implements GoogleMap, Observer{
 
 	public Float gastoDeFlete(Planta unaPlanta)
     {
-    	return mapa.calcularDistancia(unaPlanta,this)* this.gastoPorKilometro();
+    	return mapa.calcularDistancia(unaPlanta,this) * this.gastoPorKilometro();
     }
-	private Float gastoPorKilometro() {
-		
+	
+	private Float gastoPorKilometro() {		
 		return 20f;
 	}
 
 	@Override
 	public Float calcularDistancia(Planta unaPlanta, Concesionaria consecionaria) {
-		return 100f;
+		return 10f; 
 	}
 	
 	public Integer stock(Modelo model){

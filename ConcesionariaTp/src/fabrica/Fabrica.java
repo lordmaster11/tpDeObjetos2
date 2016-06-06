@@ -29,4 +29,8 @@ public class Fabrica {
 		}
 		return planta;
 	}
+
+	public void agregarPlanta(Planta planta) {
+		plantas.add(planta);	
+	}
 }
