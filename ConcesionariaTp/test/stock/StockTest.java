@@ -30,10 +30,12 @@ public class StockTest {
 		stockTest.addObserver(plantaMock);
 		stockTest.agregarCantidad();
 		
-		assertTrue(stockTest.getCantidad()==2);
+		assertTrue(stockTest.getCantidad().equals(2));
 	}
 	
-	@Test
+	///????? nose si esta bien
+	
+	@Test 
 	public void testQuitarCantidad(){
 		
 		Concesionaria concesionariaMock = mock(Concesionaria.class);
@@ -44,7 +46,21 @@ public class StockTest {
 		stockTest.agregarCantidad();
 		stockTest.quitarCantidad();
 		
-		assertTrue(stockTest.getCantidad()==1);
+		assertTrue(stockTest.getCantidad().equals(1));
 	}
 	
+	@Test
+	public void testNombreDelModelo(){
+		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
+				
+		assertTrue(stockTest.nombreDelModelo().equals("Peugeot 206"));
+	}
+	
+	
+	@Test
+	public void testGetModelo() {	
+		assertTrue(stockTest.getModelo().equals(modeloMock));
+	}
+	
+
 }
