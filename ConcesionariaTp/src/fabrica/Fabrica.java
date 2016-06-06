@@ -33,4 +33,8 @@ public class Fabrica {
 	public void agregarPlanta(Planta planta) {
 		plantas.add(planta);	
 	}
+	
+	public ArrayList<Planta> getPlantas(){
+		return (ArrayList<Planta>) this.plantas;
+	}
 }

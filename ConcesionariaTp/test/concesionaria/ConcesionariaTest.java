@@ -17,13 +17,16 @@ public class ConcesionariaTest {
 	Fabrica fabricaMock;
 	GoogleMap googleMapMock;
 	Planta plantaMock;
+	Modelo modeloMock;
 	
 	@Before
 	public void setUp() throws Exception {
-		concesionariaTest = new Concesionaria (fabricaMock);
+		
 		fabricaMock = mock(Fabrica.class);
 		googleMapMock = mock(GoogleMap.class);
 		plantaMock = mock(Planta.class);
+		modeloMock = mock(Modelo.class);
+		concesionariaTest = new Concesionaria (fabricaMock);
 	}
 
 	@Test
