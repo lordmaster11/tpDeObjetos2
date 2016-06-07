@@ -6,5 +6,7 @@ import planDeAhorro.PlanDeAhorro;
 public interface Adjudicacion2 {
 
 	Cliente seleccionDeCliente(PlanDeAhorro plan);
+	
+	
 
 }
