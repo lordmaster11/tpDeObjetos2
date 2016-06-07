@@ -15,5 +15,4 @@ public class PorSorteo implements Adjudicacion2{
 		Cliente ganador = plan.getSubscriptos().get((int)(rnd.nextDouble() * (plan.getSubscriptos().size()-1)));
 		return ganador;
 	}
-
 }
