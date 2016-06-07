@@ -10,6 +10,8 @@ import org.junit.Test;
 public class ClienteTest {
 	
 	Cliente clienteTest;
+	Date fechaNac;
+	Date fechaIngreso;
 
 	@Before
 	public void setUp() throws Exception {
@@ -21,8 +23,14 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void test() {
-		
+	public void testNuevoCliente() { 
+		assertTrue(clienteTest.getNombre().equals("Juan"));
+		assertTrue(clienteTest.getApellido().equals("Perez"));
+		assertTrue(clienteTest.getDNI().equals(27950524));
+		assertTrue(clienteTest.getfechaDeNacimiento().equals(fechaNac));
+		assertTrue(clienteTest.getMail().equals("juanperez@gmail.com"));
+		assertTrue(clienteTest.getDireccion().equals( "Necochea 662"));
+		assertTrue(clienteTest.getFechaDeIngreso().equals(fechaIngreso));
 	}
 
 }

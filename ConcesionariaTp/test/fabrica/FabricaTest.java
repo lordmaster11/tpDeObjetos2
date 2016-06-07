@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import modelo.Modelo;
 import planta.Planta;
+import tpObjetos.Fabrica;
+import tpObjetos.StockDeModelo;
 
 public class FabricaTest {
 	
@@ -48,3 +50,57 @@ public void actualizarPrecio(Float precioNuevo, Modelo model){
 verify(unBanco).agregarSolicitud(creditoMock);
 
 */
+
+/*
+
+falta inicializar algunas clases
+
+Modelo modeloMock;
+Float nuevoPrecio;
+Fabrica unaFabrica;
+Planta plantaMock;
+StockDeModelo stockDeModeloMock;
+List<StockDeModelo> modelosMock;
+ArrayList<String> modelos;
+
+
+@Before
+public void setUp() throws Exception {
+	nuevoPrecio = 80000f;
+	modelos = new ArrayList<String>();
+	modelos.add("Peugeot 206");
+	modelos.add("Peugeot 208");
+	
+	modeloMock = mock(Modelo.class);
+	when(modeloMock.getNombre()).thenReturn("Peugeot 206");
+	when(modeloMock.getValorVenta()).thenReturn(60000f);
+	/*
+	stockDeModeloMock= mock(StockDeModelo.class);
+	when(stockDeModeloMock.getModelo()).thenReturn(modeloMock);
+	when(stockDeModeloMock.getCantidad()).thenReturn(5);*/
+	
+    plantaMock = mock(Planta.class);
+    when(plantaMock.getStocks()).thenReturn(modelosMock);/*
+    when(plantaMock.buscarStockDelModelo(modeloMock)).thenReturn(stockDeModeloMock);*/
+    when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
+}
+
+@Test
+public void testBuscarModelo() {
+	
+	
+	assertTrue(unaFabrica.plantaConModelo(modeloMock).equals(plantaMock));
+}
+
+/*
+public void testActualizarPrecio() {
+	
+	unaFabrica.actualizarPrecio(nuevoPrecio, modeloMock);
+	assertTrue(modeloMock.getValorVenta().equals(nuevoPrecio));
+}
+*/
+}
+
+
+*/
+
