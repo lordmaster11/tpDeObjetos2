@@ -1,15 +1,13 @@
 package modelo;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public class Modelo implements Observer{
+public class Modelo {
 
 	private String nombre;
 	private Integer añoDeLanzamiento;
 	private Integer puertas;
 	private String clase;
-	private Float precioInicial;
+
+
 	private Float precioVenta;
 
 	public Modelo(String unNombre, Integer unAño, Integer nPuertas, String unaClase, Float unPrecio) {
@@ -17,17 +15,9 @@ public class Modelo implements Observer{
 		this.añoDeLanzamiento = unAño;
 		this.puertas = nPuertas;
 		this.clase = unaClase;
-		this.precioInicial = unPrecio;
+		this.precioVenta = unPrecio;
 	}
 
-	@Override
-	public void update(Observable observable, Object valor) {
-		setNuevoValor(this.precioInicial *(Float) valor);	
-	}
-
-	private void setNuevoValor(Float nuevoValor) {
-		this.precioVenta = nuevoValor;
-	}
 
 	public Float getValorVenta() {
 		return this.precioVenta;

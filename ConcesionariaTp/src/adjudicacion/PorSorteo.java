@@ -1,6 +1,5 @@
 package adjudicacion;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import cliente.Cliente;

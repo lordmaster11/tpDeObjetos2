@@ -4,14 +4,14 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import modelo.Modelo;
 import planta.Planta;
-
+import stockDeModelo.StockDeModelo;
 
 public class FabricaTest {
 	
@@ -22,6 +22,8 @@ public class FabricaTest {
 	@Before
 	public void setUp() throws Exception {
 		fabricaTest = new Fabrica();
+		modeloMock = mock(Modelo.class);
+		plantaMock = mock(Planta.class);
 	}
 	
 	//El int que devuelve size() es ahora un Integer para poder mandarle
@@ -35,10 +37,21 @@ public class FabricaTest {
 	@Test
 	public void testActualizarPrecio() {
 		
-		when(modeloMock.getValorVenta()).thenReturn(65000f);
+		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
 		
-		fabricaTest.actualizarPrecio(65000f, modeloMock);
-		assertTrue(modeloMock.getValorVenta().equals(65000f));
+		Planta plantaMock2 = mock(Planta.class);
+		fabricaTest.agregarPlanta(plantaMock2);
+		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<>());
+		
+		fabricaTest.agregarPlanta(plantaMock);
+		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<String>(Arrays.asList("Peugeot 206")));
+		
+		StockDeModelo stockMock = mock(StockDeModelo.class);
+		when(plantaMock.buscarStockDelModelo(modeloMock)).thenReturn(stockMock);
+		when(stockMock.getModelo()).thenReturn(modeloMock);
+		
+		fabricaTest.actualizarPrecio(70000f, modeloMock);
+		verify(modeloMock).setPrecio(70000f);
 	}
 }
 
