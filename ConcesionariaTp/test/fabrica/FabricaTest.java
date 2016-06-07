@@ -11,8 +11,7 @@ import org.junit.Test;
 
 import modelo.Modelo;
 import planta.Planta;
-import tpObjetos.Fabrica;
-import tpObjetos.StockDeModelo;
+
 
 public class FabricaTest {
 	
@@ -40,8 +39,8 @@ public class FabricaTest {
 		
 		verify(modeloMock.getValorVenta().equals(65000f));
 	}
-
 }
+
 /*
 public void actualizarPrecio(Float precioNuevo, Modelo model){
 	Planta p = plantaConModelo(model);
@@ -78,10 +77,10 @@ public void setUp() throws Exception {
 	stockDeModeloMock= mock(StockDeModelo.class);
 	when(stockDeModeloMock.getModelo()).thenReturn(modeloMock);
 	when(stockDeModeloMock.getCantidad()).thenReturn(5);*/
-	
+/*	
     plantaMock = mock(Planta.class);
-    when(plantaMock.getStocks()).thenReturn(modelosMock);/*
-    when(plantaMock.buscarStockDelModelo(modeloMock)).thenReturn(stockDeModeloMock);*/
+    when(plantaMock.getStocks()).thenReturn(modelosMock);
+    when(plantaMock.buscarStockDelModelo(modeloMock)).thenReturn(stockDeModeloMock);
     when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
 }
 
@@ -92,15 +91,12 @@ public void testBuscarModelo() {
 	assertTrue(unaFabrica.plantaConModelo(modeloMock).equals(plantaMock));
 }
 
-/*
+
 public void testActualizarPrecio() {
 	
 	unaFabrica.actualizarPrecio(nuevoPrecio, modeloMock);
 	assertTrue(modeloMock.getValorVenta().equals(nuevoPrecio));
 }
 */
-}
 
-
-*/
 

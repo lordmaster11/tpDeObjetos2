@@ -9,32 +9,37 @@ import GoogleMap.GoogleMap;
 import cliente.Cliente;
 import fabrica.Fabrica;
 import modelo.Modelo;
+import planDeAhorro.PlanDeAhorro;
 import planta.Planta;
 import stockDeModelo.StockDeModelo;
 
 public class Concesionaria implements GoogleMap, Observer{
 	
-	private List<Cliente> clientes;
+	private String direccion;
 	private Fabrica fabrica;
+	private List<Cliente> clientes;
 	private GoogleMap mapa;
 	private List<StockDeModelo> stocks;
+	private List<PlanDeAhorro> planes;
 	
-	public Concesionaria(Fabrica unaFabrica) {
+	public Concesionaria(String unaDireccion, Fabrica unaFabrica){
+		this.direccion = unaDireccion;
+		this.fabrica = unaFabrica;
 		this.clientes = new ArrayList<Cliente>();
 		this.stocks = new ArrayList<StockDeModelo>();
+		this.planes = new ArrayList<PlanDeAhorro>();
 	}
 
-	public Float gastoDeFlete(Planta unaPlanta)
-    {
+	public Float gastoDeFlete(Planta unaPlanta){
     	return mapa.calcularDistancia(unaPlanta,this) * this.gastoPorKilometro();
     }
 	
-	private Float gastoPorKilometro() {		
+	private Float gastoPorKilometro(){		
 		return 20f;
 	}
 
 	@Override
-	public Float calcularDistancia(Planta unaPlanta, Concesionaria consecionaria) {
+	public Float calcularDistancia(Planta unaPlanta, Concesionaria consecionaria){
 		return 10f; 
 	}
 	
@@ -55,11 +60,11 @@ public class Concesionaria implements GoogleMap, Observer{
 	}
 	
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object arg){
 		modificarStock((StockDeModelo) o);
 	}
 
-	public void modificarStock(StockDeModelo stock) {
+	public void modificarStock(StockDeModelo stock){
 		StockDeModelo stockBuscado = buscarStockDelModelo(stock.getModelo());
 		stocks.remove(stockBuscado);
 		stocks.add(stock);

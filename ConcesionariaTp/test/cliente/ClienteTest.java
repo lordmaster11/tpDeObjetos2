@@ -32,5 +32,4 @@ public class ClienteTest {
 		assertTrue(clienteTest.getDireccion().equals( "Necochea 662"));
 		assertTrue(clienteTest.getFechaDeIngreso().equals(fechaIngreso));
 	}
-
 }

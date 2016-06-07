@@ -29,43 +29,34 @@ public class Cliente {
 		this.planes = new ArrayList<PlanDeAhorro>();
 	}
 
-
-	public String getNombre() {
-		
+	public String getNombre(){		
 		return this.nombre;
 	}
-      public String getApellido() {
-		
+	
+    public String getApellido(){		
 		return this.apellido;
 	}
 
-	public Integer getDNI() {
-
+	public Integer getDNI(){
 		return this.dni;
 	}
 
-	public Date getfechaDeNacimiento() {
-		
+	public Date getfechaDeNacimiento(){		
 		return this.fechaNacimiento;
 	}
 
-	public String getMail() {
-
+	public String getMail(){
 		return this.mail;
 	}
 
-	public String getDireccion() {
-
+	public String getDireccion(){
 		return this.direccion;
 	}
 
-	public Date getFechaDeIngreso() {
-
-
+	public Date getFechaDeIngreso(){
 		return this.fechaIngreso;
 	}
+}
+	
+	
 
-}
-	
-	
-}

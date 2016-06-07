@@ -26,7 +26,7 @@ public class ConcesionariaTest {
 		googleMapMock = mock(GoogleMap.class);
 		plantaMock = mock(Planta.class);
 		modeloMock = mock(Modelo.class);
-		concesionariaTest = new Concesionaria (fabricaMock);
+		concesionariaTest = new Concesionaria ("Rodolfo Lopez 666", fabricaMock);
 	}
 
 	@Test
