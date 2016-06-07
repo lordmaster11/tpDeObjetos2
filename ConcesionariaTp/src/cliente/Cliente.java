@@ -41,22 +41,7 @@ public class Cliente {
 		return this.dni;
 	}
 
-	public Date getfechaDeNacimiento(){		
-		return this.fechaNacimiento;
-	}
-
-	public String getMail(){
-		return this.mail;
-	}
-
-	public String getDireccion(){
-		return this.direccion;
-	}
-
-	public Date getFechaDeIngreso(){
-		return this.fechaIngreso;
+	public Date getFechaIngreso() {
+		return fechaIngreso;
 	}
 }
-	
-	
-

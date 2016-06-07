@@ -1,7 +1,5 @@
 package GoogleMap;
 
-import java.util.Random;
-
 import concesionaria.Concesionaria;
 import planta.Planta;
 

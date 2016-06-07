@@ -19,7 +19,7 @@ public class Fabrica {
 		p.buscarStockDelModelo(model).getModelo().setPrecio(precioNuevo);
 	}
 	
-	
+	//Busca en su lista de plantas, cual tiene el modelo dado por parametro
 	public Planta plantaConModelo(Modelo m){
 		Planta planta = null;
 	

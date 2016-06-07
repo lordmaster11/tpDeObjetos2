@@ -18,7 +18,6 @@ public class Concesionaria implements GoogleMap, Observer{
 	private String direccion;
 	private Fabrica fabrica;
 	private List<Cliente> clientes;
-	private GoogleMap mapa;
 	private List<StockDeModelo> stocks;
 	private List<PlanDeAhorro> planes;
 	
@@ -31,7 +30,7 @@ public class Concesionaria implements GoogleMap, Observer{
 	}
 
 	public Float gastoDeFlete(Planta unaPlanta){
-    	return mapa.calcularDistancia(unaPlanta,this) * this.gastoPorKilometro();
+    	return calcularDistancia(unaPlanta,this);
     }
 	
 	private Float gastoPorKilometro(){		
@@ -40,7 +39,7 @@ public class Concesionaria implements GoogleMap, Observer{
 
 	@Override
 	public Float calcularDistancia(Planta unaPlanta, Concesionaria consecionaria){
-		return 10f; 
+		return 10f * gastoPorKilometro();
 	}
 	
 	public void agregarCliente(Cliente cliente){

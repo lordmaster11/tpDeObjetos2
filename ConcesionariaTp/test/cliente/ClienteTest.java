@@ -27,9 +27,6 @@ public class ClienteTest {
 		assertTrue(clienteTest.getNombre().equals("Juan"));
 		assertTrue(clienteTest.getApellido().equals("Perez"));
 		assertTrue(clienteTest.getDNI().equals(27950524));
-		assertTrue(clienteTest.getfechaDeNacimiento().equals(fechaNac));
-		assertTrue(clienteTest.getMail().equals("juanperez@gmail.com"));
-		assertTrue(clienteTest.getDireccion().equals( "Necochea 662"));
-		assertTrue(clienteTest.getFechaDeIngreso().equals(fechaIngreso));
+		assertFalse(clienteTest.getFechaIngreso().equals(fechaIngreso));
 	}
 }
