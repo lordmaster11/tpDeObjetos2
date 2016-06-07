@@ -15,16 +15,17 @@ public class PlanDeAhorro {
 	private List<Cliente> suscriptos;
 	private Financiamiento financiamiento;
 	private Adjudicacion adjudicacion;
-	//private Integer cantidadDeCuotas;
+	private Integer cantidadDeCuotas;
 	
 	
 	public PlanDeAhorro(Integer unNumero, Modelo unModelo, Financiamiento unFinanciamiento,
-			            Adjudicacion unaAdjudicacion/*, Integer unasCuotas*/) {
+			            Adjudicacion unaAdjudicacion, Integer unasCuotas) {
 		this.numeroGrupo = unNumero;
 		this.modelo = unModelo;
 		this.financiamiento = unFinanciamiento;
 		this.suscriptos = new ArrayList<Cliente>();
-		//this.cantidadDeCuotas = unasCuotas;
+		this.adjudicacion = unaAdjudicacion;
+		this.cantidadDeCuotas = unasCuotas;
 	}
 
 	public Float valorADesembolzar(){

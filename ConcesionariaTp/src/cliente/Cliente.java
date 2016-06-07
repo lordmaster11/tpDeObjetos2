@@ -44,4 +44,8 @@ public class Cliente {
 	public Date getFechaIngreso() {
 		return fechaIngreso;
 	}
+
+	public Integer edadCliente() {
+		return 51;//(new Date()) - fechaNacimiento;
+	}
 }

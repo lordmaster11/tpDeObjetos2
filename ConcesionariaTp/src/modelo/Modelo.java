@@ -6,8 +6,6 @@ public class Modelo {
 	private Integer añoDeLanzamiento;
 	private Integer puertas;
 	private String clase;
-
-
 	private Float precioVenta;
 
 	public Modelo(String unNombre, Integer unAño, Integer nPuertas, String unaClase, Float unPrecio) {
@@ -17,7 +15,6 @@ public class Modelo {
 		this.clase = unaClase;
 		this.precioVenta = unPrecio;
 	}
-
 
 	public Float getValorVenta() {
 		return this.precioVenta;

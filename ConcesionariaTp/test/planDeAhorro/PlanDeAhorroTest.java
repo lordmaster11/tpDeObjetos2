@@ -27,9 +27,7 @@ public class PlanDeAhorroTest {
     	modeloMock = mock(Modelo.class);
     	financiamientoMock = mock(Financiamiento.class);
     	adjudicacionMock = mock(Adjudicacion.class);
-    	unPlanDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamientoMock, adjudicacionMock);
-	 
-    	when(unClienteMock.getDNI()).thenReturn(38125365);
+    	unPlanDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamientoMock, adjudicacionMock, 0);
     }
 
 	@Test
