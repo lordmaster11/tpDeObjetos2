@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import adjudicacion.Adjudicacion2;
+import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
@@ -18,7 +18,7 @@ public class PlanDeAhorroTest {
     Cliente unClienteMock;
 	Modelo modeloMock;
 	Financiamiento financiamientoMock;
-	Adjudicacion2 adjudicacionMock;
+	Adjudicacion adjudicacionMock;
        
     @Before
     public void setUp() throws Exception {
@@ -26,7 +26,7 @@ public class PlanDeAhorroTest {
     	unClienteMock = mock(Cliente.class);
     	modeloMock = mock(Modelo.class);
     	financiamientoMock = mock(Financiamiento.class);
-    	adjudicacionMock = mock(Adjudicacion2.class);
+    	adjudicacionMock = mock(Adjudicacion.class);
     	unPlanDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamientoMock, adjudicacionMock);
 	 
     	when(unClienteMock.getDNI()).thenReturn(38125365);

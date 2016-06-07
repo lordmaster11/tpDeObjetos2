@@ -3,7 +3,7 @@ package adjudicacion;
 import cliente.Cliente;
 import planDeAhorro.PlanDeAhorro;
 
-public class PorMayorCobertura implements Adjudicacion2{
+public class PorMayorCobertura implements Adjudicacion{
 
 	@Override
 	public Cliente seleccionDeCliente(PlanDeAhorro plan) {

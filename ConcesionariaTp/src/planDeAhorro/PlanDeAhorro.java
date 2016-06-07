@@ -3,7 +3,7 @@ package planDeAhorro;
 import java.util.ArrayList;
 import java.util.List;
 
-import adjudicacion.Adjudicacion2;
+import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
@@ -14,15 +14,17 @@ public class PlanDeAhorro {
 	private Modelo modelo;
 	private List<Cliente> suscriptos;
 	private Financiamiento financiamiento;
-	private Adjudicacion2 adjudicacion;
+	private Adjudicacion adjudicacion;
+	//private Integer cantidadDeCuotas;
 	
 	
 	public PlanDeAhorro(Integer unNumero, Modelo unModelo, Financiamiento unFinanciamiento,
-			            Adjudicacion2 unaAdjudicacion) {
+			            Adjudicacion unaAdjudicacion/*, Integer unasCuotas*/) {
 		this.numeroGrupo = unNumero;
 		this.modelo = unModelo;
 		this.financiamiento = unFinanciamiento;
 		this.suscriptos = new ArrayList<Cliente>();
+		//this.cantidadDeCuotas = unasCuotas;
 	}
 
 	public Float valorADesembolzar(){

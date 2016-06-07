@@ -18,14 +18,14 @@ public class Cliente {
 	private List<PlanDeAhorro> planes;
 	
 	public Cliente(String unNombre, String unApellido, Integer unDni, Date unaFechaNac,
-			       String unaDireccion, String unMail, Date unaFechaIngreso) {
+			       String unaDireccion, String unMail) {
 		this.nombre = unNombre;
 		this.apellido = unApellido;
 		this.dni = unDni;
 		this.fechaNacimiento = unaFechaNac;
 		this.direccion = unaDireccion;
 		this.mail = unMail;
-		this.fechaIngreso = unaFechaIngreso;
+		this.fechaIngreso = new Date();
 		this.planes = new ArrayList<PlanDeAhorro>();
 	}
 

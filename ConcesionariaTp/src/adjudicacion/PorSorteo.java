@@ -5,7 +5,7 @@ import java.util.Random;
 import cliente.Cliente;
 import planDeAhorro.PlanDeAhorro;
 
-public class PorSorteo implements Adjudicacion2{
+public class PorSorteo implements Adjudicacion{
 
 	@Override
 	public Cliente seleccionDeCliente(PlanDeAhorro plan){

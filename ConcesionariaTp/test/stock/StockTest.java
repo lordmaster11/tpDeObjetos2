@@ -3,6 +3,8 @@ package stock;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.util.Observer;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,33 +18,25 @@ public class StockTest {
 	StockDeModelo stockTest;
 	Modelo modeloMock;
 	Concesionaria concesionariaMock;
+	Planta plantaMock;
 	
 	@Before
 	public void setUp(){
 		modeloMock = mock(Modelo.class);
-		stockTest = new StockDeModelo(modeloMock);
+		Planta plantaMock = mock(Planta.class);
+		Concesionaria concesionariaMock = mock(Concesionaria.class);
+		stockTest = new StockDeModelo(modeloMock, plantaMock, concesionariaMock);
 	}
 
 	@Test
-	public void testAgregarCantidad(){
-		
-		Planta plantaMock = mock(Planta.class);
-		stockTest.addObserver(plantaMock);
+	public void testAgregarCantidad(){		
 		stockTest.agregarCantidad();
 		
 		assertTrue(stockTest.getCantidad().equals(2));
 	}
 	
-	///????? nose si esta bien
-	
 	@Test 
 	public void testQuitarCantidad(){
-		
-		Concesionaria concesionariaMock = mock(Concesionaria.class);
-		Planta plantaMock = mock(Planta.class);
-		
-		stockTest.addObserver(concesionariaMock);
-		stockTest.addObserver(plantaMock);
 		stockTest.agregarCantidad();
 		stockTest.quitarCantidad();
 		
@@ -55,7 +49,6 @@ public class StockTest {
 				
 		assertTrue(stockTest.nombreDelModelo().equals("Peugeot 206"));
 	}
-	
 	
 	@Test
 	public void testGetModelo() {	

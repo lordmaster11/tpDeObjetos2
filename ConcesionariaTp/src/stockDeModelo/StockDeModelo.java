@@ -11,10 +11,10 @@ public class StockDeModelo extends Observable{
 
 	private Modelo modelo;
 	private Integer cantidadDelStock;
-	private List<Observer> observadores;
+	private Observer[] observadores;
 	
-	public StockDeModelo(Modelo unModelo){
-		this.observadores = new ArrayList<Observer>();
+	public StockDeModelo(Modelo unModelo, Observer...observers){
+		this.observadores = observers;
 		this.modelo = unModelo;
 		this.cantidadDelStock = 1;
 	}
@@ -46,8 +46,4 @@ public class StockDeModelo extends Observable{
 	public Modelo getModelo() {
 		return modelo;
 	}
-	
-	public void addObserver(Observer obs){
-		observadores.add(obs);
 	}
-}
