@@ -42,14 +42,14 @@ public class ConcesionariaTest {
 	public void testAgregarClientes(){
 		concesionariaTest.agregarCliente(clienteMock);
 		
-		assertTrue(concesionariaTest.getClientes().size()==1);
+		assertTrue(((Integer)concesionariaTest.getClientes().size()).equals(1));
 	}
 	
 	@Test
 	public void testAgregarPlan(){
 		concesionariaTest.agregarPlanDeAhorro(planDeAhorroMock);
 		
-		assertTrue(concesionariaTest.getPlanes().size()==1);
+		assertTrue(((Integer)concesionariaTest.getPlanes().size()).equals(1));
 	}
 
 }
