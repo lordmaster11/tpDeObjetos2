@@ -7,8 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import GoogleMap.GoogleMap;
+import cliente.Cliente;
 import fabrica.Fabrica;
 import modelo.Modelo;
+import planDeAhorro.PlanDeAhorro;
 import planta.Planta;
 
 public class ConcesionariaTest {
@@ -18,6 +20,8 @@ public class ConcesionariaTest {
 	GoogleMap googleMapMock;
 	Planta plantaMock;
 	Modelo modeloMock;
+	PlanDeAhorro planDeAhorroMock;
+	Cliente clienteMock;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -28,10 +32,24 @@ public class ConcesionariaTest {
 		modeloMock = mock(Modelo.class);
 		concesionariaTest = new Concesionaria ("Rodolfo Lopez 666", fabricaMock);
 	}
-
+	
 	@Test
-	public void testGastoDeFlete() {
+	public void testGastoDeFlete(){
 		assertTrue(concesionariaTest.gastoDeFlete(plantaMock).equals(200f));
+	}
+	
+	@Test
+	public void testAgregarClientes(){
+		concesionariaTest.agregarCliente(clienteMock);
+		
+		assertTrue(concesionariaTest.getClientes().size()==1);
+	}
+	
+	@Test
+	public void testAgregarPlan(){
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorroMock);
+		
+		assertTrue(concesionariaTest.getPlanes().size()==1);
 	}
 
 }

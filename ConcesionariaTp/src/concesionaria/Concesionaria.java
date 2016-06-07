@@ -43,6 +43,22 @@ public class Concesionaria implements GoogleMap, Observer{
 		return 10f; 
 	}
 	
+	public void agregarCliente(Cliente cliente){
+		clientes.add(cliente);
+	}
+	
+	public ArrayList getClientes() {
+		return (ArrayList<Cliente>) clientes;
+	}
+	
+	public void agregarPlanDeAhorro(PlanDeAhorro plan){
+		planes.add(plan);
+	}
+	
+	public ArrayList getPlanes() {
+		return (ArrayList<PlanDeAhorro>) planes;
+	}
+ 
 	public Integer stock(Modelo model){
 		return buscarStockDelModelo(model).getCantidad();
 	}
@@ -69,4 +85,6 @@ public class Concesionaria implements GoogleMap, Observer{
 		stocks.remove(stockBuscado);
 		stocks.add(stock);
 	}
+
+	
 }

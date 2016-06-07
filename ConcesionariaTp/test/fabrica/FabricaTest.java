@@ -28,16 +28,13 @@ public class FabricaTest {
 	@Test
 	public void testAgregarPlanta() {
 		fabricaTest.agregarPlanta(plantaMock);
-		
 		assertTrue(fabricaTest.getPlantas().size()==1);
 	}
 	
 	@Test
 	public void testActualizarPrecio() {
-		
 		fabricaTest.actualizarPrecio(65000f, modeloMock);
-		
-		verify(modeloMock.getValorVenta().equals(65000f));
+		assertTrue(modeloMock.getValorVenta().equals(65000f));
 	}
 }
 
