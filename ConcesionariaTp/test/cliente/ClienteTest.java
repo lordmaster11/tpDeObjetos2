@@ -1,6 +1,7 @@
 package cliente;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 import java.util.Date;
 
@@ -22,13 +23,19 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testNuevoCliente() { 
+	public void testNuevoCliente(){ 
 		
 		Date fechaIngreso = new Date();
 		
 		assertTrue(clienteTest.getNombre().equals("Juan"));
 		assertTrue(clienteTest.getApellido().equals("Perez"));
 		assertTrue(clienteTest.getDNI().equals(27950524));
-		assertTrue(clienteTest.getFechaIngreso().equals(fechaIngreso));
+		assertTrue(clienteTest.getFechaIngreso().equals(fechaIngreso));	
+	}
+	
+	@Test
+	public void testEdadCliente(){ 
+		assertTrue(clienteTest.edadCliente().equals(36));
 	}
 }
+		
