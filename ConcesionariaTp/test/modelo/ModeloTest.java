@@ -17,7 +17,16 @@ public class ModeloTest {
 
 	@Test
 	public void testGetNombre() {
-		assertTrue ( modeloTest.getNombre().equals("Peugeot 206"));
+		assertTrue (modeloTest.getNombre().equals("Peugeot 206"));
 	}
 
+	@Test
+	public void testGetValorVenta() {
+		assertTrue (modeloTest.getValorVenta().equals(60000f));
+	}
+	
+	@Test
+	public void testSetPrecio() {
+//		assertTrue(modeloTest.setPrecio(70000f).equals(70000f);
+	}
 }

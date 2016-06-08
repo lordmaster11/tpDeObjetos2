@@ -14,8 +14,8 @@ import modelo.Modelo;
 
 public class PlanDeAhorroTest {
 	
-    PlanDeAhorro unPlanDeAhorro;
-    Cliente unClienteMock;
+    PlanDeAhorro planDeAhorro;
+    Cliente clienteMock;
 	Modelo modeloMock;
 	Financiamiento financiamientoMock;
 	Adjudicacion adjudicacionMock;
@@ -23,18 +23,25 @@ public class PlanDeAhorroTest {
     @Before
     public void setUp() throws Exception {
     	 
-    	unClienteMock = mock(Cliente.class);
+    	clienteMock = mock(Cliente.class);
     	modeloMock = mock(Modelo.class);
     	financiamientoMock = mock(Financiamiento.class);
     	adjudicacionMock = mock(Adjudicacion.class);
-    	unPlanDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamientoMock, adjudicacionMock, 0);
+    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamientoMock, adjudicacionMock, 0);
     }
 
 	@Test
 	public void testSuscribirCliente() {
 		
-		unPlanDeAhorro.suscribirCliente(unClienteMock);
+		planDeAhorro.suscribirCliente(clienteMock);
 		
-		assertTrue(unPlanDeAhorro.cantSuscriptos().equals(1));
+		assertTrue(planDeAhorro.cantSuscriptos().equals(1));
+	}
+	
+	@Test
+	public void testGetSuscriptos() {
+		planDeAhorro.suscribirCliente(clienteMock);
+		
+		assertTrue (((Integer)planDeAhorro.getSubscriptos().size()).equals(1));
 	}
 }
