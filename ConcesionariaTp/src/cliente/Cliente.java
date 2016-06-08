@@ -46,6 +46,6 @@ public class Cliente {
 	}
 
 	public Integer edadCliente() {
-		return 51;//(new Date()) - fechaNacimiento;
+		return new Date().getYear() - fechaNacimiento.getYear();
 	}
 }
