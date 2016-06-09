@@ -38,6 +38,7 @@ public class PlanDeAhorro {
 		//Quitar 1 del stock de los autos desde la concesionaria...
 	}
 
+	
 	public ArrayList<Cliente> getSubscriptos() {
 		return (ArrayList<Cliente>) suscriptos;
 	}
