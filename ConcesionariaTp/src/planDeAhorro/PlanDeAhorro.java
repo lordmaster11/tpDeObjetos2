@@ -40,7 +40,7 @@ public class PlanDeAhorro {
 
 	
 	public ArrayList<Cliente> getSubscriptos() {
-		return (ArrayList<Cliente>) suscriptos;
+		return  (ArrayList<Cliente>) this.suscriptos;
 	}
 
 	public void suscribirCliente(Cliente unCliente) {

@@ -8,11 +8,14 @@ public class PorMayorCobertura implements Adjudicacion{
 	@Override
 	public Cliente seleccionDeCliente(PlanDeAhorro plan) {
 		Cliente res;
-		res = plan.getSubscriptos().get(1);
+		res = plan.getSubscriptos().get(0);
        	
-		 for(Cliente unCliente:plan.getSubscriptos())
+		for(Cliente unCliente:(plan.getSubscriptos()))
 		 {
-			 if(unCliente.edad()>res.edad())
+			// if(unCliente.getFechaIngreso()>res.getFechaIngreso()){
+		      // res = unCliente;
+			 //else(unCliente.getFechaIngreso()>res.getFechaIngreso())		 
+			 if(unCliente.edad()>res.edad());
 		       res = unCliente;
 		 }
 
@@ -20,7 +23,7 @@ public class PorMayorCobertura implements Adjudicacion{
 		return res;
 	}
 	//ESTO SE TIENE QUE HACER CON EXPRESIONES LAMDA.. PROXIMAMENTE
-	
+	//el if debe conmemplar mayor proporcion de pago y antiguedad
 	
 	
 	
