@@ -42,5 +42,10 @@ public class ClienteTest {
 	public void testEdad(){ 
 		assertTrue((clienteTest.edad()).equals(46));
 	}
+	
+	@Test
+	public void testEdad2(){ 
+		assertTrue((clienteTest.edadCliente2()).equals(46));
+	}
 }
 		
