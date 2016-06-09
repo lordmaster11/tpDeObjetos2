@@ -17,7 +17,7 @@ public class PlanDeAhorroTest {
     PlanDeAhorro planDeAhorro;
     Cliente clienteMock;
 	Modelo modeloMock;
-	Financiamiento financiamientoMock;
+	Financiamiento financiamiento70_30Mock;
 	Adjudicacion adjudicacionMock;
        
     @Before
@@ -25,9 +25,10 @@ public class PlanDeAhorroTest {
     	 
     	clienteMock = mock(Cliente.class);
     	modeloMock = mock(Modelo.class);
-    	financiamientoMock = mock(Financiamiento.class);
+    	financiamiento70_30Mock =  mock(Financiamiento.class);
     	adjudicacionMock = mock(Adjudicacion.class);
-    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamientoMock, adjudicacionMock, 0);
+    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamiento70_30Mock, adjudicacionMock, 0);
+    
     }
 
 	@Test
@@ -44,4 +45,14 @@ public class PlanDeAhorroTest {
 		
 		assertTrue (((Integer)planDeAhorro.getSubscriptos().size()).equals(1));
 	}
+	@Test
+	public void testValorADesembolsar() {
+		
+		when(modeloMock.getValorVenta()).thenReturn(100000f);
+		when(financiamiento70_30Mock.valorTotalEnCuotas(modeloMock)).thenReturn(70000f);
+		
+		assertTrue((financiamiento70_30Mock.valorTotalEnCuotas(modeloMock)).equals(70000f));
+				
+	}			
+
 }
