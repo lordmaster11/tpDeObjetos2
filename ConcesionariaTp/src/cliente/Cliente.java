@@ -2,6 +2,7 @@ package cliente;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,11 +48,10 @@ public class Cliente {
 	}
 
 	public Integer edadCliente() {
-		Integer suma = 0;
-	//	suma = suma + (fechaActual.getYear() - fechaNacimiento.getYear());
-		suma = suma +(new Date().getYear() - fechaNacimiento.getYear());
-		System.out.println("El valor de i es " + suma);
-		return suma;
+		Integer i = 0;
+		i = (new Date().getYear() - fechaNacimiento.getYear());
+		System.out.println("El valor de i es " + i);
+		return i;
 	}
 	
 	public Integer edad() {     //fecha_nac debe tener el formato dd/MM/yyyy
@@ -76,4 +76,23 @@ public class Cliente {
 	    System.out.println(anos);
 	    return anos;
 	  }
+	
+	public Integer edadCliente2() {
+		Calendar fechaNac = Calendar.getInstance();
+        //Se crea un objeto con la fecha actual
+        Calendar fechaActual = Calendar.getInstance();
+        //Se asigna la fecha recibida a la fecha de nacimiento.
+        fechaNac.setTime(fechaNacimiento);
+        //Se restan la fecha actual y la fecha de nacimiento
+        int año = fechaActual.get(Calendar.YEAR)- fechaNac.get(Calendar.YEAR);
+        int mes =fechaActual.get(Calendar.MONTH)- fechaNac.get(Calendar.MONTH);
+        int dia = fechaActual.get(Calendar.DATE)- fechaNac.get(Calendar.DATE);
+        //Se ajusta el año dependiendo el mes y el día
+        if(mes<0 || (mes==0 && dia<0)){
+            año--;
+        }
+        //Regresa la edad en base a la fecha de nacimiento
+        System.out.println("El valor de i es " + año);
+        return año;
+    }	
 }
