@@ -1,5 +1,6 @@
 package cliente;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,4 +49,26 @@ public class Cliente {
 	public Integer edadCliente() {
 		return new Date().getYear() - fechaNacimiento.getYear();
 	}
+	
+	public Integer edad() {     //fecha_nac debe tener el formato dd/MM/yyyy
+		   
+	    Date fechaActual = new Date();
+	    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	    String hoy = formato.format(fechaActual);
+	    String nac = formato.format(fechaNacimiento);
+	    String[] dat1 = nac.split("/");
+	    String[] dat2 = hoy.split("/");
+	    
+	    Integer anos = Integer.parseInt(dat2[2]) - Integer.parseInt(dat1[2]);
+/*	    Integer mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
+	    if (mes < 0) {
+	      anos = anos - 1;
+	    } else if (mes == 0) {
+	      Integer dia = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
+	      if (dia > 0) {
+	        anos = anos - 1;
+	      }
+	    }*/
+	    return anos;
+	  }
 }

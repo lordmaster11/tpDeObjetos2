@@ -27,6 +27,7 @@ public class ModeloTest {
 	
 	@Test
 	public void testSetPrecio() {
-//		assertTrue(modeloTest.setPrecio(70000f).equals(70000f);
+		modeloTest.setPrecio(70000f);
+		assertTrue(modeloTest.getValorVenta().equals(70000f));
 	}
 }

@@ -23,8 +23,7 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testNuevoCliente(){ 
-		
+	public void testNuevoCliente(){ 	
 		Date fechaIngreso = new Date();
 		
 		assertTrue(clienteTest.getNombre().equals("Juan"));
@@ -36,6 +35,11 @@ public class ClienteTest {
 	@Test
 	public void testEdadCliente(){ 
 		assertTrue(clienteTest.edadCliente().equals(36));
+	}
+	
+	@Test
+	public void testEdad(){ 
+		assertTrue((clienteTest.edad()).equals(36));
 	}
 }
 		
