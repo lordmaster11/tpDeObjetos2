@@ -47,7 +47,11 @@ public class Cliente {
 	}
 
 	public Integer edadCliente() {
-		return new Date().getYear() - fechaNacimiento.getYear();
+		Integer suma = 0;
+	//	suma = suma + (fechaActual.getYear() - fechaNacimiento.getYear());
+		suma = suma +(new Date().getYear() - fechaNacimiento.getYear());
+		System.out.println("El valor de i es " + suma);
+		return suma;
 	}
 	
 	public Integer edad() {     //fecha_nac debe tener el formato dd/MM/yyyy
@@ -60,7 +64,7 @@ public class Cliente {
 	    String[] dat2 = hoy.split("/");
 	    
 	    Integer anos = Integer.parseInt(dat2[2]) - Integer.parseInt(dat1[2]);
-/*	    Integer mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
+	    Integer mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
 	    if (mes < 0) {
 	      anos = anos - 1;
 	    } else if (mes == 0) {
@@ -68,7 +72,8 @@ public class Cliente {
 	      if (dia > 0) {
 	        anos = anos - 1;
 	      }
-	    }*/
+	    }
+	    System.out.println(anos);
 	    return anos;
 	  }
 }

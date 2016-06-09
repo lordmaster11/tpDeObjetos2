@@ -16,7 +16,7 @@ public class ClienteTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Date fechaNac = new Date(11/02/80);
+		Date fechaNac = new Date(02/11/80);
 		
 		clienteTest = new Cliente ("Juan", "Perez", 27950524, fechaNac,
 			       "Necochea 662", "juanperez@gmail.com");
@@ -34,12 +34,12 @@ public class ClienteTest {
 	
 	@Test
 	public void testEdadCliente(){ 
-		assertTrue(clienteTest.edadCliente().equals(36));
+		assertTrue(clienteTest.edadCliente().equals(47));
 	}
 	
 	@Test
 	public void testEdad(){ 
-		assertTrue((clienteTest.edad()).equals(36));
+		assertTrue((clienteTest.edad()).equals(46));
 	}
 }
 		
