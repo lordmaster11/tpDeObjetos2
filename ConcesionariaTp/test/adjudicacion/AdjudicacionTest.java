@@ -55,5 +55,26 @@ public class AdjudicacionTest {
 		when(planDeAhorroMock.getSubscriptos()).thenReturn((ArrayList<Cliente>) suscriptos);
 		
 		assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock2));
-	}	
+	}
+	
+	@Test
+	public void testSeleccionDeClientePorSorteo() {
+
+		List<Cliente> suscriptos;
+		suscriptos = new ArrayList<Cliente>();
+		suscriptos.add(clienteMock);
+		suscriptos.add(clienteMock2);
+		
+		when(planDeAhorroMock.getSubscriptos()).thenReturn((ArrayList<Cliente>) suscriptos);
+		
+		planDeAhorroMock.suscribirCliente(clienteMock);
+		planDeAhorroMock.suscribirCliente(clienteMock2);
+		
+		assertTrue(porSorteoTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock));
+		
+	//	Random rnd = null;
+	//	assertTrue(planDeAhorroMock.getSubscriptos().get((int)(rnd.nextDouble() * (planDeAhorroMock.getSubscriptos().size()-1))));
+	//	Cliente ganador = (suscriptos.get((int)(rnd.nextDouble() * (suscriptos.size()-1))));
+	//	assertTrue(porSorteoTest.seleccionDeCliente(planDeAhorroMock).equals(ganador));
+	}
 }
