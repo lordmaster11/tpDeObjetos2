@@ -32,12 +32,6 @@ public class PlanDeAhorro {
 		return this.financiamiento.valorTotalEnCuotas(modelo);
 	}
 	
-	public void adjudicarAuto(){
-		Cliente cliente = adjudicacion.seleccionDeCliente(this);
-		this.suscriptos.remove(cliente);
-		//Quitar 1 del stock de los autos desde la concesionaria...
-	}
-
 	
 	public ArrayList<Cliente> getSubscriptos() {
 		return  (ArrayList<Cliente>) this.suscriptos;
@@ -59,5 +53,15 @@ public class PlanDeAhorro {
 
 	public Integer cantSuscriptos() {
 		return suscriptos.size();
+	}
+
+	public Adjudicacion getAdjudicacion() {
+
+		return this.adjudicacion;
+	}
+
+	public Modelo getModelo() {
+
+		return this.modelo;
 	}
 }

@@ -93,4 +93,10 @@ public class Planta implements Observer{
 		    }		
 		}
 	}
+
+	public void setStock(List<StockDeModelo> unStocksDeModelos) {
+
+         this.stocks=unStocksDeModelos;
+		
+	}
 }

@@ -24,7 +24,7 @@ public class StockDeModelo extends Observable{
 	}
 
 	public Integer getCantidad() {
-		return cantidadDelStock;
+		return this.cantidadDelStock;
 	}
 	
 	public void agregarCantidad(){
@@ -49,5 +49,11 @@ public class StockDeModelo extends Observable{
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidadDelStock=cantidad;		
+	}
+
+	public boolean cantidadDeModelosEs(Integer n) {
+		
+		return true;
+		
 	}
 }
