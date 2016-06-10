@@ -53,16 +53,10 @@ public class PlanDeAhorroTest {
 		
 		assertTrue((planDeAhorro.valorADesembolzar()).equals(70000f));
 				
-	}			
-	@Test
-	public void testAdjudicarAuto() {
-		
-		when(modeloMock.getValorVenta()).thenReturn(100000f);
-		when(financiamiento70_30Mock.valorTotalEnCuotas(modeloMock)).thenReturn(70000f);
-		
-		assertTrue((planDeAhorro.valorADesembolzar()).equals(70000f));
-				
-	}	
+	}			 
+	
+	
+	
 	
 
 }
