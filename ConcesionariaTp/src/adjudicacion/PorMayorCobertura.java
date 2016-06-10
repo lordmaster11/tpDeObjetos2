@@ -15,7 +15,7 @@ public class PorMayorCobertura implements Adjudicacion{
 			// if(unCliente.getFechaIngreso()>res.getFechaIngreso()){
 		      // res = unCliente;
 			 //else(unCliente.getFechaIngreso()>res.getFechaIngreso())		 
-			 if(unCliente.edad()>res.edad());
+			 if(unCliente.edadCliente2()>res.edadCliente2());
 		       res = unCliente;
 		 }
 

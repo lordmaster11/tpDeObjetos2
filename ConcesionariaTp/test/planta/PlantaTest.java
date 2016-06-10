@@ -31,7 +31,7 @@ public class PlantaTest {
 		when(unStockTest2.getCantidad()).thenReturn(1);
 		
 	}
-
+/*
 	@Test
 	public void testStockDeModelo() {
 		
@@ -42,6 +42,7 @@ public class PlantaTest {
 		assertTrue(unaPlantaTest.stockDeModelo(modeloMock).equals(6));
 	}
 
+*/
 }
 
 

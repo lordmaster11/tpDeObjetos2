@@ -32,11 +32,11 @@ public class AdjudicacionTest {
 
 		planDeAhorroMock = mock(PlanDeAhorro.class);
 		unClienteMock = mock(Cliente.class);
-		when(unClienteMock.edad()).thenReturn(30);
-		unClienteMock2 = mock(Cliente.class);
-		when(unClienteMock2.edad()).thenReturn(50);
+		when(unClienteMock.edadCliente2()).thenReturn(30); 
+		unClienteMock2 = mock(Cliente.class); 
+		when(unClienteMock2.edadCliente2()).thenReturn(50);
 			
-	}
+	} 
 
 	@Test
 	public void testSeleccionDeClientePorMayorCobertura() {
