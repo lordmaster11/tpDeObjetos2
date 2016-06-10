@@ -12,21 +12,28 @@ import modelo.Modelo;
 public class SeguroDeVidaTest {
 	
 	SeguroDeVida seguroDeVidaPorEdad;
+	SeguroDeVida seguroDeVidaPorVehiculo;
 	Cliente clienteMock;
 	Modelo modeloMock;
-	SeguroDeVida seguroDeVidaPorVehiculo;
+	
 
 	@Before
 	public void setUp() throws Exception {
+		seguroDeVidaPorEdad = new PorEdad();
+		seguroDeVidaPorVehiculo = new PorValorDeVehiculo();
 		clienteMock = mock(Cliente.class);
 		modeloMock = mock(Modelo.class);
 	}
 
 	@Test
-	public void testPorEdad() {
-		seguroDeVidaPorEdad = new PorEdad();
+	public void testPorEdadMayorA50Años() {
+		
 		when(clienteMock.edadCliente2()).thenReturn(51);	
-		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(60f));
+		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(60f));		
+	}
+	
+	@Test
+	public void testPorEdadMenorA50Años() {
 		
 		when(clienteMock.edadCliente2()).thenReturn(49);
 		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(50f));
@@ -34,11 +41,8 @@ public class SeguroDeVidaTest {
 
 	@Test
 	public void testPorValorVehiculo() {
-		seguroDeVidaPorVehiculo = new PorValorDeVehiculo();
-		
+
 		when(modeloMock.getValorVenta()).thenReturn(70000f);
-	
 		assertTrue(seguroDeVidaPorVehiculo.montoAPagar(clienteMock, modeloMock).equals(3500f));
-	}
-	
+	}	
 }

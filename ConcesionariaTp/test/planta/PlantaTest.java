@@ -18,7 +18,7 @@ public class PlantaTest {
 
 	@Before
 	public void setUp() throws Exception {
-		unaPlantaTest = new Planta();
+		unaPlantaTest = new Planta("Rivadavia 524");
 		
 		modeloMock = mock(Modelo.class);
 		when(modeloMock.getNombre()).thenReturn("peugeot 206");

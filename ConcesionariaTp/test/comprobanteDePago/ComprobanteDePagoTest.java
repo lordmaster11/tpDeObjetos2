@@ -15,14 +15,15 @@ public class ComprobanteDePagoTest {
 
 	ComprobanteDePago comprobanteDePago;
 	Cliente clienteMock;
-	Date unaFecha;
 	SeguroDeVida seguroMock;
+	Date fechaDePago;
 	
 	@Before
 	public void setUp() throws Exception {
 		clienteMock = mock(Cliente.class);
 		seguroMock = mock(SeguroDeVida.class);
-		comprobanteDePago =  new ComprobanteDePago(clienteMock, 2, 500f, 20f, seguroMock);
+		fechaDePago = new Date();
+		comprobanteDePago =  new ComprobanteDePago(clienteMock, 2, fechaDePago, 500f, 20f, seguroMock);		
 	}
 
 	@Test

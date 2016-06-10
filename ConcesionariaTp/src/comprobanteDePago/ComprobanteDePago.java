@@ -14,10 +14,10 @@ public class ComprobanteDePago {
 	private Float gastosAdministrativos;
 	private SeguroDeVida seguroDeVida;
 
-	public ComprobanteDePago(Cliente unCliente, Integer nCuotas, Float alicuota, Float gastos, SeguroDeVida unSeguro) {
+	public ComprobanteDePago(Cliente unCliente, Integer nCuotas, Date unaFecha, Float alicuota, Float gastos, SeguroDeVida unSeguro) {
 		this.cliente = unCliente;
 		this.numeroDeCuota = nCuotas;
-		this.fechaDePago = new Date();
+		this.fechaDePago = unaFecha;
 		this.alicuota = alicuota;
 		this.gastosAdministrativos = gastos;
 		this.seguroDeVida = unSeguro;

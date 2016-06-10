@@ -48,8 +48,6 @@ public class StockDeModelo extends Observable{
 	}
 
 	public void setCantidad(Integer cantidad) {
-
-    this.cantidadDelStock=cantidad;
-		
+		this.cantidadDelStock=cantidad;		
 	}
 }
