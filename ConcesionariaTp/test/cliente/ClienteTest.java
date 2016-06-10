@@ -3,7 +3,9 @@ package cliente;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +18,7 @@ public class ClienteTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Date fechaNac = new Date(02/11/80);
+		Calendar fechaNac = new GregorianCalendar(1980, Calendar.FEBRUARY+1, 11);
 		
 		clienteTest = new Cliente ("Juan", "Perez", 27950524, fechaNac,
 			       "Necochea 662", "juanperez@gmail.com");
@@ -32,20 +34,24 @@ public class ClienteTest {
 		assertTrue(clienteTest.getDNI().equals(27950524));
 		assertTrue(clienteTest.getFechaIngreso().equals(fechaIngreso));	
 	}
-	
+/*	
 	@Test
 	public void testEdadCliente(){ 
-		assertTrue(clienteTest.edadCliente().equals(47));
+		 fechaNac = new Date(11/02/1980);
+		assertTrue(clienteTest.edadCliente().equals(36));
 	}
+*/
 	
+	@Test
+	public void testEdadCliente2(){ 
+		assertTrue((clienteTest.edadCliente2()).equals(36));
+	}
+/*	
 	@Test
 	public void testEdad(){ 
+		Date fechaNac = new Date(02/11/1980);
 		assertTrue((clienteTest.edad()).equals(46));
 	}
-	
-	@Test
-	public void testEdad2(){ 
-		assertTrue((clienteTest.edadCliente2()).equals(46));
-	}
+*/	
 }
 		
