@@ -7,7 +7,7 @@ public class PorEdad implements SeguroDeVida{
 
 	@Override
 	public Float montoAPagar(Cliente cliente, Modelo modelo) {		
-		return  (50f + this.mayorDeEdad(cliente.edadCliente()));
+		return  (50f + this.mayorDeEdad(cliente.edadCliente2()));
 	}
 
 	private Integer mayorDeEdad(Integer edad) {

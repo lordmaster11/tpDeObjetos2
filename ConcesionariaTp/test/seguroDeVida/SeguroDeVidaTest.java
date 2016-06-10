@@ -25,10 +25,10 @@ public class SeguroDeVidaTest {
 	@Test
 	public void testPorEdad() {
 		seguroDeVidaPorEdad = new PorEdad();
-		when(clienteMock.edadCliente()).thenReturn(51);	
+		when(clienteMock.edadCliente2()).thenReturn(51);	
 		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(60f));
 		
-		when(clienteMock.edadCliente()).thenReturn(49);
+		when(clienteMock.edadCliente2()).thenReturn(49);
 		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(50f));
 	}
 
