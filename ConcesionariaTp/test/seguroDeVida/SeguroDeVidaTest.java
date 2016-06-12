@@ -28,14 +28,14 @@ public class SeguroDeVidaTest {
 	@Test
 	public void testPorEdadMayorA50Años() {
 		
-		when(clienteMock.edadCliente2()).thenReturn(51);	
+		when(clienteMock.edadCliente()).thenReturn(51);	
 		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(60f));		
 	}
 	
 	@Test
 	public void testPorEdadMenorA50Años() {
 		
-		when(clienteMock.edadCliente2()).thenReturn(49);
+		when(clienteMock.edadCliente()).thenReturn(49);
 		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(50f));
 	}
 

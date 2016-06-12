@@ -47,13 +47,8 @@ public class Cliente {
 	public Date getFechaIngreso() {
 		return fechaIngreso;
 	}
-/*
-	public Integer edadCliente() {
-		return new Date().getYear() - fechaNacimiento.getYear();
-	}
-*/
 	
-	public Integer edadCliente2(){
+	public Integer edadCliente(){
 		Calendar fechaNac = fechaNacimiento;
 		Integer anioFechaNac = fechaNac.get(Calendar.YEAR);
 		
@@ -61,7 +56,7 @@ public class Cliente {
 		Integer anioFechaActual = fechaActual.get(Calendar.YEAR);
 				
 		Integer edad = anioFechaActual - anioFechaNac;
-/*		Integer mes =fechaActual.get(Calendar.MONTH)- fechaNac.get(Calendar.MONTH);
+		Integer mes =fechaActual.get(Calendar.MONTH)- fechaNac.get(Calendar.MONTH);
         Integer dia = fechaActual.get(Calendar.DATE)- fechaNac.get(Calendar.DATE);
         //Se ajusta el año dependiendo el mes y el día
         if(mes<0 || (mes==0 && dia<0)){
@@ -69,34 +64,7 @@ public class Cliente {
         }
         //Regresa la edad en base a la fecha de nacimiento
         System.out.println("La edad es " + edad);
-*/		
+		
 		return edad;	
-	}
-	
-/*	
-	public Integer edad() {     //fecha_nac debe tener el formato dd/MM/yyyy
-		   
-	    Date fechaActual = new Date();
-	    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-	    String hoy = formato.format(fechaActual);
-	    String nac = formato.format(fechaNacimiento);
-	    String[] dat1 = nac.split("/");
-	    String[] dat2 = hoy.split("/");
-	    
-	    Integer anos = Integer.parseInt(dat2[2]) - Integer.parseInt(dat1[2]);
-	    Integer mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
-	    if (mes < 0) {
-	      anos = anos - 1;
-	    } else if (mes == 0) {
-	      Integer dia = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
-	      if (dia > 0) {
-	        anos = anos - 1;
-	      }
-	    }
-//	    System.out.println(anos);
-	    return anos;
-	  }
-*/	
-	
-	
+	}	
 }

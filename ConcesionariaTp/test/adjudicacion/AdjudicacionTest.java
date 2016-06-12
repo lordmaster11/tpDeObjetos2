@@ -31,14 +31,14 @@ public class AdjudicacionTest {
 	@Before
 	public void setUp() throws Exception {
 
-		porSorteoTest = new PorSorteo();
+		porSorteoTest = new PorSorteo(randomMock);
 		porMayorCoberturaTest = new PorMayorCobertura();
 		
 		clienteMock = mock(Cliente.class);
-		when(clienteMock.edadCliente2()).thenReturn(30); 
+		when(clienteMock.edadCliente()).thenReturn(30); 
 		
 		clienteMock2 = mock(Cliente.class); 
-		when(clienteMock2.edadCliente2()).thenReturn(50);
+		when(clienteMock2.edadCliente()).thenReturn(50);
 		
 		planDeAhorroMock = mock(PlanDeAhorro.class);
 		randomMock = mock(Random.class);		
@@ -66,12 +66,16 @@ public class AdjudicacionTest {
 		suscriptos.add(clienteMock2);
 		
 		when(planDeAhorroMock.getSubscriptos()).thenReturn((ArrayList<Cliente>) suscriptos);
+	//	when(planDeAhorroMock.getSubscriptos().get(randomMock.nextInt()).thenReturn(clienteMock2) );
 		
-		planDeAhorroMock.suscribirCliente(clienteMock);
-		planDeAhorroMock.suscribirCliente(clienteMock2);
+	//	when(randomMock).thenReturn(2);
+	//	when(randomMock).thenReturn(clienteMock2);
 		
-		assertTrue(porSorteoTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock));
+	//	assertTrue(porSorteoTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock2));
+		assertTrue(planDeAhorroMock.getSubscriptos().get(randomMock.nextInt()).equals(clienteMock2) );
 		
+	//	planDeAhorroMock.suscribirCliente(clienteMock);
+	//	planDeAhorroMock.suscribirCliente(clienteMock2);
 	//	Random rnd = null;
 	//	assertTrue(planDeAhorroMock.getSubscriptos().get((int)(rnd.nextDouble() * (planDeAhorroMock.getSubscriptos().size()-1))));
 	//	Cliente ganador = (suscriptos.get((int)(rnd.nextDouble() * (suscriptos.size()-1))));
