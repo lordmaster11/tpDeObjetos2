@@ -21,6 +21,10 @@ public class Planta implements Observer{
 	public List<StockDeModelo> getStocks() {
 		return stocks;
 	}
+	
+	public String getDireccion() {
+		return this.direccion;
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {

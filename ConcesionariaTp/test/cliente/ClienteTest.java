@@ -13,8 +13,8 @@ import org.junit.Test;
 public class ClienteTest {
 	
 	Cliente clienteTest;
-	Date fechaNac;
-	Date fechaIngreso;
+	Cliente clienteTest2;
+	Date fechaDeIngreso;
 
 	@Before
 	public void setUp() throws Exception {
@@ -37,25 +37,25 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void testEdadCliente2(){ 
+	public void testEdadClienteQueCumplioAnios(){ 
 		
 		assertTrue((clienteTest.edadCliente()).equals(36));
 	}
 	
 	@Test
-	public void testEdadCliente3(){ 
+	public void testEdadClienteQueTodaviaNoCumplioAnios(){ 
 		Calendar fechaNac = new GregorianCalendar(1980, Calendar.DECEMBER+1, 11);
-		clienteTest = new Cliente ("Juan", "Perez", 27950524, fechaNac,
-			       "Necochea 662", "juanperez@gmail.com");
-		assertTrue((clienteTest.edadCliente()).equals(35));
+		clienteTest2 = new Cliente ("Esteban", "Quito", 32980511, fechaNac,
+			       "Av. Milito 22", "estebanquito@gmail.com");
+		assertTrue((clienteTest2.edadCliente()).equals(35));
 	}
 	
 	@Test
-	public void testEdadCliente4(){ 
-		Calendar fechaNac = new GregorianCalendar(2016, Calendar.MAY +1, 11);
+	public void testEdadClienteQueNacioElMismoDia(){ 
+		Calendar fechaNac = Calendar.getInstance();;
 		clienteTest = new Cliente ("Juan", "Perez", 27950524, fechaNac,
 			       "Necochea 662", "juanperez@gmail.com");
-		assertTrue((clienteTest.edadCliente()).equals(35));
+		assertTrue((clienteTest.edadCliente()).equals(0));
 	}
 }
 		

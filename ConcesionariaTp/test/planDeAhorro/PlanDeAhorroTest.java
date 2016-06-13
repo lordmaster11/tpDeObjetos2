@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
+import comprobanteDePago.ComprobanteDePago;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
 
@@ -19,6 +20,7 @@ public class PlanDeAhorroTest {
 	Modelo modeloMock;
 	Financiamiento financiamiento70_30Mock;
 	Adjudicacion adjudicacionMock;
+	ComprobanteDePago comprobanteMock;
        
     @Before
     public void setUp() throws Exception {
@@ -27,7 +29,7 @@ public class PlanDeAhorroTest {
     	modeloMock = mock(Modelo.class);
     	financiamiento70_30Mock =  mock(Financiamiento.class);
     	adjudicacionMock = mock(Adjudicacion.class);
-    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamiento70_30Mock, adjudicacionMock, 0);
+    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamiento70_30Mock, adjudicacionMock, 0, comprobanteMock);
     
     }
 

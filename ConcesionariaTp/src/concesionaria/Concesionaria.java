@@ -1,5 +1,7 @@
 package concesionaria;
 
+import static org.mockito.Mockito.mock;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -7,6 +9,7 @@ import java.util.Observer;
 
 import GoogleMap.GoogleMap;
 import cliente.Cliente;
+import cuponDeAdjudicacion.CuponDeAdjudicacion;
 import fabrica.Fabrica;
 import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
@@ -20,6 +23,8 @@ public class Concesionaria implements GoogleMap, Observer{
 	private List<Cliente> clientes;
 	private List<StockDeModelo> stocks;
 	private List<PlanDeAhorro> planes;
+	private List<CuponDeAdjudicacion> cupones;
+	private Planta unaPlanta;
 	
 	public Concesionaria(String unaDireccion, Fabrica unaFabrica){
 		this.direccion = unaDireccion;
@@ -27,18 +32,23 @@ public class Concesionaria implements GoogleMap, Observer{
 		this.clientes = new ArrayList<Cliente>();
 		this.stocks = new ArrayList<StockDeModelo>();
 		this.planes = new ArrayList<PlanDeAhorro>();
+		this.cupones = new ArrayList<CuponDeAdjudicacion>();
 	}
 
 	public Float gastoDeFlete(Planta unaPlanta){
-    	return calcularDistancia(unaPlanta,this);
+    	return calcularDistancia(unaPlanta.getDireccion(),this.getDireccion());
     }
 	
+	private String getDireccion() {
+		return this.direccion;
+	}
+
 	private Float gastoPorKilometro(){		
 		return 20f;
 	}
 
 	@Override
-	public Float calcularDistancia(Planta unaPlanta, Concesionaria consecionaria){
+	public Float calcularDistancia(String unaDireccion, String otraDireccion){
 		return 10f * gastoPorKilometro();
 	}
 	
@@ -46,16 +56,28 @@ public class Concesionaria implements GoogleMap, Observer{
 		clientes.add(cliente);
 	}
 	
-	public ArrayList getClientes() {
-		return (ArrayList<Cliente>) clientes;
+	public List getClientes() {
+		return this.clientes;
 	}
 	
 	public void agregarPlanDeAhorro(PlanDeAhorro plan){
 		planes.add(plan);
 	}
 	
-	public ArrayList getPlanes() {
-		return (ArrayList<PlanDeAhorro>) planes;
+	public List getPlanes() {
+		return this.planes;
+	}
+	
+	public void agregarPlanta(Planta unaPlanta) {
+        fabrica.agregarPlanta(unaPlanta);		
+	}
+	
+	public void agregarCupon(CuponDeAdjudicacion cupon){
+		cupones.add(cupon);
+	}
+	
+	public List getCupones() {
+		return this.cupones;
 	}
 	
 	public void adjudicarAuto(PlanDeAhorro unPlan){
@@ -67,10 +89,9 @@ public class Concesionaria implements GoogleMap, Observer{
  
 	private void quitarUnModelo(Modelo modelo, List<StockDeModelo> stocks) {
 		
-	     for(StockDeModelo stock:stocks)
-	    {
-	 	 if(stock.getModelo().getNombre()==(modelo.getNombre()))
-           stock.setCantidad(stock.getCantidad()+1);
+	     for(StockDeModelo stock:stocks){
+	    	 if(stock.getModelo().getNombre()==(modelo.getNombre()))
+	    		 stock.setCantidad(stock.getCantidad()+1);
 	    }
 	}
 
@@ -106,16 +127,14 @@ public class Concesionaria implements GoogleMap, Observer{
 		stocks.add(stock);
 	}
 
-	public void agregarPlanta(Planta unaPlanta) {
-
-        fabrica.agregarPlanta(unaPlanta);
-		
-	}
-
 	public List<StockDeModelo> getStocks() {
 		// TODO Auto-generated method stub
 		return this.stocks;
 	}
-
 	
+	// nose si esta bien, hay q ver bien si concesionaria conoce planta
+	public void emitirCupon(Cliente cliente, PlanDeAhorro planDeAhorro){
+		Float monto = this.gastoDeFlete(unaPlanta) + planDeAhorro.efectivoAPagar();
+		CuponDeAdjudicacion.montoAPagar(cliente, monto);
+	}
 }

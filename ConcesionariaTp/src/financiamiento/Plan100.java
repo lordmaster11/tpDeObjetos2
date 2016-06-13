@@ -9,4 +9,9 @@ public class Plan100 extends Financiamiento{
 		return m.getValorVenta();
 	}
 
+	@Override
+	public Float efectivo(Modelo m) {
+		return 0f;
+	}
+
 }

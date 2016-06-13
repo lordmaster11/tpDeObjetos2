@@ -13,6 +13,7 @@ import adjudicacion.Adjudicacion;
 import adjudicacion.PorSorteo;
 import GoogleMap.GoogleMap;
 import cliente.Cliente;
+import cuponDeAdjudicacion.CuponDeAdjudicacion;
 import fabrica.Fabrica;
 import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
@@ -33,7 +34,8 @@ public class ConcesionariaTest {
 	Modelo modeloMock1;
 	Modelo modeloMock2;
 	Adjudicacion unaAdjudicacionMock;
-	Cliente unClienteMock;
+	CuponDeAdjudicacion cuponMock;
+	
 	
 	@Before
 	public void setUp() throws Exception {
@@ -49,7 +51,8 @@ public class ConcesionariaTest {
 		stockMock1 = mock(StockDeModelo.class);
 		planDeAhorroMock= mock(PlanDeAhorro.class);
 		unaAdjudicacionMock= mock(PorSorteo.class);
-		unClienteMock = mock(Cliente.class);
+		clienteMock = mock(Cliente.class);
+		cuponMock = mock(CuponDeAdjudicacion.class);
 	}
 	
 	@Test
@@ -69,6 +72,13 @@ public class ConcesionariaTest {
 		concesionariaTest.agregarPlanDeAhorro(planDeAhorroMock);
 		
 		assertTrue(((Integer)concesionariaTest.getPlanes().size()).equals(1));
+	}
+	
+	@Test
+	public void testAgregarCupon(){
+		concesionariaTest.agregarCupon(cuponMock);
+		
+		assertTrue(((Integer)concesionariaTest.getCupones().size()).equals(1));
 	}
 	
 	

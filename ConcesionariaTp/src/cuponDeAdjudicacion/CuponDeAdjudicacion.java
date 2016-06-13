@@ -6,25 +6,19 @@ import cliente.Cliente;
 
 public class CuponDeAdjudicacion {
 
-	private Cliente cliente;
-	private Float monto;
+	private static Cliente cliente;
+	private static Float monto;
 	
 	public CuponDeAdjudicacion(Cliente unCliente, Float unMonto){
 		this.cliente = unCliente;	
 		this.monto = unMonto;
 	}
 	
-	public Float montoAPagar(){
-		return monto= gastoDeFlete() + valorMovil();
+	//nose si esta bien esto, pq se pone static?????
+	public static void montoAPagar(Cliente cliente2, Float monto2){
+		cliente = cliente2;
+		monto = monto2;
 	}
 
-	private Float valorMovil() {
-		// TODO Auto-generated method stub
-		return 0f;
-	}
-
-	private Float gastoDeFlete() {
-		// TODO Auto-generated method stub
-		return 0f;
-	}
+	
 }

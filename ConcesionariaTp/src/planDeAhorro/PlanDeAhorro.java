@@ -5,6 +5,7 @@ import java.util.List;
 
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
+import comprobanteDePago.ComprobanteDePago;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
 
@@ -16,16 +17,18 @@ public class PlanDeAhorro {
 	private Financiamiento financiamiento;
 	private Adjudicacion adjudicacion;
 	private Integer cantidadDeCuotas;
+	private ComprobanteDePago comprobanteDePago;
 	
 	
 	public PlanDeAhorro(Integer unNumero, Modelo unModelo, Financiamiento unFinanciamiento,
-			            Adjudicacion unaAdjudicacion, Integer unasCuotas) {
+			            Adjudicacion unaAdjudicacion, Integer unasCuotas, ComprobanteDePago unComprobante) {
 		this.numeroGrupo = unNumero;
 		this.modelo = unModelo;
 		this.financiamiento = unFinanciamiento;
 		this.suscriptos = new ArrayList<Cliente>();
 		this.adjudicacion = unaAdjudicacion;
 		this.cantidadDeCuotas = unasCuotas;
+		this.comprobanteDePago = unComprobante;
 	}
 
 	public Float valorADesembolzar(){
@@ -56,12 +59,15 @@ public class PlanDeAhorro {
 	}
 
 	public Adjudicacion getAdjudicacion() {
-
 		return this.adjudicacion;
 	}
 
 	public Modelo getModelo() {
-
 		return this.modelo;
+	}
+
+	public Float efectivoAPagar() {
+		Float efectivo = financiamiento.efectivo(this.getModelo());
+		return efectivo;
 	}
 }

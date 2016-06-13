@@ -66,13 +66,13 @@ public class AdjudicacionTest {
 		suscriptos.add(clienteMock2);
 		
 		when(planDeAhorroMock.getSubscriptos()).thenReturn((ArrayList<Cliente>) suscriptos);
-	//	when(planDeAhorroMock.getSubscriptos().get(randomMock.nextInt()).thenReturn(clienteMock2) );
+	//	when(planDeAhorroMock.getSubscriptos().get(randomMock.nextInt()).thenReturn(clienteMock2));
 		
-	//	when(randomMock).thenReturn(2);
+	//	when(randomMock).thenReturn(randomMock);
 	//	when(randomMock).thenReturn(clienteMock2);
 		
-	//	assertTrue(porSorteoTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock2));
-		assertTrue(planDeAhorroMock.getSubscriptos().get(randomMock.nextInt()).equals(clienteMock2) );
+	//	assertTrue(porSorteoTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock));
+		assertTrue(planDeAhorroMock.getSubscriptos().get(randomMock.nextInt()).equals(clienteMock) );
 		
 	//	planDeAhorroMock.suscribirCliente(clienteMock);
 	//	planDeAhorroMock.suscribirCliente(clienteMock2);
