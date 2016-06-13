@@ -3,6 +3,7 @@ package comprobanteDePago;
 import java.util.Date;
 
 import cliente.Cliente;
+import modelo.Modelo;
 import seguroDeVida.SeguroDeVida;
 
 public class ComprobanteDePago {
@@ -12,7 +13,7 @@ public class ComprobanteDePago {
 	private Date fechaDePago;
 	private Float alicuota;
 	private Float gastosAdministrativos;
-	private SeguroDeVida seguroDeVida;
+	private Float seguroDeVida;
 
 	public ComprobanteDePago(Cliente unCliente, Integer nCuotas, Date unaFecha, Float alicuota, Float gastos, SeguroDeVida unSeguro) {
 		this.cliente = unCliente;
@@ -20,8 +21,6 @@ public class ComprobanteDePago {
 		this.fechaDePago = unaFecha;
 		this.alicuota = alicuota;
 		this.gastosAdministrativos = gastos;
-		this.seguroDeVida = unSeguro;
+		this.seguroDeVida = unSeguro.montoAPagar(cliente, (cliente.getPlan().getmodelo()));
 	}
-
-	
 }

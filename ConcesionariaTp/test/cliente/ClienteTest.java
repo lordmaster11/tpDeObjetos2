@@ -44,7 +44,7 @@ public class ClienteTest {
 	
 	@Test
 	public void testEdadClienteQueTodaviaNoCumplioAnios(){ 
-		Calendar fechaNac = new GregorianCalendar(1980, Calendar.DECEMBER+1, 11);
+		Calendar fechaNac = new GregorianCalendar(1980, Calendar.SEPTEMBER, 11);
 		clienteTest2 = new Cliente ("Esteban", "Quito", 32980511, fechaNac,
 			       "Av. Milito 22", "estebanquito@gmail.com");
 		assertTrue((clienteTest2.edadCliente()).equals(35));

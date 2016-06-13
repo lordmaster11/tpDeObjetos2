@@ -1,13 +1,16 @@
 package planDeAhorro;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import RegistroDePlan.RegistroDePlan;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import comprobanteDePago.ComprobanteDePago;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
+import seguroDeVida.SeguroDeVida;
 
 public class PlanDeAhorro {
 
@@ -17,7 +20,8 @@ public class PlanDeAhorro {
 	private Financiamiento financiamiento;
 	private Adjudicacion adjudicacion;
 	private Integer cantidadDeCuotas;
-	private ComprobanteDePago comprobanteDePago;
+	private List<ComprobanteDePago> comprobantesDePago;
+	private List<RegistroDePlan> registros;
 	
 	
 	public PlanDeAhorro(Integer unNumero, Modelo unModelo, Financiamiento unFinanciamiento,
@@ -28,7 +32,8 @@ public class PlanDeAhorro {
 		this.suscriptos = new ArrayList<Cliente>();
 		this.adjudicacion = unaAdjudicacion;
 		this.cantidadDeCuotas = unasCuotas;
-		this.comprobanteDePago = unComprobante;
+		this.comprobantesDePago =  new ArrayList<ComprobanteDePago>();
+		this.registros = new ArrayList<RegistroDePlan>();
 	}
 
 	public Float valorADesembolzar(){
@@ -40,8 +45,9 @@ public class PlanDeAhorro {
 		return  (ArrayList<Cliente>) this.suscriptos;
 	}
 
-	public void suscribirCliente(Cliente unCliente) {
+	public void suscribirCliente(Cliente unCliente) {	
 		suscriptos.add(unCliente);
+		registros.add(new RegistroDePlan(unCliente,new Date()));
 	}
 	/**
 	public Boolean estaSuscripto(Cliente unCliente) {
@@ -67,7 +73,12 @@ public class PlanDeAhorro {
 	}
 
 	public Float efectivoAPagar() {
-		Float efectivo = financiamiento.efectivo(this.getModelo());
-		return efectivo;
+		return financiamiento.efectivo(this.getModelo());
+	}
+
+	public void generarComprobanteDePago(Cliente unCliente) {
+
+     re   new ComprobanteDePago(unCliente,(this.calcularCuotaDe(unCliente)), new Date(),this.calcularAlicuota(),this.calcularGastos(), SeguroDeVida unSeguro);
+		
 	}
 }

@@ -81,9 +81,10 @@ public class Concesionaria implements GoogleMap, Observer{
 	}
 	
 	public void adjudicarAuto(PlanDeAhorro unPlan){
-		//Cliente unCliente = unPlan.getAdjudicacion().seleccionDeCliente(unPlan);
-		//unPlan.quitarCliente(unCliente);
+		Cliente unCliente = unPlan.getAdjudicacion().seleccionDeCliente(unPlan);
+		unPlan.quitarCliente(unCliente);
 		this.quitarUnModelo(unPlan.getModelo(),stocks);
+		this.emitirCupon(unCliente, unPlan);
 
 	}
  
@@ -135,6 +136,15 @@ public class Concesionaria implements GoogleMap, Observer{
 	// nose si esta bien, hay q ver bien si concesionaria conoce planta
 	public void emitirCupon(Cliente cliente, PlanDeAhorro planDeAhorro){
 		Float monto = this.gastoDeFlete(unaPlanta) + planDeAhorro.efectivoAPagar();
-		CuponDeAdjudicacion.montoAPagar(cliente, monto);
+		new CuponDeAdjudicacion(cliente, monto);
+		
+	}
+	
+	public void recepcionDePago(Cliente unCliente, PlanDeAhorro plan){
+		
+		plan.generarComprobanteDePago(unCliente);
+		
 	}
 }
+
+
