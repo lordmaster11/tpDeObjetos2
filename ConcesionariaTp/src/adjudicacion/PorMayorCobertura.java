@@ -1,36 +1,31 @@
 package adjudicacion;
 
-import cliente.Cliente;
+import java.util.List;
+
+import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
 
 public class PorMayorCobertura implements Adjudicacion{
-
+	
 	@Override
-	public Cliente seleccionDeCliente(PlanDeAhorro plan) {
-		Cliente res;
-		res = plan.getSubscriptos().get(0);
-       	
-		for(Cliente unCliente:(plan.getSubscriptos()))
-		 {
-			// if(unCliente.getFechaIngreso()>res.getFechaIngreso()){
-		      // res = unCliente;
-			 //else(unCliente.getFechaIngreso()>res.getFechaIngreso())		 
-			 if(unCliente.edadCliente()>res.edadCliente());
-		       res = unCliente;
-		 }
-
+	public Suscripto seleccionDeCliente(PlanDeAhorro plan) {
 		
-		return res;
+		Suscripto retorno;
+		List<Suscripto> pagadores = plan.losQueMasPagaron();
+		
+		if(pagadores.size()==1){
+			retorno = pagadores.get(0);
+		}
+		else{
+			if(plan.losMasViejos(pagadores).size()==1){
+				retorno = plan.losMasViejos(pagadores).get(0);	
+			} 
+			else {
+				retorno = plan.elPrimerSuscriptor(plan.losMasViejos(pagadores));
+			}
+		}
+		return retorno;
 	}
 	//ESTO SE TIENE QUE HACER CON EXPRESIONES LAMDA.. PROXIMAMENTE
 	//el if debe conmemplar mayor proporcion de pago y antiguedad
-	
-	
-	
-/** 
- * agarrar todos los clientes que hayan pagado la mayor cantidad de cuotas 
- * recorrer toda la lista recibo de cuotas desde planDe ahorro, y devolver el numero mayor de 
- * cuotas pagadas, una vez que tenes ese numero recorrer de vuelta la lista y guard en una nueva lista 
- * todos los clientes q tengan esa cantidad de cuotas pagas
- */
 }

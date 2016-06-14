@@ -2,25 +2,24 @@ package comprobanteDePago;
 
 import java.util.Date;
 
-import cliente.Cliente;
-import modelo.Modelo;
-import seguroDeVida.SeguroDeVida;
+import RegistroDePlan.Suscripto;
+import planDeAhorro.PlanDeAhorro;
 
 public class ComprobanteDePago {
 
-	private Cliente cliente;
+	private Suscripto suscripto;
 	private Integer numeroDeCuota;
 	private Date fechaDePago;
 	private Float alicuota;
 	private Float gastosAdministrativos;
 	private Float seguroDeVida;
 
-	public ComprobanteDePago(Cliente unCliente, Integer nCuotas, Date unaFecha, Float alicuota, Float gastos, SeguroDeVida unSeguro) {
-		this.cliente = unCliente;
-		this.numeroDeCuota = nCuotas;
-		this.fechaDePago = unaFecha;
-		this.alicuota = alicuota;
-		this.gastosAdministrativos = gastos;
-		this.seguroDeVida = unSeguro.montoAPagar(cliente, (cliente.getPlan().getmodelo()));
+	public ComprobanteDePago(Integer nCuota, PlanDeAhorro plan, Suscripto s){
+		this.suscripto = s;
+		this.numeroDeCuota = nCuota;
+		this.fechaDePago = new Date();
+		this.alicuota = plan.alicuota();
+		this.gastosAdministrativos = plan.getConcesionaria().gastosAdministrativos();
+		this.seguroDeVida = plan.getConcesionaria().montoDelSeguro(s,plan.getModelo());
 	}
 }

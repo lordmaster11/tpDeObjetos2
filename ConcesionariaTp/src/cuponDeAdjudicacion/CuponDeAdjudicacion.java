@@ -1,24 +1,23 @@
 package cuponDeAdjudicacion;
 
-import java.util.ArrayList;
-
-import cliente.Cliente;
+import RegistroDePlan.Suscripto;
+import planDeAhorro.PlanDeAhorro;
 
 public class CuponDeAdjudicacion {
 
-	private  Cliente cliente;
+	private  Suscripto suscripto;
 	private  Float monto;
 	
-	public CuponDeAdjudicacion(Cliente unCliente, Float unMonto){
-		this.cliente = unCliente;	
-		this.monto = unMonto;
+	public CuponDeAdjudicacion(PlanDeAhorro plan,Suscripto unSuscripto){
+		this.suscripto = unSuscripto;
+		this.monto = calcularMonto(plan);
 	}
 	
-	/*nose si esta bien esto, pq se pone static?????
-	public void montoAPagar(Cliente cliente2, Float monto2){
-		cliente = cliente2;
-		monto = monto2;
+	public Float calcularMonto(PlanDeAhorro plan){
+		Float total = plan.getConcesionaria().gastoDeFlete(
+						plan.getConcesionaria().plantaMasCercana(
+							plan.getModelo()));
+		
+		return total+plan.efectivoAPagar();
 	}
-*/
-	
 }

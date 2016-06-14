@@ -8,26 +8,27 @@ import planta.Planta;
 
 public class Fabrica {
 	
-	private List<Planta> plantas;
+	private List<Planta> plantas; 
 
 	public Fabrica() {
 		this.plantas = new ArrayList<Planta>();
 	}
 	
 	public void actualizarPrecio(Float precioNuevo, Modelo model){
-		Planta p = plantaConModelo(model);
-		p.buscarStockDelModelo(model).getModelo().setPrecio(precioNuevo);
+		List<Planta> plantasEncontradas = plantasConModelo(model);
+		
+		for(Planta p:plantasEncontradas)
+			p.buscarStockDelModelo(model).getModelo().setPrecio(precioNuevo);
 	}
 	
-	//Busca en su lista de plantas, cual tiene el modelo dado por parametro
-	public Planta plantaConModelo(Modelo m){
-		Planta planta = null;
+	public List<Planta> plantasConModelo(Modelo m){
+		ArrayList<Planta> plantasEncontradas = new ArrayList<Planta>(); 
 	
 		for(Planta unaPlanta : plantas){
 			if(unaPlanta.nombresDeLosModelos().contains(m.getNombre()))
-					planta = unaPlanta;
+				plantasEncontradas.add(unaPlanta);
 		}
-		return planta;
+		return plantasEncontradas;
 	}
 
 	public void agregarPlanta(Planta planta) {
@@ -36,5 +37,21 @@ public class Fabrica {
 	
 	public ArrayList<Planta> getPlantas(){
 		return (ArrayList<Planta>) this.plantas;
+	}
+
+	public void quitarUnModeloDeStock(Modelo modelo, Planta unaPlanta) {
+ 
+		 unaPlanta.quitarModelo(modelo);
+		
+	}
+
+	public Integer stock(Modelo unModelo) {
+		
+		Integer total = 0;
+		List<Planta> plantas = plantasConModelo(unModelo);
+		
+		for(Planta p : plantas)
+			total += p.buscarStockDelModelo(unModelo).getCantidad();
+		return total;
 	}
 }

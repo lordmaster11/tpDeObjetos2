@@ -8,22 +8,26 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import cliente.Cliente;
-import seguroDeVida.SeguroDeVida;
+import RegistroDePlan.Suscripto;
+import concesionaria.Concesionaria;
+import planDeAhorro.PlanDeAhorro;
 
 public class ComprobanteDePagoTest {
 
 	ComprobanteDePago comprobanteDePago;
-	Cliente clienteMock;
-	SeguroDeVida seguroMock;
+	Suscripto suscriptoMock;
+	PlanDeAhorro planMock;
 	Date fechaDePago;
+	Concesionaria concesionariaMock;
 	
 	@Before
 	public void setUp() throws Exception {
-		clienteMock = mock(Cliente.class);
-		seguroMock = mock(SeguroDeVida.class);
-		fechaDePago = new Date();
-		comprobanteDePago =  new ComprobanteDePago(clienteMock, 2, fechaDePago, 500f, 20f, seguroMock);		
+		suscriptoMock = mock(Suscripto.class);
+		planMock = mock(PlanDeAhorro.class);
+		concesionariaMock = mock(Concesionaria.class);
+		
+		when(planMock.getConcesionaria()).thenReturn(concesionariaMock);
+		comprobanteDePago =  new ComprobanteDePago(10,planMock,suscriptoMock);		
 	}
 
 	@Test

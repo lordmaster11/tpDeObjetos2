@@ -52,7 +52,7 @@ public class ClienteTest {
 	
 	@Test
 	public void testEdadClienteQueNacioElMismoDia(){ 
-		Calendar fechaNac = Calendar.getInstance();;
+		Calendar fechaNac = Calendar.getInstance();
 		clienteTest = new Cliente ("Juan", "Perez", 27950524, fechaNac,
 			       "Necochea 662", "juanperez@gmail.com");
 		assertTrue((clienteTest.edadCliente()).equals(0));

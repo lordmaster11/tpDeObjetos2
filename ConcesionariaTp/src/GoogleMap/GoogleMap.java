@@ -1,9 +1,14 @@
 package GoogleMap;
 
-import concesionaria.Concesionaria;
+import java.util.Random;
+
 import planta.Planta;
 
-public interface GoogleMap {
-
-	public Float calcularDistancia(String unaDireccion, String otraDireccion);		
+public class GoogleMap {
+	
+	public Integer calcularDistancia(Planta unaPlanta)
+	{
+		Random  rnd = new Random();
+		return (rnd.nextInt() * 3000 + 1);
+	}		
 }

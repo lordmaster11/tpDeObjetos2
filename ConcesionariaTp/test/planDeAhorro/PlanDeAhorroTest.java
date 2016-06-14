@@ -9,18 +9,19 @@ import org.junit.Test;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import comprobanteDePago.ComprobanteDePago;
+import concesionaria.Concesionaria;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
 
 
 public class PlanDeAhorroTest {
-	
+	 
     PlanDeAhorro planDeAhorro;
     Cliente clienteMock;
 	Modelo modeloMock;
 	Financiamiento financiamiento70_30Mock;
 	Adjudicacion adjudicacionMock;
-	ComprobanteDePago comprobanteMock;
+	Concesionaria concesionariaMock;
        
     @Before
     public void setUp() throws Exception {
@@ -29,24 +30,26 @@ public class PlanDeAhorroTest {
     	modeloMock = mock(Modelo.class);
     	financiamiento70_30Mock =  mock(Financiamiento.class);
     	adjudicacionMock = mock(Adjudicacion.class);
-    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamiento70_30Mock, adjudicacionMock, 0, comprobanteMock);
+    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, financiamiento70_30Mock, adjudicacionMock, 0, concesionariaMock);
     
+
     }
 
 	@Test
 	public void testSuscribirCliente() {
 		
-		planDeAhorro.suscribirCliente(clienteMock);
-		
+		planDeAhorro.agregarSuscripto(clienteMock);
 		assertTrue(planDeAhorro.cantSuscriptos().equals(1));
+		
 	}
 	
 	@Test
 	public void testGetSuscriptos() {
-		planDeAhorro.suscribirCliente(clienteMock);
+		planDeAhorro.agregarSuscripto(clienteMock);
 		
-		assertTrue (((Integer)planDeAhorro.getSubscriptos().size()).equals(1));
-	}
+		assertTrue (planDeAhorro.cantSuscriptos().equals(1));
+	} 
+
 	@Test
 	public void testValorADesembolsar() {
 		

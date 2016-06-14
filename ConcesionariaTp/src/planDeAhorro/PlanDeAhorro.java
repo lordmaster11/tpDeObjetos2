@@ -1,54 +1,45 @@
 package planDeAhorro;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import RegistroDePlan.RegistroDePlan;
+import RegistroDePlan.Suscripto;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
-import comprobanteDePago.ComprobanteDePago;
+import concesionaria.Concesionaria;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
-import seguroDeVida.SeguroDeVida;
 
 public class PlanDeAhorro {
 
 	private Integer numeroGrupo;
 	private Modelo modelo;
-	private List<Cliente> suscriptos;
+	private List<Suscripto> suscriptos;
 	private Financiamiento financiamiento;
 	private Adjudicacion adjudicacion;
 	private Integer cantidadDeCuotas;
-	private List<ComprobanteDePago> comprobantesDePago;
-	private List<RegistroDePlan> registros;
-	
+	private Concesionaria concesionaria;
 	
 	public PlanDeAhorro(Integer unNumero, Modelo unModelo, Financiamiento unFinanciamiento,
-			            Adjudicacion unaAdjudicacion, Integer unasCuotas, ComprobanteDePago unComprobante) {
+			            Adjudicacion unaAdjudicacion, Integer unasCuotas, Concesionaria unaConcesionaria) {
 		this.numeroGrupo = unNumero;
 		this.modelo = unModelo;
 		this.financiamiento = unFinanciamiento;
-		this.suscriptos = new ArrayList<Cliente>();
+		this.suscriptos = new ArrayList<Suscripto>();
 		this.adjudicacion = unaAdjudicacion;
 		this.cantidadDeCuotas = unasCuotas;
-		this.comprobantesDePago =  new ArrayList<ComprobanteDePago>();
-		this.registros = new ArrayList<RegistroDePlan>();
-	}
+		this.concesionaria = unaConcesionaria;
+	} 
 
 	public Float valorADesembolzar(){
 		return this.financiamiento.valorTotalEnCuotas(modelo);
 	}
 	
 	
-	public ArrayList<Cliente> getSubscriptos() {
-		return  (ArrayList<Cliente>) this.suscriptos;
+	public List<Suscripto> getSubscriptos() {
+		return this.suscriptos;
 	}
-
-	public void suscribirCliente(Cliente unCliente) {	
-		suscriptos.add(unCliente);
-		registros.add(new RegistroDePlan(unCliente,new Date()));
-	}
+	
 	/**
 	public Boolean estaSuscripto(Cliente unCliente) {
 		Boolean encontrado = false;
@@ -76,9 +67,83 @@ public class PlanDeAhorro {
 		return financiamiento.efectivo(this.getModelo());
 	}
 
-	public void generarComprobanteDePago(Cliente unCliente) {
+	public void agregarSuscripto(Cliente unCliente) {
+		suscriptos.add(clienteASuscripto(unCliente));
+	}
 
-     re   new ComprobanteDePago(unCliente,(this.calcularCuotaDe(unCliente)), new Date(),this.calcularAlicuota(),this.calcularGastos(), SeguroDeVida unSeguro);
+	private Suscripto clienteASuscripto(Cliente unCliente) {
+		return new Suscripto(unCliente);
+	}
+
+	public Float alicuota() {
+		return financiamiento.valorTotalEnCuotas(getModelo()) / cantidadDeCuotas;
+	}
+
+	public Concesionaria getConcesionaria() {
+		return this.concesionaria;
+	}
+
+	public List<Suscripto> disponibles() {
+		List<Suscripto> noAdjudicados = new ArrayList<Suscripto>();
 		
+		for(Suscripto s: suscriptos){
+			if(s.aunNoFueAdjudicado())
+				noAdjudicados.add(s);
+		}
+		return noAdjudicados;
+	}
+	
+	public List<Suscripto> losQueMasPagaron(){
+		List<Suscripto>  ganadores = new ArrayList<Suscripto>();
+		
+		for(Suscripto participantes: disponibles()){
+			if(participantes.cuotasPagas()==mayorCantidadCuotasPagas())
+				ganadores.add(participantes);
+		}
+		return ganadores;		
+	}
+
+	private Integer mayorCantidadCuotasPagas() {
+		Integer mayorPagas = 0;
+		
+		for(Suscripto current : disponibles()) {
+			if(current.cuotasPagas()>mayorPagas)
+				mayorPagas = current.cuotasPagas();
+		}
+		return mayorPagas;
+	}
+
+	public List<Suscripto> losMasViejos(List<Suscripto> ganadores){
+		List<Suscripto> mayores = new ArrayList<Suscripto>();
+		
+		for(Suscripto current : ganadores){
+			if(current.getFecNac().equals(elmasViejo(ganadores)))
+				mayores.add(current);
+		}
+		return mayores;
+	}
+
+	private Suscripto elmasViejo(List<Suscripto> ganadores) {
+		Suscripto mayor = ganadores.get(0);
+		
+		for(Suscripto current : ganadores) {
+			if(current.getFecNac().before(mayor.getFecNac()))
+				mayor = current;
+		}
+		return mayor;
+	}
+	
+	public Suscripto elPrimerSuscriptor(List<Suscripto> ganadores){
+		Suscripto elGanador = ganadores.get(0);
+		
+		for(Suscripto current : ganadores) {
+			if(current.getFechaDeInscripcion().before(elGanador.getFechaDeInscripcion()))
+				elGanador = current;
+		}
+		return elGanador;
+	}
+	
+	public Suscripto clienteAdjudicado(){
+		return adjudicacion.seleccionDeCliente(this);
 	}
 }

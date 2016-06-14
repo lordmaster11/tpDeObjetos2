@@ -7,17 +7,17 @@ import java.util.Observer;
 
 import modelo.Modelo;
 
-public class StockDeModelo extends Observable{
+public class StockDeModelo{
 
 	private Modelo modelo;
 	private Integer cantidadDelStock;
-	private Observer[] observadores;
+
 	
-	public StockDeModelo(Modelo unModelo, Observer...observers){
-		this.observadores = observers;
+	public StockDeModelo(Modelo unModelo){
+		
 		this.modelo = unModelo;
 		this.cantidadDelStock = 1;
-	}
+	} 
 
 	public String nombreDelModelo() {
 		return modelo.getNombre();
@@ -29,18 +29,12 @@ public class StockDeModelo extends Observable{
 	
 	public void agregarCantidad(){
 		cantidadDelStock++;
-		for(Observer obs: observadores){
-			obs.update(this, "subi el stock");
-		}
 	}
 	
 	//Prec: Si la cantidad es cero, rompe el invariante de stock
 	// que dice que cantidad>0.
 	public void quitarCantidad(){
 		cantidadDelStock--;
-		for(Observer obs: observadores){
-			obs.update(this, "reste el stock");
-		}
 	}
 
 	public Modelo getModelo() {
@@ -51,9 +45,4 @@ public class StockDeModelo extends Observable{
 		this.cantidadDelStock=cantidad;		
 	}
 
-	public boolean cantidadDeModelosEs(Integer n) {
-		
-		return true;
-		
-	}
 }

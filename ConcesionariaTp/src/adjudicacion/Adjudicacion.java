@@ -1,11 +1,10 @@
 package adjudicacion;
 
-import cliente.Cliente;
+import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
 
 public interface Adjudicacion {
 
-	Cliente seleccionDeCliente(PlanDeAhorro plan);
-	
+	public Suscripto seleccionDeCliente(PlanDeAhorro plan);
 }
 

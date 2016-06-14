@@ -2,13 +2,11 @@ package planta;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import modelo.Modelo;
 import stockDeModelo.StockDeModelo;
 
-public class Planta implements Observer{
+public class Planta{
 	
 	private List<StockDeModelo> stocks;
 	private String direccion;
@@ -22,38 +20,15 @@ public class Planta implements Observer{
 		return stocks;
 	}
 	
-	public String getDireccion() {
-		return this.direccion;
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		StockDeModelo stockBuscado = buscarStockDelModelo(((StockDeModelo) o).getModelo());
-		stocks.remove(stockBuscado);
-		stocks.add((StockDeModelo) o);
-	}
-
 	public StockDeModelo buscarStockDelModelo(Modelo model){
 		StockDeModelo stockQueBusco = null;
-		
+		 
 		for(StockDeModelo stock : stocks){
-			if(stock.getModelo().equals(model.getNombre())){
+			if(stock.getModelo().getNombre().equals(model.getNombre())){
 				stockQueBusco = stock;
 			}
 		}
 		return stockQueBusco;
-	}
-
-	public Integer stockDeModelo(Modelo model){
-        Integer resp;
-        resp = 0;
-		
-		for(StockDeModelo stock : stocks){
-			if(stock.nombreDelModelo().equals(model.getNombre())){
-				resp = resp + stock.getCantidad() ;
-			}
-		}
-		return resp;
 	}
 	
 	
@@ -66,41 +41,26 @@ public class Planta implements Observer{
 		return nombres;
 	}
 
-	public void agregarStock(StockDeModelo unStock) {
-		 if(this.existeStockDeModelo(unStock)){
-			this.agregarNModelos(unStock.getCantidad(),this.buscarStockDelModelo(unStock.getModelo()));
-		 }else{
-		     stocks.add(unStock);
-		  }
-	}
-
-	private boolean existeStockDeModelo(StockDeModelo unStock){
-          boolean resp;
-          resp = false;
-		  
-
-  		for(StockDeModelo stock:stocks)
-  		{
-  			if(unStock.getModelo() == stock.getModelo()){
-  		        resp = true;
-  		    }		
-  	}
-		return resp;
-	}
-
-	private void agregarNModelos(Integer cantidad,
-			StockDeModelo unStock) {
+	public void agregarModelo(Modelo modelo) {
 		
-		for(StockDeModelo stock:stocks){
-			if((unStock.getModelo().getNombre()).equals(stock.getModelo().getNombre())){
-		        stock.setCantidad(stock.getCantidad()+cantidad);
-		    }		
+		if(existeElModelo(modelo)){
+			StockDeModelo stock = buscarStockDelModelo(modelo);
+			stock.agregarCantidad();
+		}else{
+			stocks.add(new StockDeModelo(modelo));
 		}
 	}
 
-	public void setStock(List<StockDeModelo> unStocksDeModelos) {
+	public Boolean existeElModelo(Modelo modelo) {
+		return nombresDeLosModelos().contains(modelo.getNombre());
+	}
 
-         this.stocks=unStocksDeModelos;
-		
+	public void quitarModelo(Modelo modelo) {
+        StockDeModelo stock = buscarStockDelModelo(modelo);
+		if(stock.getCantidad()!=1){
+			stock.quitarCantidad();
+		}else{
+			stocks.remove(stock);
+		}
 	}
 }

@@ -3,8 +3,6 @@ package stock;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.util.Observer;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,9 +21,7 @@ public class StockTest {
 	@Before
 	public void setUp(){
 		modeloMock = mock(Modelo.class);
-		Planta plantaMock = mock(Planta.class);
-		Concesionaria concesionariaMock = mock(Concesionaria.class);
-		stockTest = new StockDeModelo(modeloMock, plantaMock, concesionariaMock);
+		stockTest = new StockDeModelo(modeloMock);
 	}
 
 	@Test

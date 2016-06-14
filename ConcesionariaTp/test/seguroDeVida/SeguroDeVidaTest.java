@@ -6,43 +6,32 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import cliente.Cliente;
+import RegistroDePlan.Suscripto;
 import modelo.Modelo;
 
 public class SeguroDeVidaTest {
 	
-	SeguroDeVida seguroDeVidaPorEdad;
-	SeguroDeVida seguroDeVidaPorVehiculo;
-	Cliente clienteMock;
+	SeguroDeVida seguroDeVidaTest;
+	Suscripto suscriptoMock;
 	Modelo modeloMock;
 	
 
 	@Before
 	public void setUp() throws Exception {
-		seguroDeVidaPorEdad = new PorEdad();
-		seguroDeVidaPorVehiculo = new PorValorDeVehiculo();
-		clienteMock = mock(Cliente.class);
+		seguroDeVidaTest = new SeguroDeVida();
+		suscriptoMock = mock(Suscripto.class);
 		modeloMock = mock(Modelo.class);
 	}
 
 	@Test
 	public void testPorEdadMayorA50Años() {
 		
-		when(clienteMock.edadCliente()).thenReturn(51);	
-		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(60f));		
+		when(suscriptoMock.edadSuscripto()).thenReturn(51);	
+		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock).equals(60f));
+		
+		when(suscriptoMock.edadSuscripto()).thenReturn(49);
+		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock).equals(50f));
 	}
 	
-	@Test
-	public void testPorEdadMenorA50Años() {
-		
-		when(clienteMock.edadCliente()).thenReturn(49);
-		assertTrue(seguroDeVidaPorEdad.montoAPagar(clienteMock, modeloMock).equals(50f));
-	}
-
-	@Test
-	public void testPorValorVehiculo() {
-
-		when(modeloMock.getValorVenta()).thenReturn(70000f);
-		assertTrue(seguroDeVidaPorVehiculo.montoAPagar(clienteMock, modeloMock).equals(3500f));
-	}	
+	
 }

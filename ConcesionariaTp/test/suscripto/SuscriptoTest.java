@@ -1,26 +1,24 @@
-package registroDeInscripcion;
+package suscripto;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
-import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.RegistroDePlan;
+import RegistroDePlan.Suscripto;
 import cliente.Cliente;
 
-public class RegistroDeInscripcionTest {
+public class SuscriptoTest {
 	
-	RegistroDePlan registroTest;
+	Suscripto suscriptoTest;
 	Cliente clienteMock;
 
 	@Before
 	public void setUp() throws Exception {
-		Date fechaInscripcion = new Date();
-		registroTest = new RegistroDePlan(clienteMock, fechaInscripcion);
 		clienteMock = mock(Cliente.class);
+		suscriptoTest = new Suscripto(clienteMock);
+		
 	}
 
 	@Test

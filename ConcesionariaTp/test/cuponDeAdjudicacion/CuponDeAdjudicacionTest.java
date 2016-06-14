@@ -6,17 +6,27 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import cliente.Cliente;
+import RegistroDePlan.Suscripto;
+import concesionaria.Concesionaria;
+import planDeAhorro.PlanDeAhorro;
 
 public class CuponDeAdjudicacionTest {
 	
-	Cliente clienteMock;
+	Suscripto suscriptoMock;
+	PlanDeAhorro planMock;
 	CuponDeAdjudicacion cuponTest;
+	Concesionaria concesionariaMock;
 
 	@Before
 	public void setUp() throws Exception {
-		cuponTest = new CuponDeAdjudicacion(clienteMock, 500f);
-		clienteMock = mock(Cliente.class);
+		
+		Concesionaria concesionariaMock = mock(Concesionaria.class);
+		
+		planMock = mock(PlanDeAhorro.class);
+		when(planMock.getConcesionaria()).thenReturn(concesionariaMock);
+		
+		suscriptoMock = mock(Suscripto.class);
+		cuponTest = new CuponDeAdjudicacion(planMock, suscriptoMock);
 	}
 
 	@Test

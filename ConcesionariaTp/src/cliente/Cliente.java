@@ -1,10 +1,8 @@
 package cliente;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import planDeAhorro.PlanDeAhorro;
@@ -65,5 +63,9 @@ public class Cliente {
         //Regresa la edad en base a la fecha de nacimiento
         System.out.println("La edad es " + edad);	
 		return edad;	
+	}
+
+	public Calendar getFechaNacimiento() {
+		return this.fechaNacimiento;
 	}	
 }
