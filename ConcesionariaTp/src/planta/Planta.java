@@ -24,7 +24,7 @@ public class Planta{
 		StockDeModelo stockQueBusco = null;
 		 
 		for(StockDeModelo stock : stocks){
-			if(stock.getModelo().getNombre().equals(model.getNombre())){
+			if(stock.getModelo().getNombre()==(model.getNombre())){
 				stockQueBusco = stock;
 			}
 		}
@@ -48,7 +48,7 @@ public class Planta{
 			stock.agregarCantidad();
 			
 		}else{
-			stocks.add(new StockDeModelo(modelo));
+			this.agregarStock(new StockDeModelo(modelo));
 		}
 	}
 
@@ -63,5 +63,9 @@ public class Planta{
 		}else{
 			stocks.remove(stock);
 		}
-	} 
+	}
+
+	public void agregarStock(StockDeModelo unStockTest) {
+		stocks.add(unStockTest);		
+	}  
 }
