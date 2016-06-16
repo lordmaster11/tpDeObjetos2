@@ -46,6 +46,7 @@ public class Planta{
 		if(existeElModelo(modelo)){
 			StockDeModelo stock = buscarStockDelModelo(modelo);
 			stock.agregarCantidad();
+			
 		}else{
 			stocks.add(new StockDeModelo(modelo));
 		}
@@ -62,5 +63,5 @@ public class Planta{
 		}else{
 			stocks.remove(stock);
 		}
-	}
+	} 
 }

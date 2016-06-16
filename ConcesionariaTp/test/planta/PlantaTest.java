@@ -22,7 +22,7 @@ public class PlantaTest {
 		modeloMock = mock(Modelo.class);
 		unStockTest = mock(StockDeModelo.class);
 	}   
-
+  
 	@Test
 	public void testStockDeModelo() {
 		
