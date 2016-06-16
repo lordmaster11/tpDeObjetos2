@@ -119,4 +119,29 @@ public class Concesionaria{
 	public List<PlanDeAhorro> getPlanes() {
 		return planes;
 	}
+	
+	public List<PlanDeAhorro> losDiezPlanesConMayorCantidadDeSubscriptos(){
+		List<PlanDeAhorro> planesOrdenados = new ArrayList<PlanDeAhorro>();
+		List<PlanDeAhorro> planesDesordenados = planes;
+		Integer repeticiones = 0;
+		
+		while(repeticiones < 10 && !(planesDesordenados.isEmpty())){
+			planesOrdenados.add(planConMasSubscriptos(planesDesordenados));
+			
+			planesDesordenados.remove(planConMasSubscriptos(planesDesordenados));
+			repeticiones++;
+		}
+		return planesOrdenados;
+	}
+	
+	//PREC: hay por lo menos un plan en la concesionaria.
+	public PlanDeAhorro planConMasSubscriptos(List<PlanDeAhorro> planess){
+		PlanDeAhorro ganador = planess.get(0);
+			
+		for(PlanDeAhorro plan: planess){
+			if(plan.cantSuscriptos() > plan.cantSuscriptos())
+					ganador = plan;
+		}
+		return ganador;
+	}
 }
