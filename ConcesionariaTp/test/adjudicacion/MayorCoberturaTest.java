@@ -10,48 +10,43 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
-import cliente.Cliente;
+import suscripto.Suscripto;
 import modelo.Modelo;
 
 public class MayorCoberturaTest {
 
-    Adjudicacion porMayorCoberturaTest;
-	
+    Adjudicacion porMayorCoberturaTest;	
     PlanDeAhorro planDeAhorroMock;
-    Suscripto clienteMock;
-    Suscripto clienteMock2;
+    Suscripto suscriptoMock;
+    Suscripto suscriptoMock2;
 	Modelo modeloMock;
 	
-    
 	@Before
 	public void setUp() throws Exception {
 
-		
 		porMayorCoberturaTest = new PorMayorCobertura();
 		
-		clienteMock = mock(Suscripto.class);		
-		clienteMock2 = mock(Suscripto.class); 
+		suscriptoMock = mock(Suscripto.class);		
+		suscriptoMock2 = mock(Suscripto.class); 
 		
-		planDeAhorroMock = mock(PlanDeAhorro.class);
-				
+		planDeAhorroMock = mock(PlanDeAhorro.class);				
 	} 
 
 	@Test
 	public void testSeleccionDeClientePorMayorCobertura() {
 
-		when(clienteMock.edadSuscripto()).thenReturn(30);
-		when(clienteMock2.edadSuscripto()).thenReturn(50);
+		when(suscriptoMock.edadSuscripto()).thenReturn(30);
+		when(suscriptoMock2.edadSuscripto()).thenReturn(50);
 		
 		List<Suscripto> suscriptos;
-		suscriptos = new ArrayList<Suscripto>(Arrays.asList(clienteMock));
+		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock));
 		
-		when(planDeAhorroMock.losQueMasPagaron()).thenReturn(suscriptos);
+		when(planDeAhorroMock.suscriptosConMayorCantidadDeCuotasPagas()).thenReturn(suscriptos);
 		
-		assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock));
+		assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(suscriptoMock));
 		
-		suscriptos.add(clienteMock2);
+		suscriptos.add(suscriptoMock2);
 		
 		//assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock));
 	}

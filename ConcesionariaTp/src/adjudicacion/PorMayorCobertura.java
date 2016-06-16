@@ -2,30 +2,28 @@ package adjudicacion;
 
 import java.util.List;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import suscripto.Suscripto;
 
 public class PorMayorCobertura implements Adjudicacion{
 	
 	@Override
 	public Suscripto seleccionDeCliente(PlanDeAhorro plan) {
 		
-		Suscripto retorno;
-		List<Suscripto> pagadores = plan.losQueMasPagaron();
+		Suscripto adjudicado;
+		List<Suscripto> suscriptosConMasCuotas = plan.suscriptosConMayorCantidadDeCuotasPagas();
 		
-		if(pagadores.size()==1){
-			retorno = pagadores.get(0);
+		if(suscriptosConMasCuotas.size()==1){
+			adjudicado = suscriptosConMasCuotas.get(0);
 		}
 		else{
-			if(plan.losMasViejos(pagadores).size()==1){
-				retorno = plan.losMasViejos(pagadores).get(0);	
+			if(plan.losMasAntiguosEnConcesionaria(suscriptosConMasCuotas).size()==1){
+				adjudicado = plan.losMasAntiguosEnConcesionaria(suscriptosConMasCuotas).get(0);	
 			} 
 			else {
-				retorno = plan.elPrimerSuscriptor(plan.losMasViejos(pagadores));
+				adjudicado = plan.suscriptoMasAntiguo(plan.losMasAntiguosEnConcesionaria(suscriptosConMasCuotas));
 			}
 		}
-		return retorno;
+		return adjudicado;
 	}
-	//ESTO SE TIENE QUE HACER CON EXPRESIONES LAMDA.. PROXIMAMENTE
-	//el if debe conmemplar mayor proporcion de pago y antiguedad
 }

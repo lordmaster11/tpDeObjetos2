@@ -8,9 +8,9 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.Suscripto;
 import concesionaria.Concesionaria;
 import planDeAhorro.PlanDeAhorro;
+import suscripto.Suscripto;
 
 public class ComprobanteDePagoTest {
 

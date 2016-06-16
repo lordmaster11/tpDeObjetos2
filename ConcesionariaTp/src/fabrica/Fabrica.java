@@ -20,7 +20,7 @@ public class Fabrica {
 		for(Planta p:plantasEncontradas)
 			p.buscarStockDelModelo(model).getModelo().setPrecio(precioNuevo);
 	}
-	
+	 
 	public List<Planta> plantasConModelo(Modelo m){
 		ArrayList<Planta> plantasEncontradas = new ArrayList<Planta>(); 
 	

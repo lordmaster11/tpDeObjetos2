@@ -11,8 +11,8 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import suscripto.Suscripto;
 
 public class PorSorteoTest {
 
@@ -26,8 +26,7 @@ public class PorSorteoTest {
 	public void setUp() throws Exception {
 		randomMock = mock(Random.class);
 		porSorteoTest = new PorSorteo(randomMock);
-		
-		
+				
 		clienteMock = mock(Suscripto.class);
 		clienteMock2 = mock(Suscripto.class); 
 		
@@ -44,5 +43,4 @@ public class PorSorteoTest {
 		
 		assertEquals(clienteMock, porSorteoTest.seleccionDeCliente(planDeAhorroMock));
 	}
-
 }

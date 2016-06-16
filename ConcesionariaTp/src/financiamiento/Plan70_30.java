@@ -11,6 +11,6 @@ public class Plan70_30 extends Financiamiento{
 
 	@Override
 	public Float efectivo(Modelo m) {
-		return (m.getValorVenta() * 30) / 100;
+		return (m.getValorVenta() * 30)/ 100;
 	}
 }

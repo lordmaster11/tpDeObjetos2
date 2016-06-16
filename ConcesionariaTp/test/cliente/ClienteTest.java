@@ -29,10 +29,12 @@ public class ClienteTest {
 	
 	public void testNuevoCliente(){ 	
 		Date fechaIngreso = new Date();
+		Calendar fechaNac = new GregorianCalendar(1980, Calendar.FEBRUARY+1, 11);
 		
 		assertTrue(clienteTest.getNombre().equals("Juan"));
 		assertTrue(clienteTest.getApellido().equals("Perez"));
 		assertTrue(clienteTest.getDNI().equals(27950524));
+		assertTrue(clienteTest.getFechaNacimiento().equals(fechaNac));
 		assertTrue(clienteTest.getFechaIngreso().equals(fechaIngreso));	
 	}
 	
@@ -53,9 +55,17 @@ public class ClienteTest {
 	@Test
 	public void testEdadClienteQueNacioElMismoDia(){ 
 		Calendar fechaNac = Calendar.getInstance();
+		clienteTest2 = new Cliente ("Esteban", "Quito", 32980511, fechaNac,
+			       "Av. Milito 22", "estebanquito@gmail.com");
+		assertTrue((clienteTest2.edadCliente()).equals(0));
+	}
+	
+	@Test
+	public void testEdadClienteQueNacioElMismoDia2(){ 
+		Calendar fechaNac = new GregorianCalendar(1980, Calendar.JUNE, 30);
 		clienteTest = new Cliente ("Juan", "Perez", 27950524, fechaNac,
 			       "Necochea 662", "juanperez@gmail.com");
-		assertTrue((clienteTest.edadCliente()).equals(0));
+		assertTrue((clienteTest.edadCliente()).equals(35));
 	}
 }
 		

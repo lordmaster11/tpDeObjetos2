@@ -1,4 +1,4 @@
-package RegistroDePlan;
+package suscripto;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,7 +30,7 @@ public class Suscripto {
 		return !fueAdjudicado;
 	}
 
-	public Integer cuotasPagas() {
+	public Integer cantidadCuotasPagas() {
 		return comprobantes.size();
 	}
 
@@ -40,5 +40,13 @@ public class Suscripto {
 
 	public Date getFechaDeInscripcion() {
 		return fechaDeInscripcion;
+	}
+
+	public void seAdjudico() {
+		this.fueAdjudicado=true;	
+	}
+
+	public Date getFechaDeIngreso() {
+		return cliente.getFechaIngreso();
 	}
 }
