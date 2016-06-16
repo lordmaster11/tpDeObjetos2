@@ -17,13 +17,15 @@ public class FabricaTest {
 	
 	Fabrica fabricaTest;
 	Planta plantaMock;
-	Modelo modeloMock;	
+	Modelo modeloMock;
+	Planta planta2Mock;	
 
 	@Before
 	public void setUp() throws Exception {
 		fabricaTest = new Fabrica();
 		modeloMock = mock(Modelo.class);
 		plantaMock = mock(Planta.class);
+		planta2Mock = mock(Planta.class);
 	}
 	
 	//El int que devuelve size() es ahora un Integer para poder mandarle
@@ -53,4 +55,39 @@ public class FabricaTest {
 		fabricaTest.actualizarPrecio(70000f, modeloMock);
 		verify(modeloMock).setPrecio(70000f);
 	}
+	
+	@Test
+	public void testQuitarUnModeloDeStock() {
+		
+		fabricaTest.quitarUnModeloDeStock(modeloMock,plantaMock);
+		
+		verify(plantaMock).quitarModelo(modeloMock);
+	}
+	@Test
+	public void teststock() {
+		
+		
+		
+		ArrayList<String> modelos= new ArrayList<String>(Arrays.asList("Peugeot 206","Peugeot 208"));
+		when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
+		
+		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
+		
+		when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
+		when(planta2Mock.nombresDeLosModelos()).thenReturn(modelos);
+		
+		StockDeModelo stockDeModeloMock;
+		stockDeModeloMock = mock(StockDeModelo.class);
+		
+		when(stockDeModeloMock.getCantidad()).thenReturn(3);
+		when(plantaMock.buscarStockDelModelo(modeloMock)).thenReturn(stockDeModeloMock);
+		when(planta2Mock.buscarStockDelModelo(modeloMock)).thenReturn(stockDeModeloMock);
+		
+		
+		fabricaTest.agregarPlanta(planta2Mock);
+		fabricaTest.agregarPlanta(plantaMock);
+		
+		assertTrue(fabricaTest.stock(modeloMock).equals(6));
+	}
+	
 }

@@ -121,7 +121,6 @@ public class Concesionaria{
 	}
 
 	public List<PlanDeAhorro> getPlanes() {
-		// TODO Auto-generated method stub
 		return planes;
 	}
 }

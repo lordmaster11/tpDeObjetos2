@@ -35,4 +35,6 @@ public class PlantaTest {
 		
 		assertTrue(unaPlantaTest.buscarStockDelModelo(modeloMock).getCantidad().equals(2));
 	}
+		
+	
 }
