@@ -2,8 +2,8 @@ package adjudicacion;
 
 import java.util.List;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import registroDePlan.Suscripto;
 
 public class PorMayorCobertura implements Adjudicacion{
 	

@@ -2,8 +2,8 @@ package comprobanteDePago;
 
 import java.util.Date;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import registroDePlan.Suscripto;
 
 public class ComprobanteDePago {
 

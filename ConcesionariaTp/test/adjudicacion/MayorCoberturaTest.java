@@ -10,8 +10,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import registroDePlan.Suscripto;
 import cliente.Cliente;
 import modelo.Modelo;
 

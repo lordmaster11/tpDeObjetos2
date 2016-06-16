@@ -1,4 +1,4 @@
-package RegistroDePlan;
+package registroDePlan;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,5 +40,11 @@ public class Suscripto {
 
 	public Date getFechaDeInscripcion() {
 		return fechaDeInscripcion;
+	}
+
+	public void seAdjudico() {
+
+		this.fueAdjudicado=true;
+		
 	}
 }

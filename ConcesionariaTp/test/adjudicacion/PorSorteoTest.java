@@ -11,8 +11,8 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import registroDePlan.Suscripto;
 
 public class PorSorteoTest {
 

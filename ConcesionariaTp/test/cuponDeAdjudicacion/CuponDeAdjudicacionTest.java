@@ -6,9 +6,9 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.Suscripto;
 import concesionaria.Concesionaria;
 import planDeAhorro.PlanDeAhorro;
+import registroDePlan.Suscripto;
 
 public class CuponDeAdjudicacionTest {
 	

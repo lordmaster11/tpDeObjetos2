@@ -2,8 +2,8 @@ package adjudicacion;
 
 import java.util.Random;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import registroDePlan.Suscripto;
 
 public class PorSorteo implements Adjudicacion{
 

@@ -3,14 +3,16 @@ package concesionaria;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mockito.Matchers;
+
 import GoogleMap.GoogleMap;
-import RegistroDePlan.Suscripto;
 import cliente.Cliente;
 import cuponDeAdjudicacion.CuponDeAdjudicacion;
 import fabrica.Fabrica;
 import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
 import planta.Planta;
+import registroDePlan.Suscripto;
 import seguroDeVida.SeguroDeVida;
 
 public class Concesionaria{
@@ -22,16 +24,16 @@ public class Concesionaria{
 	private List<CuponDeAdjudicacion> cupones;
 	private Float gastoPorAdministracion;
 	private SeguroDeVida seguro;
-	private GoogleMap mapa;
+	private GoogleMap mapa; 
 	
-	public Concesionaria(String unaDireccion, Fabrica unaFabrica, Float gastos){
+	public Concesionaria(String unaDireccion, Fabrica unaFabrica, Float gastos,GoogleMap unGoogleMap){
 		this.direccion = unaDireccion;
 		this.fabrica = unaFabrica;
 		this.clientes = new ArrayList<Cliente>();
 		this.planes = new ArrayList<PlanDeAhorro>();
 		this.cupones = new ArrayList<CuponDeAdjudicacion>();
 		this.seguro = new SeguroDeVida();
-		this.mapa = new GoogleMap();
+		this.mapa = unGoogleMap;
 		this.gastoPorAdministracion = gastos;
 	}
 
@@ -66,7 +68,7 @@ public class Concesionaria{
 	
 	//PREC.: El modelo existe.
 	public Planta plantaMasCercana(Modelo unModelo){
-	 	Planta plantaEncontrada = fabrica.getPlantas().get(0);
+	 	Planta plantaEncontrada = fabrica.plantasConModelo(unModelo).get(0);
 	 	
 	 	for(Planta unaPlanta:fabrica.plantasConModelo(unModelo)){
 	 		if(mapa.calcularDistancia(unaPlanta)<mapa.calcularDistancia(plantaEncontrada))
@@ -76,12 +78,13 @@ public class Concesionaria{
 	}
 	
 	public void adjudicarAuto(PlanDeAhorro unPlan){
-		
+	
 		if(stock(unPlan.getModelo())>0){
 			
 			Suscripto unSuscripto = unPlan.clienteAdjudicado();
+			unSuscripto.seAdjudico();
 			CuponDeAdjudicacion cupon = cuponNuevo(unPlan,unSuscripto);
-			
+			 
 			this.quitarUnModelo(unPlan.getModelo());
 			this.emitirCupon(cupon);
 		}
@@ -110,5 +113,15 @@ public class Concesionaria{
 
 	public List<CuponDeAdjudicacion> getCupones() {
 		return cupones;
+	}
+
+	public List<Cliente> getClientes() {
+				
+		return clientes;
+	}
+
+	public List<PlanDeAhorro> getPlanes() {
+		// TODO Auto-generated method stub
+		return planes;
 	}
 }

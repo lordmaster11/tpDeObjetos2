@@ -3,7 +3,7 @@ package planDeAhorro;
 import java.util.ArrayList;
 import java.util.List;
 
-import RegistroDePlan.Suscripto;
+import registroDePlan.Suscripto;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import concesionaria.Concesionaria;

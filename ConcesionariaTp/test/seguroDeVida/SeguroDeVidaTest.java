@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import RegistroDePlan.Suscripto;
+import registroDePlan.Suscripto;
 import modelo.Modelo;
 
 public class SeguroDeVidaTest {
@@ -23,6 +23,8 @@ public class SeguroDeVidaTest {
 		modeloMock = mock(Modelo.class);
 	}
 
+	/*//nose si lo hisite vos a el anterior pero lo comento y pongo unos mas completos que tambien 
+	 //calculen con un costo de vehiculo; lo que no entiendo es xq me tira amarillo
 	@Test
 	public void testPorEdadMayorA50Años() {
 		
@@ -32,6 +34,24 @@ public class SeguroDeVidaTest {
 		when(suscriptoMock.edadSuscripto()).thenReturn(49);
 		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock).equals(50f));
 	}
+	*/
+	@Test
+	public void seguroDeVidaMayorTest(){
+		when(suscriptoMock.edadSuscripto()).thenReturn(52);
+		when(modeloMock.getValorVenta()).thenReturn(100000f);
+		
+		
+		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock)==(5070f));
+		
+	}
 	
+	@Test
+	public void seguroDeVidaMenorTest(){
+		when(suscriptoMock.edadSuscripto()).thenReturn(30);
+		when(modeloMock.getValorVenta()).thenReturn(100000f);
+		
+		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock)==(5050f));
+		
+	}
 	
 }

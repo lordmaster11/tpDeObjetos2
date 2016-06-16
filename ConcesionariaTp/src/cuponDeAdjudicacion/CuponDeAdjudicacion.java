@@ -1,7 +1,7 @@
 package cuponDeAdjudicacion;
 
-import RegistroDePlan.Suscripto;
 import planDeAhorro.PlanDeAhorro;
+import registroDePlan.Suscripto;
 
 public class CuponDeAdjudicacion {
 
