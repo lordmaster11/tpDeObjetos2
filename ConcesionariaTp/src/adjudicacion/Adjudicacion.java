@@ -1,7 +1,7 @@
 package adjudicacion;
 
 import planDeAhorro.PlanDeAhorro;
-import registroDePlan.Suscripto;
+import suscripto.Suscripto;
 
 public interface Adjudicacion {
 

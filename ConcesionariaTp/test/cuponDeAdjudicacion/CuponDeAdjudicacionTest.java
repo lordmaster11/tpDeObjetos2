@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import concesionaria.Concesionaria;
 import planDeAhorro.PlanDeAhorro;
-import registroDePlan.Suscripto;
+import suscripto.Suscripto;
 
 public class CuponDeAdjudicacionTest {
 	

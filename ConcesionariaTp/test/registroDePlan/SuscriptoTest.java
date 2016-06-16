@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cliente.Cliente;
+import suscripto.Suscripto;
 
 public class SuscriptoTest {
 

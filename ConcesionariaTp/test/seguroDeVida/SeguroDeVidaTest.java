@@ -6,8 +6,8 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import registroDePlan.Suscripto;
 import modelo.Modelo;
+import suscripto.Suscripto;
 
 public class SeguroDeVidaTest {
 	

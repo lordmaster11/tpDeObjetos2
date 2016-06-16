@@ -6,8 +6,8 @@ import static org.mockito.Mockito.mock;
 import org.junit.Before;
 import org.junit.Test;
 
-import registroDePlan.Suscripto;
 import cliente.Cliente;
+import suscripto.Suscripto;
 
 public class SuscriptoTest {
 	

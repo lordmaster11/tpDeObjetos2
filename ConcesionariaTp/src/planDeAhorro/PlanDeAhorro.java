@@ -3,12 +3,12 @@ package planDeAhorro;
 import java.util.ArrayList;
 import java.util.List;
 
-import registroDePlan.Suscripto;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import concesionaria.Concesionaria;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
+import suscripto.Suscripto;
 
 public class PlanDeAhorro {
 
@@ -35,21 +35,9 @@ public class PlanDeAhorro {
 		return this.financiamiento.valorTotalEnCuotas(modelo);
 	}
 	
-	
 	public List<Suscripto> getSubscriptos() {
 		return this.suscriptos;
 	}
-	
-	/**
-	public Boolean estaSuscripto(Cliente unCliente) {
-		Boolean encontrado = false;
-		
-		for(Cliente c: suscriptos){
-			if(c.getDNI().equals(unCliente.getDNI()))
-				encontrado = true;
-		}
-		return encontrado;
-	}*/ //No es necesario, pero si hace falta ya esta codeado
 
 	public Integer cantSuscriptos() {
 		return suscriptos.size();
@@ -86,61 +74,61 @@ public class PlanDeAhorro {
 	public List<Suscripto> disponibles() {
 		List<Suscripto> noAdjudicados = new ArrayList<Suscripto>();
 		
-		for(Suscripto s: suscriptos){
-			if(s.aunNoFueAdjudicado())
-				noAdjudicados.add(s);
+		for(Suscripto suscripto: suscriptos){
+			if(suscripto.aunNoFueAdjudicado())
+				noAdjudicados.add(suscripto);
 		}
 		return noAdjudicados;
 	}
 	
-	public List<Suscripto> losQueMasPagaron(){
-		List<Suscripto>  ganadores = new ArrayList<Suscripto>();
+	public List<Suscripto> suscriptosConMayorCantidadDeCuotasPagas(){
+		List<Suscripto> suscriptosPagadores = new ArrayList<Suscripto>();
 		
-		for(Suscripto participantes: disponibles()){
-			if(participantes.cuotasPagas()==mayorCantidadCuotasPagas())
-				ganadores.add(participantes);
+		for(Suscripto suscripto : disponibles()){
+			if(suscripto.cantidadCuotasPagas() == mayorCantidadCuotasPagas())
+				suscriptosPagadores.add(suscripto);
 		}
-		return ganadores;		
+		return suscriptosPagadores;		
 	}
 
 	private Integer mayorCantidadCuotasPagas() {
-		Integer mayorPagas = 0;
+		Integer mayorCuotasPagas = 0;
 		
-		for(Suscripto current : disponibles()) {
-			if(current.cuotasPagas()>mayorPagas)
-				mayorPagas = current.cuotasPagas();
+		for(Suscripto suscripto : disponibles()) {
+			if(suscripto.cantidadCuotasPagas() > mayorCuotasPagas)
+				mayorCuotasPagas = suscripto.cantidadCuotasPagas();
 		}
-		return mayorPagas;
+		return mayorCuotasPagas;
 	}
 
-	public List<Suscripto> losMasViejos(List<Suscripto> ganadores){
+	public List<Suscripto> losMasAntiguosEnConcesionaria(List<Suscripto> suscriptos){
 		List<Suscripto> mayores = new ArrayList<Suscripto>();
 		
-		for(Suscripto current : ganadores){
-			if(current.getFecNac().equals(elmasViejo(ganadores)))
-				mayores.add(current);
+		for(Suscripto suscripto : suscriptos){
+			if(suscripto.getFechaDeIngreso().equals(elMasAntiguoEnConcesionaria(suscriptos)))
+				mayores.add(suscripto);
 		}
 		return mayores;
 	}
 
-	private Suscripto elmasViejo(List<Suscripto> ganadores) {
-		Suscripto mayor = ganadores.get(0);
+	private Suscripto elMasAntiguoEnConcesionaria(List<Suscripto> suscriptos) {
+		Suscripto elMasAntiguo = suscriptos.get(0);
 		
-		for(Suscripto current : ganadores) {
-			if(current.getFecNac().before(mayor.getFecNac()))
-				mayor = current;
+		for(Suscripto suscripto : suscriptos) {
+			if(suscripto.getFechaDeIngreso().before(elMasAntiguo.getFechaDeIngreso()))
+				elMasAntiguo = suscripto;
 		}
-		return mayor;
+		return elMasAntiguo;
 	}
 	
-	public Suscripto elPrimerSuscriptor(List<Suscripto> ganadores){
-		Suscripto elGanador = ganadores.get(0);
+	public Suscripto suscriptoMasAntiguo(List<Suscripto> suscriptos){
+		Suscripto elMasAntiguo = suscriptos.get(0);
 		
-		for(Suscripto current : ganadores) {
-			if(current.getFechaDeInscripcion().before(elGanador.getFechaDeInscripcion()))
-				elGanador = current;
+		for(Suscripto suscripto : suscriptos) {
+			if(suscripto.getFechaDeInscripcion().before(elMasAntiguo.getFechaDeInscripcion()))
+				elMasAntiguo = suscripto;
 		}
-		return elGanador;
+		return elMasAntiguo;
 	}
 	
 	public Suscripto clienteAdjudicado(){

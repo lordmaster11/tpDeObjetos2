@@ -3,8 +3,6 @@ package concesionaria;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mockito.Matchers;
-
 import GoogleMap.GoogleMap;
 import cliente.Cliente;
 import cuponDeAdjudicacion.CuponDeAdjudicacion;
@@ -12,8 +10,8 @@ import fabrica.Fabrica;
 import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
 import planta.Planta;
-import registroDePlan.Suscripto;
 import seguroDeVida.SeguroDeVida;
+import suscripto.Suscripto;
 
 public class Concesionaria{
 	
@@ -38,7 +36,7 @@ public class Concesionaria{
 	}
 
 	public Float gastoDeFlete(Planta unaPlanta){
-    	return mapa.calcularDistancia(unaPlanta)*this.gastoPorKilometro(); 
+    	return mapa.calcularDistancia(unaPlanta) * this.gastoPorKilometro(); 
     }
 
 	private Float gastoPorKilometro(){		
@@ -88,7 +86,6 @@ public class Concesionaria{
 			this.quitarUnModelo(unPlan.getModelo());
 			this.emitirCupon(cupon);
 		}
-
 	}
  
 	private void quitarUnModelo(Modelo modelo) {
@@ -114,9 +111,8 @@ public class Concesionaria{
 	public List<CuponDeAdjudicacion> getCupones() {
 		return cupones;
 	}
-
-	public List<Cliente> getClientes() {
-				
+	
+	public List<Cliente> getClientes() {			
 		return clientes;
 	}
 

@@ -19,8 +19,8 @@ import fabrica.Fabrica;
 import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
 import planta.Planta;
-import registroDePlan.Suscripto;
 import stockDeModelo.StockDeModelo;
+import suscripto.Suscripto;
 
 public class ConcesionariaTest {
 

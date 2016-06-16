@@ -41,6 +41,10 @@ public class Cliente {
 	public Integer getDNI(){
 		return this.dni;
 	}
+	
+	public Calendar getFechaNacimiento() {
+		return this.fechaNacimiento;
+	}	
 
 	public Date getFechaIngreso() {
 		return fechaIngreso;
@@ -56,16 +60,11 @@ public class Cliente {
 		Integer edad = anioFechaActual - anioFechaNac;
 		Integer mes =fechaActual.get(Calendar.MONTH)- fechaNac.get(Calendar.MONTH);
         Integer dia = fechaActual.get(Calendar.DATE)- fechaNac.get(Calendar.DATE);
-        //Se ajusta el año dependiendo el mes y el día
+        
         	if(mes<0 || (mes==0 && dia<0)){
             edad--;
         	}
-        //Regresa la edad en base a la fecha de nacimiento
-        System.out.println("La edad es " + edad);	
+       
 		return edad;	
 	}
-
-	public Calendar getFechaNacimiento() {
-		return this.fechaNacimiento;
-	}	
 }

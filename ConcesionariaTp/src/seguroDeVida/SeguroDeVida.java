@@ -1,7 +1,7 @@
 package seguroDeVida;
 
-import registroDePlan.Suscripto;
 import modelo.Modelo;
+import suscripto.Suscripto;
 
 public class SeguroDeVida {
 	
