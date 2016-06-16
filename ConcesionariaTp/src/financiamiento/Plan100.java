@@ -13,5 +13,4 @@ public class Plan100 extends Financiamiento{
 	public Float efectivo(Modelo m) {
 		return 0f;
 	}
-
 }

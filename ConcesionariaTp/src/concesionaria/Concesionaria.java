@@ -111,4 +111,29 @@ public class Concesionaria{
 	public List<CuponDeAdjudicacion> getCupones() {
 		return cupones;
 	}
+
+	public List<PlanDeAhorro> losDiezPlanesConMayorCantidadDeSubscriptos(){
+		List<PlanDeAhorro> planesOrdenados = new ArrayList<PlanDeAhorro>();
+		List<PlanDeAhorro> planesDesordenados = planes;
+		Integer repeticiones = 0;
+		
+		while(repeticiones < 10 && !(planesDesordenados.isEmpty())){
+			planesOrdenados.add(planConMasSubscriptos(planesDesordenados));
+			
+			planesDesordenados.remove(planConMasSubscriptos(planesDesordenados));
+			repeticiones++;
+		}
+		return planesOrdenados;
+	}
+	
+	//Precondicion: hay por lo menos un plan en la concesionaria.
+		private PlanDeAhorro planConMasSubscriptos(List<PlanDeAhorro> planess){
+			PlanDeAhorro ganador = planess.get(0);
+			
+			for(PlanDeAhorro plan: planess){
+				if(plan.cantSuscriptos() > plan.cantSuscriptos())
+					ganador = plan;
+			}
+			return ganador;
+		}
 }

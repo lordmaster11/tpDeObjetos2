@@ -39,17 +39,6 @@ public class PlanDeAhorro {
 	public List<Suscripto> getSubscriptos() {
 		return this.suscriptos;
 	}
-	
-	/**
-	public Boolean estaSuscripto(Cliente unCliente) {
-		Boolean encontrado = false;
-		
-		for(Cliente c: suscriptos){
-			if(c.getDNI().equals(unCliente.getDNI()))
-				encontrado = true;
-		}
-		return encontrado;
-	}*/ //No es necesario, pero si hace falta ya esta codeado
 
 	public Integer cantSuscriptos() {
 		return suscriptos.size();
