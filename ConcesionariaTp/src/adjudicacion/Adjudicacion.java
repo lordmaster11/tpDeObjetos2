@@ -7,4 +7,4 @@ public interface Adjudicacion {
 
 	public Suscripto seleccionDeCliente(PlanDeAhorro plan);
 }
-//
+///
