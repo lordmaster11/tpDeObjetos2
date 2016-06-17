@@ -10,9 +10,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import planDeAhorro.PlanDeAhorro;
 import suscripto.Suscripto;
 import modelo.Modelo;
+import planDeAhorro.PlanDeAhorro;
 
 public class MayorCoberturaTest {
 
