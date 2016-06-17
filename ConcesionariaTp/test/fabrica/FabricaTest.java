@@ -33,7 +33,7 @@ public class FabricaTest {
 	@Test 
 	public void testAgregarPlanta() {
 		fabricaTest.agregarPlanta(plantaMock);
-		assertTrue(((Integer) fabricaTest.getPlantas().size()).equals(1));
+		assertTrue(fabricaTest.getPlantas().contains(plantaMock));
 	}
 	
 	@Test

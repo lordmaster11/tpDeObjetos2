@@ -55,9 +55,4 @@ public class SuscriptoTest {
 		suscriptoTest.seAdjudico();
 		assertTrue(suscriptoTest.aunNoFueAdjudicado().equals(false));
 	}
-	
-//	@Test
-//	public void cantidadDeCuotasPagas() {
-//		
-//	}
 }

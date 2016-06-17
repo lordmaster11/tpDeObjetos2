@@ -9,17 +9,15 @@ import org.junit.Test;
 
 public class Al100Porciento {
 
-      Modelo modeloMock;
+    Modelo modeloMock;
 	Financiamiento unPlan100Test;
 
 	@Before
 	public void setUp() throws Exception {
 		
-		
 		modeloMock = mock(Modelo.class);
 		when(modeloMock.getValorVenta()).thenReturn(100000f);
-		unPlan100Test = new Plan100();
-		
+		unPlan100Test = new Plan100();	
 	}
 
 	@Test
@@ -31,7 +29,6 @@ public class Al100Porciento {
 		assertTrue(unPlan100Test.valorTotalEnCuotas(modeloMock).equals(100000f));
 	}
 
-
 	@Test
 	public void enEfectivo() {
 		modeloMock = mock(Modelo.class);
@@ -39,5 +36,4 @@ public class Al100Porciento {
 		
 	assertTrue(unPlan100Test.efectivo(modeloMock).equals(0f));
 	}
-
 }

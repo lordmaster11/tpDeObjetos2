@@ -79,8 +79,3 @@ public class PlantaTest {
 		assertTrue(plantaTest.getStocks().equals(stocks));
 	}
 }
-//List<StockDeModelo> stocksMock =new ArrayList<StockDeModelo>(Arrays.asList(stock1Mock,stock2Mock));
-//when(plantaMock.getStocks()).thenReturn(stocksMock);
-
-//List<Suscripto> suscriptos;
-//suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock));

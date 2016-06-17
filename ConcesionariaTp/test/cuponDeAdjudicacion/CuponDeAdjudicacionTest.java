@@ -33,5 +33,4 @@ public class CuponDeAdjudicacionTest {
 	public void test() {
 		
 	}
-
 }

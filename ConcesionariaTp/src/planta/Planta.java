@@ -31,7 +31,6 @@ public class Planta{
 		return stockQueBusco;
 	}
 	
-	
 	public ArrayList<String> nombresDeLosModelos(){
 		ArrayList<String> nombres = new ArrayList<String>();
 		

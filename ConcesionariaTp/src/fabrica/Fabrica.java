@@ -35,14 +35,12 @@ public class Fabrica {
 		plantas.add(planta);	
 	}
 	
-	public ArrayList<Planta> getPlantas(){
-		return (ArrayList<Planta>) this.plantas;
+	public List<Planta> getPlantas(){
+		return this.plantas;
 	}
 
 	public void quitarUnModeloDeStock(Modelo modelo, Planta unaPlanta) {
- 
-		 unaPlanta.quitarModelo(modelo);
-		
+		 unaPlanta.quitarModelo(modelo);	
 	}
 
 	public Integer stock(Modelo unModelo) {

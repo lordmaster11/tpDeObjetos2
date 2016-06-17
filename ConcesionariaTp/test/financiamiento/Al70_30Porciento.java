@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class Al70_30Porciento {
 
-      Modelo modeloMock;
+    Modelo modeloMock;
 	Financiamiento unPlan70_30Test;
 
 	@Before

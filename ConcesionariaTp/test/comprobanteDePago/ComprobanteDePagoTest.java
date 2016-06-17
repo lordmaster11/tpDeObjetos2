@@ -34,5 +34,4 @@ public class ComprobanteDePagoTest {
 	public void test() {
 	
 	}
-
 }

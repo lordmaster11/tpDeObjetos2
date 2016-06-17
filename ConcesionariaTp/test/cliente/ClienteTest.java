@@ -26,7 +26,6 @@ public class ClienteTest {
 	}
 
 	@Test
-	
 	public void testNuevoCliente(){ 	
 		Date fechaIngreso = new Date();
 		Calendar fechaNac = new GregorianCalendar(1980, Calendar.FEBRUARY, 11);

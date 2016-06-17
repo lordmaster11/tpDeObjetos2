@@ -1,4 +1,4 @@
-package GoogleMap;
+package googleMap;
 
 import java.util.Random;
 

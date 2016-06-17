@@ -12,10 +12,10 @@ import org.junit.Test;
 
 import adjudicacion.Adjudicacion;
 import adjudicacion.PorSorteo;
-import GoogleMap.GoogleMap;
 import cliente.Cliente;
 import cuponDeAdjudicacion.CuponDeAdjudicacion;
 import fabrica.Fabrica;
+import googleMap.GoogleMap;
 import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
 import planta.Planta;
