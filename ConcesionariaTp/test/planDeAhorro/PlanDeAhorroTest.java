@@ -3,9 +3,14 @@ package planDeAhorro;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import planta.Planta;
+import suscripto.Suscripto;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import comprobanteDePago.ComprobanteDePago;
@@ -18,6 +23,8 @@ public class PlanDeAhorroTest {
 	 
     PlanDeAhorro planDeAhorro;
     Cliente clienteMock;
+    Cliente cliente2Mock;
+    Cliente cliente3Mock;
 	Modelo modeloMock;
 	Financiamiento financiamiento70_30Mock;
 	Adjudicacion adjudicacionMock;
@@ -25,8 +32,10 @@ public class PlanDeAhorroTest {
        
     @Before
     public void setUp() throws Exception {
-    	 
+
     	clienteMock = mock(Cliente.class);
+    	cliente2Mock = mock(Cliente.class);
+    	cliente3Mock = mock(Cliente.class);
     	modeloMock = mock(Modelo.class);
     	financiamiento70_30Mock =  mock(Financiamiento.class);
     	adjudicacionMock = mock(Adjudicacion.class);
@@ -60,7 +69,15 @@ public class PlanDeAhorroTest {
 				
 	}			 
 	
-	
+	@Test
+	public void disponiblesTest() {
+
+		
+		planDeAhorro.agregarSuscripto(cliente2Mock);
+		planDeAhorro.agregarSuscripto(clienteMock);
+		
+		assertTrue((planDeAhorro.disponibles().size())==2);
+	}
 	
 	
 
