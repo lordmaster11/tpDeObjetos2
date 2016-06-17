@@ -71,11 +71,8 @@ public class PlantaTest {
 	@Test
 	public void getStocks() {
 		
-		List<StockDeModelo> stocks;
-		stocks = new ArrayList<StockDeModelo>(Arrays.asList(stockMock,stockMock2));
-		
-		when(plantaTest.getStocks()).thenReturn(stocks);
+		plantaTest.agregarModelo(modeloMock);
 
-		assertTrue(plantaTest.getStocks().equals(stocks));
+		assertTrue(plantaTest.getStocks().size()==(1));
 	}
 }

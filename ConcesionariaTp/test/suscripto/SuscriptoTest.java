@@ -21,7 +21,6 @@ public class SuscriptoTest {
 	@Before
 	public void setUp() throws Exception {
 		clienteMock = mock(Cliente.class);
-		suscriptoTest = new Suscripto(clienteMock);	
 	}
 
 	@Test
@@ -34,6 +33,8 @@ public class SuscriptoTest {
 		when(clienteMock.getFechaNacimiento()).thenReturn(fechaNac);
 		when(clienteMock.getFechaIngreso()).thenReturn(fechaIngreso);
 	
+		suscriptoTest = new Suscripto(clienteMock);	
+		
 		assertTrue(suscriptoTest.getFecNac().equals(fechaNac));
 		assertTrue(suscriptoTest.getFechaDeIngreso().equals(fechaIngreso));
 		assertTrue(suscriptoTest.getFechaDeInscripcion().equals(fechaInscripcion));		
@@ -41,17 +42,23 @@ public class SuscriptoTest {
 	
 	@Test
 	public void edadSuscriptotest() {
+
+	suscriptoTest = new Suscripto(clienteMock);	
 	when(clienteMock.edadCliente()).thenReturn(20);
 	assertTrue(suscriptoTest.edadSuscripto().equals(20));
 	}
 	
 	@Test
 	public void aunNoFueAdjudicado() {
+
+		suscriptoTest = new Suscripto(clienteMock);	
 		assertTrue(suscriptoTest.aunNoFueAdjudicado().equals(true));
 	}
 	
 	@Test
 	public void fueAdjudicado() {
+
+		suscriptoTest = new Suscripto(clienteMock);	
 		suscriptoTest.seAdjudico();
 		assertTrue(suscriptoTest.aunNoFueAdjudicado().equals(false));
 	}

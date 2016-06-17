@@ -21,14 +21,15 @@ public class GoogleMapTest {
 	public void setUp() throws Exception {
 		randomMock = mock(Random.class);
 		plantaMock = mock(Planta.class);
-		googleMapTest = new GoogleMap();
 	}
-
+ 
 	@Test
 	public void calcularDistanciaTest() {
 
-		when(randomMock.nextInt()).thenReturn(200);
+		when(randomMock.nextInt()).thenReturn(3);
+
+		googleMapTest = new GoogleMap(randomMock);
 		
-		assertTrue(googleMapTest.calcularDistancia(plantaMock).equals(200));
+		assertTrue(googleMapTest.calcularDistancia(plantaMock).equals(9001));
 	}
 }

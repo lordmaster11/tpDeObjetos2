@@ -144,4 +144,9 @@ public class Concesionaria{
 		}
 		return ganador;
 	}
+
+	public void setSeguro(SeguroDeVida seguroDeVida) {
+		this.seguro=seguroDeVida;
+		
+	}
 }

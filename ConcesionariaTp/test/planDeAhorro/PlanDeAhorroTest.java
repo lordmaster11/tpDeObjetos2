@@ -85,12 +85,10 @@ public class PlanDeAhorroTest {
 	
 	@Test
 	public void testGetSuscriptos2(){ 	
-		List<Suscripto> suscriptos;
-		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock));
 		
-//		when(planDeAhorroTest.agregarSuscripto(clienteMock)).thenReturn(suscriptos);
+		planDeAhorro.agregarSuscripto(clienteMock);
 		
-		assertTrue(planDeAhorro.getSubscriptos().equals(suscriptos));
+		assertTrue((planDeAhorro.getSubscriptos().size())==(1));
 	}
 	
 	@Test

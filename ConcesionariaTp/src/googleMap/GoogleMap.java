@@ -6,9 +6,14 @@ import planta.Planta;
 
 public class GoogleMap {
 	
+	private Random random;
+	
+	public GoogleMap(Random ran){
+		this.random = ran;	
+	}
+	
 	public Integer calcularDistancia(Planta unaPlanta)
 	{
-		Random  rnd = new Random();
-		return (rnd.nextInt() * 3000 + 1);
+		return (random.nextInt() * 3000 + 1);
 	}		
 }

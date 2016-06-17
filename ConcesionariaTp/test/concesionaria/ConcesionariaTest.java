@@ -114,9 +114,12 @@ public class ConcesionariaTest {
 	
 	@Test 
 	public void montoDelSeguroTest(){
-		when(seguroMock.montoAPagar(suscriptoMock, modeloMock)).thenReturn(500f);
 		
-		assertTrue(concesionariaTest.montoDelSeguro(suscriptoMock, modeloMock).equals(500f));
+
+		when(seguroMock.montoAPagar(suscriptoMock, modeloMock)).thenReturn(500f);
+		concesionariaTest.setSeguro(seguroMock);
+		
+		assertTrue(concesionariaTest.montoDelSeguro(suscriptoMock, modeloMock)==(500f));
 	}
 	
 	@Test
