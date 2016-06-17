@@ -20,6 +20,7 @@ public class MayorCoberturaTest {
     PlanDeAhorro planDeAhorroMock;
     Suscripto suscriptoMock;
     Suscripto suscriptoMock2;
+    Suscripto suscriptoMock3;
 	Modelo modeloMock;
 	
 	@Before
@@ -34,10 +35,7 @@ public class MayorCoberturaTest {
 	} 
 
 	@Test
-	public void testSeleccionDeClientePorMayorCobertura() {
-
-		when(suscriptoMock.edadSuscripto()).thenReturn(30);
-		when(suscriptoMock2.edadSuscripto()).thenReturn(50);
+	public void testSeleccionDeClientePorMayorCoberturaPorCantidadDeCuotasPagas() {
 		
 		List<Suscripto> suscriptos;
 		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock));
@@ -45,9 +43,40 @@ public class MayorCoberturaTest {
 		when(planDeAhorroMock.suscriptosConMayorCantidadDeCuotasPagas()).thenReturn(suscriptos);
 		
 		assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(suscriptoMock));
+	}
+	
+	@Test
+	public void testSeleccionDeClientePorMayorCoberturaPorMayorAntiguedadEnConcesionaria() {
 		
-		suscriptos.add(suscriptoMock2);
+		List<Suscripto> suscriptos;
+		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock, suscriptoMock2));
 		
-		//assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(clienteMock));
+		when(planDeAhorroMock.suscriptosConMayorCantidadDeCuotasPagas()).thenReturn(suscriptos);
+		
+		List<Suscripto> suscriptosMasAntiguosEnConcesionaria;
+		suscriptosMasAntiguosEnConcesionaria = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock2));
+		
+		when(planDeAhorroMock.losMasAntiguosEnConcesionaria(suscriptos)).thenReturn(suscriptosMasAntiguosEnConcesionaria);
+		
+		assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(suscriptoMock2));
+	}
+	
+	@Test
+	public void testSeleccionDeClientePorMayorCoberturaPorMayorAntiguedadEnElPlan() {
+		
+		List<Suscripto> suscriptos;
+		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock, suscriptoMock2, suscriptoMock3));
+		
+		when(planDeAhorroMock.suscriptosConMayorCantidadDeCuotasPagas()).thenReturn(suscriptos);
+		
+		List<Suscripto> suscriptosMasAntiguosEnConcesionaria;
+		suscriptosMasAntiguosEnConcesionaria = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock, suscriptoMock3));
+		
+		when(planDeAhorroMock.losMasAntiguosEnConcesionaria(suscriptos)).thenReturn(suscriptosMasAntiguosEnConcesionaria);
+		
+		
+		when(planDeAhorroMock.suscriptoMasAntiguo(suscriptosMasAntiguosEnConcesionaria)).thenReturn(suscriptoMock3);
+		
+		assertTrue(porMayorCoberturaTest.seleccionDeCliente(planDeAhorroMock).equals(suscriptoMock3));
 	}
 }
