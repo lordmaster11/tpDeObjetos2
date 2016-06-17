@@ -30,6 +30,7 @@ public class MayorCoberturaTest {
 		
 		suscriptoMock = mock(Suscripto.class);		
 		suscriptoMock2 = mock(Suscripto.class); 
+		suscriptoMock3 = mock(Suscripto.class); 
 		
 		planDeAhorroMock = mock(PlanDeAhorro.class);				
 	} 
