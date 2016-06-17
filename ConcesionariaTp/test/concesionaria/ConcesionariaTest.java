@@ -19,6 +19,7 @@ import fabrica.Fabrica;
 import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
 import planta.Planta;
+import seguroDeVida.SeguroDeVida;
 import stockDeModelo.StockDeModelo;
 import suscripto.Suscripto;
 
@@ -39,6 +40,7 @@ public class ConcesionariaTest {
 	CuponDeAdjudicacion cuponMock;
 	Planta planta2Mock;
 	Suscripto suscriptoMock;
+	SeguroDeVida seguroMock;
 	
 	
 	@Before
@@ -51,13 +53,13 @@ public class ConcesionariaTest {
 		modeloMock = mock(Modelo.class);
 		modeloMock2 = mock(Modelo.class);
 		modeloMock1 = mock(Modelo.class);
-		concesionariaTest = new Concesionaria ("Rodolfo Lopez 666", fabricaMock,1000f,googleMapMock);
+		concesionariaTest = new Concesionaria ("Rodolfo Lopez 666", fabricaMock, 1000f, googleMapMock);
 		planDeAhorroMock= mock(PlanDeAhorro.class);
 		unaAdjudicacionMock= mock(PorSorteo.class);
 		clienteMock = mock(Cliente.class);
 		suscriptoMock = mock(Suscripto.class);
 		cuponMock = mock(CuponDeAdjudicacion.class);
-	
+		seguroMock = mock(SeguroDeVida.class);
 	}
 	
 	@Test
@@ -74,8 +76,7 @@ public class ConcesionariaTest {
 	public void testAgregarCupon(){
 		concesionariaTest.emitirCupon(cuponMock);
 		
-		
-		assertTrue(((Integer)concesionariaTest.getCupones().size()).equals(1));
+		assertTrue(concesionariaTest.getCupones().contains(cuponMock));
 	}
 	
 	@Test
@@ -91,15 +92,14 @@ public class ConcesionariaTest {
 		
 		assertTrue(concesionariaTest.getClientes().contains(clienteMock));
 	}
+	
 	@Test
 	public void gastosDeAdministracionTest(){
-	
 		assertTrue(concesionariaTest.gastosAdministrativos().equals(1000f));
 	}
 	
 	@Test
 	public void suscribirClienteTest(){
-	
 		concesionariaTest.suscribirCliente(clienteMock, planDeAhorroMock);
 		
 		verify(planDeAhorroMock).agregarSuscripto(clienteMock);
@@ -113,9 +113,10 @@ public class ConcesionariaTest {
 	}
 	
 	@Test 
-	public void seguroDeVidaMayorTest(){
-     //hay que pasarle el seguro en algun momento nose si 
-		//lo crearlo con seguro o pasarselo como parametro
+	public void montoDelSeguroTest(){
+		when(seguroMock.montoAPagar(suscriptoMock, modeloMock)).thenReturn(500f);
+		
+		assertTrue(concesionariaTest.montoDelSeguro(suscriptoMock, modeloMock).equals(500f));
 	}
 	
 	@Test
@@ -125,7 +126,6 @@ public class ConcesionariaTest {
 		modeloMock2 = mock(Modelo.class);
 		when(modeloMock1.getNombre()).thenReturn("Clio 2");
 
-		
 		stock1Mock=mock(StockDeModelo.class);
 		when(stock1Mock.getModelo()).thenReturn(modeloMock1);
 		stock2Mock=mock(StockDeModelo.class);
@@ -133,7 +133,6 @@ public class ConcesionariaTest {
 		 
 		List<StockDeModelo> stocksMock =new ArrayList<StockDeModelo>(Arrays.asList(stock1Mock,stock2Mock));
 		when(plantaMock.getStocks()).thenReturn(stocksMock);
-
 
 		List<Planta> plantasConModelo;
 		plantasConModelo = new ArrayList<Planta>(Arrays.asList(plantaMock));
@@ -169,6 +168,7 @@ public class ConcesionariaTest {
 		
 		assertTrue((concesionariaTest.plantaMasCercana(modeloMock1)).equals(planta2Mock));
 	}
+	
 	@Test
 	public void adjudicarAutoTest(){
 		when(fabricaMock.stock(modeloMock)).thenReturn(5);
@@ -179,15 +179,11 @@ public class ConcesionariaTest {
 		when(fabricaMock.plantasConModelo(modeloMock)).thenReturn(plantasConModelo);
 		when(planDeAhorroMock.getConcesionaria()).thenReturn(concesionariaTest);
 		when(planDeAhorroMock.clienteAdjudicado()).thenReturn(suscriptoMock);
-		
-		
+			
 		concesionariaTest.adjudicarAuto(planDeAhorroMock);
 		
 		verify(fabricaMock).quitarUnModeloDeStock(modeloMock, plantaMock);
 		//pregunto si en sus disponibles sigue el nuevo adjudicado
-		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));
-		
+		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));	
 	}
-
 }
-

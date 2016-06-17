@@ -1,4 +1,4 @@
-package stock;
+package stockDeModelo;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -11,7 +11,7 @@ import planta.Planta;
 import stockDeModelo.StockDeModelo;
 import concesionaria.Concesionaria;
 
-public class StockTest {
+public class StockDeModeloTest {
 
 	StockDeModelo stockTest;
 	Modelo modeloMock;
@@ -50,6 +50,4 @@ public class StockTest {
 	public void testGetModelo() {	
 		assertTrue(stockTest.getModelo().equals(modeloMock));
 	}
-	
-
 }

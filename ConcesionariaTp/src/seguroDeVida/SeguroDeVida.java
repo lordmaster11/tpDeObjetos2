@@ -5,9 +5,9 @@ import suscripto.Suscripto;
 
 public class SeguroDeVida {
 	
-	public Float montoAPagar(Suscripto s, Modelo modelo){
-		Integer i =(50 + this.mayorDeEdad(s.edadSuscripto()));
-		return i + ((modelo.getValorVenta() * 5) /100);
+	public Float montoAPagar(Suscripto suscripto, Modelo modelo){
+		Integer monto = (50 + this.mayorDeEdad(suscripto.edadSuscripto()));
+		return monto + ((modelo.getValorVenta() * 5) /100);
 	}
 
 	private Integer mayorDeEdad(Integer edad) {

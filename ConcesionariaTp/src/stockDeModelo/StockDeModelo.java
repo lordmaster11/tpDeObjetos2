@@ -1,10 +1,5 @@
 package stockDeModelo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
 import modelo.Modelo;
 
 public class StockDeModelo{
@@ -12,7 +7,6 @@ public class StockDeModelo{
 	private Modelo modelo;
 	private Integer cantidadDelStock;
 
-	
 	public StockDeModelo(Modelo unModelo){
 		
 		this.modelo = unModelo;
@@ -40,9 +34,4 @@ public class StockDeModelo{
 	public Modelo getModelo() {
 		return modelo;
 	}
-
-	public void setCantidad(Integer cantidad) {
-		this.cantidadDelStock=cantidad;		
-	}
-
 }

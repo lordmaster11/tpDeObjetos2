@@ -100,8 +100,8 @@ public class Concesionaria{
 		return gastoPorAdministracion;
 	}
 
-	public Float montoDelSeguro(Suscripto s, Modelo modelo) {
-		return seguro.montoAPagar(s, modelo);
+	public Float montoDelSeguro(Suscripto suscripto, Modelo modelo) {
+		return seguro.montoAPagar(suscripto, modelo);
 	}
 	
 	public Integer stock(Modelo unModelo){

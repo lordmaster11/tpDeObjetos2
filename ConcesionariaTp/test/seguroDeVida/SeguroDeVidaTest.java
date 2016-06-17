@@ -14,7 +14,6 @@ public class SeguroDeVidaTest {
 	SeguroDeVida seguroDeVidaTest;
 	Suscripto suscriptoMock;
 	Modelo modeloMock;
-	
 
 	@Before
 	public void setUp() throws Exception {
@@ -23,26 +22,12 @@ public class SeguroDeVidaTest {
 		modeloMock = mock(Modelo.class);
 	}
 
-	/*//nose si lo hisite vos a el anterior pero lo comento y pongo unos mas completos que tambien 
-	 //calculen con un costo de vehiculo; lo que no entiendo es xq me tira amarillo
-	@Test
-	public void testPorEdadMayorA50Años() {
-		
-		when(suscriptoMock.edadSuscripto()).thenReturn(51);	
-		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock).equals(60f));
-		
-		when(suscriptoMock.edadSuscripto()).thenReturn(49);
-		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock).equals(50f));
-	}
-	*/
 	@Test
 	public void seguroDeVidaMayorTest(){
 		when(suscriptoMock.edadSuscripto()).thenReturn(52);
 		when(modeloMock.getValorVenta()).thenReturn(100000f);
-		
-		
-		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock)==(5070f));
-		
+				
+		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock).equals(5070f));		
 	}
 	
 	@Test
@@ -50,8 +35,6 @@ public class SeguroDeVidaTest {
 		when(suscriptoMock.edadSuscripto()).thenReturn(30);
 		when(modeloMock.getValorVenta()).thenReturn(100000f);
 		
-		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock)==(5050f));
-		
+		assertTrue(seguroDeVidaTest.montoAPagar(suscriptoMock, modeloMock).equals(5050f));	
 	}
-	
 }

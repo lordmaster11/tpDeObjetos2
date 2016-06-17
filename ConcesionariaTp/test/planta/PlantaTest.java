@@ -1,6 +1,11 @@
 package planta;
 
 import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import modelo.Modelo;
 
@@ -11,55 +16,71 @@ import stockDeModelo.StockDeModelo;
 
 public class PlantaTest {
 
-	Planta unaPlantaTest;
+	Planta plantaTest;
 	Modelo modeloMock;
-	StockDeModelo unStockTest;
+	StockDeModelo stockMock;
+	StockDeModelo stockMock2;
 
 	@Before
 	public void setUp() throws Exception {
-		unaPlantaTest = new Planta("Rivadavia 524");
+		plantaTest = new Planta("Rivadavia 524");
 		modeloMock = mock(Modelo.class);
-		unStockTest = mock(StockDeModelo.class);
+		stockMock = mock(StockDeModelo.class);
+		stockMock2 = mock(StockDeModelo.class);
 	}   
   
 	@Test
 	public void testStockDeModelo() {
 		
 		when(modeloMock.getNombre()).thenReturn("peugeot 206");
-		when(unStockTest.getModelo()).thenReturn(modeloMock);
+		when(stockMock.getModelo()).thenReturn(modeloMock);
 
-		unaPlantaTest.agregarModelo(modeloMock);
-		unaPlantaTest.agregarModelo(modeloMock);
+		plantaTest.agregarModelo(modeloMock);
+		plantaTest.agregarModelo(modeloMock);
 		
 		
-		assertTrue(unaPlantaTest.buscarStockDelModelo(modeloMock).getCantidad().equals(2));
+		assertTrue(plantaTest.buscarStockDelModelo(modeloMock).getCantidad().equals(2));
 	}
 		
 	@Test
 	public void quitarUnModeloTest() {
 
 		when(modeloMock.getNombre()).thenReturn("peugeot 206");
-		when(unStockTest.getModelo()).thenReturn(modeloMock);
-		when(unStockTest.getCantidad()).thenReturn(6);
+		when(stockMock.getModelo()).thenReturn(modeloMock);
+		when(stockMock.getCantidad()).thenReturn(6);
 		
-		unaPlantaTest.agregarStock(unStockTest);
-		unaPlantaTest.quitarModelo(modeloMock);
+		plantaTest.agregarStock(stockMock);
+		plantaTest.quitarModelo(modeloMock);
 		
-		verify(unStockTest).quitarCantidad();
+		verify(stockMock).quitarCantidad();
 	}
 	
 	@Test
 	public void quitarUltimoModeloTest() {
 
 		when(modeloMock.getNombre()).thenReturn("peugeot 206");
-		when(unStockTest.getModelo()).thenReturn(modeloMock);
-		when(unStockTest.getCantidad()).thenReturn(1);
+		when(stockMock.getModelo()).thenReturn(modeloMock);
+		when(stockMock.getCantidad()).thenReturn(1);
 		
-		unaPlantaTest.agregarStock(unStockTest);
-		unaPlantaTest.quitarModelo(modeloMock);
+		plantaTest.agregarStock(stockMock);
+		plantaTest.quitarModelo(modeloMock);
 
-		assertFalse(unaPlantaTest.existeElModelo(modeloMock));
+		assertFalse(plantaTest.existeElModelo(modeloMock));
 	}
 	
+	@Test
+	public void getStocks() {
 		
+		List<StockDeModelo> stocks;
+		stocks = new ArrayList<StockDeModelo>(Arrays.asList(stockMock,stockMock2));
+		
+		when(plantaTest.getStocks()).thenReturn(stocks);
+
+		assertTrue(plantaTest.getStocks().equals(stocks));
+	}
 }
+//List<StockDeModelo> stocksMock =new ArrayList<StockDeModelo>(Arrays.asList(stock1Mock,stock2Mock));
+//when(plantaMock.getStocks()).thenReturn(stocksMock);
+
+//List<Suscripto> suscriptos;
+//suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock));
