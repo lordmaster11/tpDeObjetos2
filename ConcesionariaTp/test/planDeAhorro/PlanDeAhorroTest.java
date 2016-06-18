@@ -11,11 +11,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import planta.Planta;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import concesionaria.Concesionaria;
 import financiamiento.Plan100;
 import modelo.Modelo;
+import stockDeModelo.StockDeModelo;
 import suscripto.Suscripto;
 
 
@@ -23,20 +25,25 @@ public class PlanDeAhorroTest {
 	 
     PlanDeAhorro planDeAhorro;
     Cliente clienteMock;
-	Modelo modeloMock;
+    Cliente cliente2Mock;
+    Modelo modeloMock;
 	Plan100 plan100Mock;
 	Adjudicacion adjudicacionMock;
 	Concesionaria concesionariaMock;
 	Suscripto suscriptoMock;
+	Suscripto suscripto2Mock;
+
        
     @Before
     public void setUp() throws Exception {
     	 
     	clienteMock = mock(Cliente.class);
+    	cliente2Mock = mock(Cliente.class);
+    	suscriptoMock = mock(Suscripto.class);
+    	suscripto2Mock = mock(Suscripto.class);
     	modeloMock = mock(Modelo.class);
     	plan100Mock =  mock(Plan100.class);
     	adjudicacionMock = mock(Adjudicacion.class);
-    	suscriptoMock = mock(Suscripto.class);
     	concesionariaMock = mock(Concesionaria.class);
     	planDeAhorro =  new PlanDeAhorro(125, modeloMock, plan100Mock, adjudicacionMock, 60, concesionariaMock);
     
@@ -46,14 +53,14 @@ public class PlanDeAhorroTest {
 	@Test
 	public void testSuscribirCliente() {
 		
-		planDeAhorro.agregarSuscripto(clienteMock);
+		planDeAhorro.agregarCliente(clienteMock);
 		assertTrue(planDeAhorro.cantSuscriptos().equals(1));
 		
 	}
 	
 	@Test
 	public void testGetSuscriptos() {
-		planDeAhorro.agregarSuscripto(clienteMock);
+		planDeAhorro.agregarCliente(clienteMock);
 		
 		assertTrue (planDeAhorro.cantSuscriptos().equals(1));
 	} 
@@ -86,7 +93,7 @@ public class PlanDeAhorroTest {
 	@Test
 	public void testGetSuscriptos2(){ 	
 		
-		planDeAhorro.agregarSuscripto(clienteMock);
+		planDeAhorro.agregarCliente(clienteMock);
 		
 		assertTrue((planDeAhorro.getSubscriptos().size())==(1));
 	}
@@ -97,4 +104,29 @@ public class PlanDeAhorroTest {
 		
 		assertTrue(planDeAhorro.alicuota().equals(1000f));
 	}
+	@Test
+	public void disponiblesTest(){
+
+		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
+		planDeAhorro.agregarSuscripto(suscriptoMock);
+		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		planDeAhorro.agregarSuscripto(suscripto2Mock);
+		
+		
+		assertTrue(planDeAhorro.disponibles().contains(suscripto2Mock));
+
+		assertFalse(planDeAhorro.disponibles().contains(suscriptoMock));
+	}
+
+	@Test
+	public void mayorCantidadDeCuotasPagasTest(){
+
+		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(5);
+		planDeAhorro.agregarSuscripto(suscriptoMock);
+		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(4);
+		planDeAhorro.agregarSuscripto(suscripto2Mock);
+
+		assertFalse(planDeAhorro.suscriptosConMayorCantidadDeCuotasPagas().equals(suscriptoMock));
+	}
+	
 }

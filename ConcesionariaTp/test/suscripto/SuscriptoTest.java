@@ -40,7 +40,7 @@ public class SuscriptoTest {
 		assertTrue(suscriptoTest.getFechaDeInscripcion().equals(fechaInscripcion));		
 	}
 	
-	@Test
+	@Test 
 	public void edadSuscriptotest() {
 
 	suscriptoTest = new Suscripto(clienteMock);	
@@ -52,7 +52,7 @@ public class SuscriptoTest {
 	public void aunNoFueAdjudicado() {
 
 		suscriptoTest = new Suscripto(clienteMock);	
-		assertTrue(suscriptoTest.aunNoFueAdjudicado().equals(true));
+		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(true));
 	}
 	
 	@Test
@@ -60,6 +60,6 @@ public class SuscriptoTest {
 
 		suscriptoTest = new Suscripto(clienteMock);	
 		suscriptoTest.seAdjudico();
-		assertTrue(suscriptoTest.aunNoFueAdjudicado().equals(false));
+		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(false));
 	}
 }

@@ -62,7 +62,7 @@ public class ConcesionariaTest {
 		seguroMock = mock(SeguroDeVida.class);
 	}
 	
-	@Test
+	@Test 
 	public void testGastoDeFlete(){
 		concesionariaTest.gastoDeFlete(plantaMock);
 		//que no se puede devolver ningun resultado porque
@@ -102,7 +102,7 @@ public class ConcesionariaTest {
 	public void suscribirClienteTest(){
 		concesionariaTest.suscribirCliente(clienteMock, planDeAhorroMock);
 		
-		verify(planDeAhorroMock).agregarSuscripto(clienteMock);
+		verify(planDeAhorroMock).agregarCliente(clienteMock);
 	}
 	
 	@Test

@@ -55,10 +55,15 @@ public class PlanDeAhorro {
 		return financiamiento.efectivo(this.getModelo());
 	}
 
-	public void agregarSuscripto(Cliente unCliente) {
-		suscriptos.add(clienteASuscripto(unCliente));
+	
+	public void agregarSuscripto(Suscripto unSuscripto) {
+		suscriptos.add(unSuscripto);
 	}
 
+	public void agregarCliente(Cliente unCliente) {
+		suscriptos.add (this.clienteASuscripto(unCliente));
+	}
+	
 	private Suscripto clienteASuscripto(Cliente unCliente) {
 		return new Suscripto(unCliente);
 	}
@@ -75,10 +80,11 @@ public class PlanDeAhorro {
 		List<Suscripto> noAdjudicados = new ArrayList<Suscripto>();
 		
 		for(Suscripto suscripto: suscriptos){
-			if(suscripto.aunNoFueAdjudicado())
+			if(suscripto.todaviaNoFueAdjudicado())
 				noAdjudicados.add(suscripto);
 		}
 		return noAdjudicados;
+		
 	}
 	
 	public List<Suscripto> suscriptosConMayorCantidadDeCuotasPagas(){

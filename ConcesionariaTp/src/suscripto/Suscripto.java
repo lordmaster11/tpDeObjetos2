@@ -13,12 +13,12 @@ public class Suscripto {
 	private Cliente cliente;
 	private Date fechaDeInscripcion;
 	private List<ComprobanteDePago> comprobantes;
-	private Boolean fueAdjudicado;
+	private Boolean esAdjudicado;
 	
 	public Suscripto(Cliente unCliente) {
 		this.cliente = unCliente;
 		this.fechaDeInscripcion = new Date();
-		this.fueAdjudicado =false;
+		this.esAdjudicado =false;
 		this.comprobantes = new ArrayList<ComprobanteDePago>();
 	}
 
@@ -26,8 +26,8 @@ public class Suscripto {
 		return cliente.edadCliente();
 	}
 
-	public Boolean aunNoFueAdjudicado() {
-		return !fueAdjudicado;
+	public Boolean todaviaNoFueAdjudicado() {
+		return !esAdjudicado;
 	}
 
 	public Integer cantidadCuotasPagas() {
@@ -43,10 +43,15 @@ public class Suscripto {
 	}
 
 	public void seAdjudico() {
-		this.fueAdjudicado=true;	
+		this.esAdjudicado=true;	
 	}
 
 	public Date getFechaDeIngreso() {
 		return cliente.getFechaIngreso();
+	}
+
+	public Cliente getCliete() {
+		
+		return this.cliente;
 	}
 }
