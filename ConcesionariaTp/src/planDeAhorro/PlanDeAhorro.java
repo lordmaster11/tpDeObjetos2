@@ -54,8 +54,9 @@ public class PlanDeAhorro {
 	public Float efectivoAPagar() {
 		return financiamiento.efectivo(this.getModelo());
 	}
-
-	
+	/**
+	 * hay q ver si esta demas, pq al agregar un cliente ya estas agregando un suscripto
+	 */
 	public void agregarSuscripto(Suscripto unSuscripto) {
 		suscriptos.add(unSuscripto);
 	}

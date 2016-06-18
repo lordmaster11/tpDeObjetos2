@@ -50,8 +50,7 @@ public class Suscripto {
 		return cliente.getFechaIngreso();
 	}
 
-	public Cliente getCliete() {
-		
+	public Cliente getCliente() {	
 		return this.cliente;
 	}
 }

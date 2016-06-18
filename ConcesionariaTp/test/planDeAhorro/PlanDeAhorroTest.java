@@ -47,37 +47,33 @@ public class PlanDeAhorroTest {
     	concesionariaMock = mock(Concesionaria.class);
     	planDeAhorro =  new PlanDeAhorro(125, modeloMock, plan100Mock, adjudicacionMock, 60, concesionariaMock);
     
-
     }
 
 	@Test
-	public void testSuscribirCliente() {
-		
+	public void testAgregarCliente() {	
 		planDeAhorro.agregarCliente(clienteMock);
-		assertTrue(planDeAhorro.cantSuscriptos().equals(1));
-		
+		assertTrue(planDeAhorro.cantSuscriptos().equals(1));		
 	}
-	
+	/**
+	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
+	 */
 	@Test
 	public void testGetSuscriptos() {
-		planDeAhorro.agregarCliente(clienteMock);
+		planDeAhorro.agregarSuscripto(suscriptoMock);
 		
-		assertTrue (planDeAhorro.cantSuscriptos().equals(1));
+		assertTrue(((planDeAhorro.getSubscriptos()).contains(suscriptoMock)));
 	} 
 
 	@Test
-	public void testValorADesembolsar() {
-		
+	public void testValorADesembolsar() {	
 		when(modeloMock.getValorVenta()).thenReturn(100000f);
 		when(plan100Mock.valorTotalEnCuotas(modeloMock)).thenReturn(70000f);
 		
-		assertTrue((planDeAhorro.valorADesembolzar()).equals(70000f));
-				
+		assertTrue((planDeAhorro.valorADesembolzar()).equals(70000f));			
 	}			 
 	
 	@Test
-	public void testNuevoPlanDeAhorro(){ 	
-		
+	public void testNuevoPlanDeAhorro(){ 		
 		assertTrue(planDeAhorro.getModelo().equals(modeloMock));		
 		assertTrue(planDeAhorro.getAdjudicacion().equals(adjudicacionMock));
 		assertTrue(planDeAhorro.getConcesionaria().equals(concesionariaMock));
@@ -92,10 +88,9 @@ public class PlanDeAhorroTest {
 	
 	@Test
 	public void testGetSuscriptos2(){ 	
-		
-		planDeAhorro.agregarCliente(clienteMock);
-		
-		assertTrue((planDeAhorro.getSubscriptos().size())==(1));
+		planDeAhorro.agregarSuscripto(suscriptoMock);
+	
+		assertTrue(((planDeAhorro.getSubscriptos()).contains(suscriptoMock)));
 	}
 	
 	@Test
@@ -104,25 +99,33 @@ public class PlanDeAhorroTest {
 		
 		assertTrue(planDeAhorro.alicuota().equals(1000f));
 	}
+	
+	/**
+	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
+	 */
+	
 	@Test
 	public void disponiblesTest(){
-
-		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
 		planDeAhorro.agregarSuscripto(suscriptoMock);
-		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
-		planDeAhorro.agregarSuscripto(suscripto2Mock);
+		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
 		
+		planDeAhorro.agregarSuscripto(suscripto2Mock);
+		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
 		
 		assertTrue(planDeAhorro.disponibles().contains(suscripto2Mock));
 
 		assertFalse(planDeAhorro.disponibles().contains(suscriptoMock));
 	}
 
+	/**
+	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
+	 */
+	
 	@Test
 	public void mayorCantidadDeCuotasPagasTest(){
-
 		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(5);
 		planDeAhorro.agregarSuscripto(suscriptoMock);
+		
 		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(4);
 		planDeAhorro.agregarSuscripto(suscripto2Mock);
 

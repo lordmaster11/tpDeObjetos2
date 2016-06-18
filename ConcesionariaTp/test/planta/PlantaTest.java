@@ -2,10 +2,6 @@ package planta;
 
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.Assert.*;
 import modelo.Modelo;
 
@@ -38,7 +34,6 @@ public class PlantaTest {
 		plantaTest.agregarModelo(modeloMock);
 		plantaTest.agregarModelo(modeloMock);
 		
-		
 		assertTrue(plantaTest.buscarStockDelModelo(modeloMock).getCantidad().equals(2));
 	}
 		
@@ -69,10 +64,9 @@ public class PlantaTest {
 	}
 	
 	@Test
-	public void getStocks() {
-		
+	public void getStocks() {	
 		plantaTest.agregarModelo(modeloMock);
 
-		assertTrue(plantaTest.getStocks().size()==(1));
+		assertTrue(((Integer)plantaTest.getStocks().size()).equals(1));
 	}
 }
