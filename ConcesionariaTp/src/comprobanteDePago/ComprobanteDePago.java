@@ -14,12 +14,20 @@ public class ComprobanteDePago {
 	private Float gastosAdministrativos;
 	private Float seguroDeVida;
 
-	public ComprobanteDePago(Integer nCuota, PlanDeAhorro plan, Suscripto suscripto){
+	public ComprobanteDePago(PlanDeAhorro plan, Suscripto suscripto){
 		this.suscripto = suscripto;
-		this.numeroDeCuota = nCuota;
+		this.numeroDeCuota = 0;
 		this.fechaDePago = new Date();
 		this.alicuota = plan.alicuota();
 		this.gastosAdministrativos = plan.getConcesionaria().gastosAdministrativos();
 		this.seguroDeVida = plan.getConcesionaria().montoDelSeguro(suscripto,plan.getModelo());
+	}
+
+	public int getNumeroDeCuotas() {
+		return this.numeroDeCuota;
+	}
+
+	public void agregarCuota() {
+		this.numeroDeCuota++;	
 	}
 }

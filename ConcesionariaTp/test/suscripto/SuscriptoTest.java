@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cliente.Cliente;
+import comprobanteDePago.ComprobanteDePago;
 import planDeAhorro.PlanDeAhorro;
 import suscripto.Suscripto;
 
@@ -19,13 +20,20 @@ public class SuscriptoTest {
 	Suscripto suscriptoTest;
 	Cliente clienteMock;
 	PlanDeAhorro planDeAhorroMock;
+	ComprobanteDePago comprobanteMock;
 
 	@Before
 	public void setUp() throws Exception {
 		clienteMock = mock(Cliente.class);
 		planDeAhorroMock = mock(PlanDeAhorro.class);
+		comprobanteMock = mock(ComprobanteDePago.class);
 	}
 
+	/**
+	 * supuestamente esta bien y da verde pero a veces da rojo
+	 * assertTrue(suscriptoTest.getFechaDeInscripcion().equals(fechaInscripcion));		
+	 */
+	
 	@Test
 	public void testNuevoSuscripto(){ 	
 		
@@ -65,4 +73,18 @@ public class SuscriptoTest {
 		suscriptoTest.seAdjudico();
 		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(false));
 	}
+	
+	/**
+	 * esta re mal testeado lo dejo para seguir o para q lo arregles vos
+	 */
+	
+	@Test
+	public void cantidadCuotasPagasTest() {
+
+		suscriptoTest.pagarCuota(planDeAhorroMock);;	
+		verify(comprobanteMock).agregarCuota();
+		suscriptoTest.agregarComprobante(comprobanteMock);
+		assertTrue(((Integer)(suscriptoTest.getComprobantes()).size()).equals(1));
+	}
+	
 }

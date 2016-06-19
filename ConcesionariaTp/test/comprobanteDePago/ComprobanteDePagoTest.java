@@ -27,7 +27,7 @@ public class ComprobanteDePagoTest {
 		concesionariaMock = mock(Concesionaria.class);
 		
 		when(planMock.getConcesionaria()).thenReturn(concesionariaMock);
-		comprobanteDePago =  new ComprobanteDePago(10,planMock,suscriptoMock);		
+		comprobanteDePago =  new ComprobanteDePago(planMock,suscriptoMock);		
 	}
 
 	@Test

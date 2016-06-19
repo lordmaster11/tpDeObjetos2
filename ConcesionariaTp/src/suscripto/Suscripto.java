@@ -56,4 +56,30 @@ public class Suscripto {
 	public Cliente getCliente() {	
 		return this.cliente;
 	}
+	
+	public void pagarCuota(PlanDeAhorro plan) {
+		ComprobanteDePago comprobanteNuevo = new ComprobanteDePago(plan, this);
+		comprobanteNuevo.agregarCuota();
+		this.agregarComprobante(comprobanteNuevo);
+	}
+	
+	public void agregarComprobante(ComprobanteDePago comprobante){
+		this.comprobantes.add(comprobante);
+	}
+	
+	public List<ComprobanteDePago> getComprobantes() {
+		return this.comprobantes;
+	}
+	
+	/*
+	 * esto no va, lo hice pq antes se pasaban las cuotas en el constructor, 
+	 * y para mi deberian inicializar en 0 y despues se deberian de ir sumando,
+	 * 
+	private Integer numeroDeCuota() {
+		Integer cuota = 0;
+		for(ComprobanteDePago comprobante : comprobantes)
+		cuota = comprobante.getNumeroDeCuotas() + 1;
+		return cuota;
+	}
+	*/
 }
