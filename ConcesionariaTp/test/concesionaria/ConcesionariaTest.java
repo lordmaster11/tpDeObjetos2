@@ -102,7 +102,7 @@ public class ConcesionariaTest {
 	public void suscribirClienteTest(){
 		concesionariaTest.suscribirCliente(clienteMock, planDeAhorroMock);
 		
-		verify(planDeAhorroMock).agregarCliente(clienteMock);
+		verify(planDeAhorroMock).suscribirClienteAlPlan(clienteMock);
 	}
 	
 	@Test

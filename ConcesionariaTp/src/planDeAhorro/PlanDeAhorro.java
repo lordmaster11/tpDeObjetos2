@@ -54,19 +54,20 @@ public class PlanDeAhorro {
 	public Float efectivoAPagar() {
 		return financiamiento.efectivo(this.getModelo());
 	}
+	
+	public void suscribirClienteAlPlan(Cliente unCliente) {
+		Suscripto suscripto = this.crearSuscripto(unCliente, this);
+		this.agregarSuscripto(suscripto);
+	}
 	/**
-	 * hay q ver si esta demas, pq al agregar un cliente ya estas agregando un suscripto
+	 *  hay q ver si esta bien pq deberia ser privado este mensaje
 	 */
 	public void agregarSuscripto(Suscripto unSuscripto) {
 		suscriptos.add(unSuscripto);
 	}
-
-	public void agregarCliente(Cliente unCliente) {
-		suscriptos.add (this.clienteASuscripto(unCliente));
-	}
 	
-	private Suscripto clienteASuscripto(Cliente unCliente) {
-		return new Suscripto(unCliente);
+	private Suscripto crearSuscripto(Cliente unCliente, PlanDeAhorro plan) {
+		return new Suscripto(unCliente, plan);
 	}
 
 	public Float alicuota() {

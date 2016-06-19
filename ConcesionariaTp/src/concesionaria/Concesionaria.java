@@ -93,7 +93,7 @@ public class Concesionaria{
 	}
 	
 	public void suscribirCliente(Cliente unCliente,PlanDeAhorro plan) {	
-		plan.agregarCliente(unCliente);
+		plan.suscribirClienteAlPlan(unCliente);
 	}
 
 	public Float gastosAdministrativos() {

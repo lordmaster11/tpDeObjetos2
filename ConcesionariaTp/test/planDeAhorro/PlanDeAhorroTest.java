@@ -51,17 +51,15 @@ public class PlanDeAhorroTest {
 
 	@Test
 	public void testAgregarCliente() {	
-		planDeAhorro.agregarCliente(clienteMock);
+		planDeAhorro.suscribirClienteAlPlan(clienteMock);
 		assertTrue(planDeAhorro.cantSuscriptos().equals(1));		
 	}
-	/**
-	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
-	 */
+	
 	@Test
 	public void testGetSuscriptos() {
-		planDeAhorro.agregarSuscripto(suscriptoMock);
+		planDeAhorro.suscribirClienteAlPlan(clienteMock);
 		
-		assertTrue(((planDeAhorro.getSubscriptos()).contains(suscriptoMock)));
+		assertTrue(((planDeAhorro.getSubscriptos().get(0)).getCliente()).equals(clienteMock));
 	} 
 
 	@Test
@@ -85,14 +83,7 @@ public class PlanDeAhorroTest {
 		
 		assertTrue(planDeAhorro.efectivoAPagar().equals(0f));
 	}
-	
-	@Test
-	public void testGetSuscriptos2(){ 	
-		planDeAhorro.agregarSuscripto(suscriptoMock);
-	
-		assertTrue(((planDeAhorro.getSubscriptos()).contains(suscriptoMock)));
-	}
-	
+		
 	@Test
 	public void alicuotaTest(){ 			
 		when(plan100Mock.valorTotalEnCuotas(modeloMock)).thenReturn(60000f);
@@ -102,10 +93,11 @@ public class PlanDeAhorroTest {
 	
 	/**
 	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
+	 * agregarSuscripto deberia ser privado
 	 */
 	
 	@Test
-	public void disponiblesTest(){
+	public void disponiblesTrueTest(){
 		planDeAhorro.agregarSuscripto(suscriptoMock);
 		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
 		
@@ -113,12 +105,21 @@ public class PlanDeAhorroTest {
 		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
 		
 		assertTrue(planDeAhorro.disponibles().contains(suscripto2Mock));
+	}
+
+	@Test
+	public void disponiblesFalseTest(){
+		planDeAhorro.agregarSuscripto(suscriptoMock);
+		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
+		
+		planDeAhorro.agregarSuscripto(suscripto2Mock);
+		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
 
 		assertFalse(planDeAhorro.disponibles().contains(suscriptoMock));
 	}
-
 	/**
 	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
+	 * agregarSuscripto deberia ser privado
 	 */
 	
 	@Test

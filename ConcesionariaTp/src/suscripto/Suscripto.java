@@ -7,6 +7,7 @@ import java.util.List;
 
 import cliente.Cliente;
 import comprobanteDePago.ComprobanteDePago;
+import planDeAhorro.PlanDeAhorro;
 
 public class Suscripto {
 
@@ -14,12 +15,14 @@ public class Suscripto {
 	private Date fechaDeInscripcion;
 	private List<ComprobanteDePago> comprobantes;
 	private Boolean esAdjudicado;
+	private PlanDeAhorro planDeAhorro;
 	
-	public Suscripto(Cliente unCliente) {
+	public Suscripto(Cliente unCliente, PlanDeAhorro plan) {
 		this.cliente = unCliente;
 		this.fechaDeInscripcion = new Date();
 		this.esAdjudicado =false;
 		this.comprobantes = new ArrayList<ComprobanteDePago>();
+		this.planDeAhorro = plan;
 	}
 
 	public Integer edadSuscripto(){
