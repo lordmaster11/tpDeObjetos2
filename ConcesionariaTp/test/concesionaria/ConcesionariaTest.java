@@ -147,7 +147,7 @@ public class ConcesionariaTest {
 		
 		assertTrue((concesionariaTest.plantaMasCercana(modeloMock1)).equals(plantaMock));
 	}
-	
+	 
 	@Test
 	public void plantaMasCercana2Test(){
 		modeloMock1 = mock(Modelo.class);
