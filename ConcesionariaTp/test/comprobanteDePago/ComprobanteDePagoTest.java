@@ -25,13 +25,15 @@ public class ComprobanteDePagoTest {
 		suscriptoMock = mock(Suscripto.class);
 		planMock = mock(PlanDeAhorro.class);
 		concesionariaMock = mock(Concesionaria.class);
-		
-		when(planMock.getConcesionaria()).thenReturn(concesionariaMock);
-		comprobanteDePago =  new ComprobanteDePago(planMock,suscriptoMock);		
 	}
 
 	@Test
-	public void test() {
+	public void nuevaCuotatest() {
 	
+		when(suscriptoMock.proximaCuotaAPagar()).thenReturn(10);
+		when(planMock.getConcesionaria()).thenReturn(concesionariaMock);
+		comprobanteDePago =  new ComprobanteDePago(planMock,suscriptoMock);
+		
+		assertTrue(comprobanteDePago.getNumeroDeCuotas().equals(10));
 	}
 }

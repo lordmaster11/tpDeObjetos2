@@ -16,18 +16,16 @@ public class ComprobanteDePago {
 
 	public ComprobanteDePago(PlanDeAhorro plan, Suscripto suscripto){
 		this.suscripto = suscripto;
-		this.numeroDeCuota = 0;
+		this.numeroDeCuota = suscripto.proximaCuotaAPagar();
 		this.fechaDePago = new Date();
 		this.alicuota = plan.alicuota();
 		this.gastosAdministrativos = plan.getConcesionaria().gastosAdministrativos();
 		this.seguroDeVida = plan.getConcesionaria().montoDelSeguro(suscripto,plan.getModelo());
 	}
 
-	public int getNumeroDeCuotas() {
+	public Integer getNumeroDeCuotas() {
 		return this.numeroDeCuota;
 	}
 
-	public void agregarCuota() {
-		this.numeroDeCuota++;	
-	}
+	
 }

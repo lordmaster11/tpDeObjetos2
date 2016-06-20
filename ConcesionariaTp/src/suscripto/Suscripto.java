@@ -81,7 +81,6 @@ public class Suscripto {
 	
 	public void pagarCuota(PlanDeAhorro plan) {
 		ComprobanteDePago comprobanteNuevo = new ComprobanteDePago(plan, this);
-		comprobanteNuevo.agregarCuota();
 		this.agregarComprobante(comprobanteNuevo);
 	}
 	
