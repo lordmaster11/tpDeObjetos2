@@ -144,4 +144,6 @@ public class PlanDeAhorro {
 	public Suscripto clienteAdjudicado(){
 		return adjudicacion.seleccionDeCliente(this);
 	}
+
+	
 }

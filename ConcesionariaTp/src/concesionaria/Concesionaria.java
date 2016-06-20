@@ -151,4 +151,19 @@ public class Concesionaria{
 		this.seguro=seguroDeVida;
 		
 	}
+
+	public void cobrarCuota(Suscripto suscripto,PlanDeAhorro plan) {
+
+		for(PlanDeAhorro p:planes){
+			if(p==plan)
+				for(Suscripto s: plan.getSubscriptos()){
+					if(s== suscripto)
+					s.pagarCuota(plan);
+				
+		}	
+	  }
+	}
+	
+	
+	
 }

@@ -31,6 +31,7 @@ public class ConcesionariaTest {
 	Planta plantaMock;
 	Modelo modeloMock;
 	PlanDeAhorro planDeAhorroMock;
+	PlanDeAhorro planDeAhorro2Mock;
 	Cliente clienteMock;
 	StockDeModelo stock1Mock;
 	StockDeModelo stock2Mock;
@@ -40,6 +41,7 @@ public class ConcesionariaTest {
 	CuponDeAdjudicacion cuponMock;
 	Planta planta2Mock;
 	Suscripto suscriptoMock;
+	Suscripto suscripto2Mock;
 	SeguroDeVida seguroMock;
 	
 	
@@ -53,13 +55,16 @@ public class ConcesionariaTest {
 		modeloMock = mock(Modelo.class);
 		modeloMock2 = mock(Modelo.class);
 		modeloMock1 = mock(Modelo.class);
-		concesionariaTest = new Concesionaria ("Rodolfo Lopez 666", fabricaMock, 1000f, googleMapMock);
 		planDeAhorroMock= mock(PlanDeAhorro.class);
+		planDeAhorro2Mock= mock(PlanDeAhorro.class);
 		unaAdjudicacionMock= mock(PorSorteo.class);
 		clienteMock = mock(Cliente.class);
+		suscripto2Mock = mock(Suscripto.class);
 		suscriptoMock = mock(Suscripto.class);
 		cuponMock = mock(CuponDeAdjudicacion.class);
 		seguroMock = mock(SeguroDeVida.class);
+		concesionariaTest = new Concesionaria ("Rodolfo Lopez 666", fabricaMock, 1000f, googleMapMock);
+		
 	}
 	
 	@Test 
@@ -188,5 +193,17 @@ public class ConcesionariaTest {
 		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));	
 	}
 	
+	@Test
+	public void pagarCuotaTest(){
+		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(10);		
+		List<Suscripto> suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto2Mock));
+		when(planDeAhorroMock.getSubscriptos()).thenReturn(suscriptos);	
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorro2Mock);
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorroMock);
+		concesionariaTest.cobrarCuota(suscriptoMock,planDeAhorroMock);
+		
+		verify(suscriptoMock).pagarCuota(planDeAhorroMock);
+		
+	}
 	
 }
