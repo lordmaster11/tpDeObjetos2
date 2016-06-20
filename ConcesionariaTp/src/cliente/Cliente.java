@@ -3,6 +3,7 @@ package cliente;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import planDeAhorro.PlanDeAhorro;
@@ -15,7 +16,7 @@ public class Cliente {
 	private Calendar fechaNacimiento;
 	private String direccion;
 	private String mail;
-	private Date fechaIngreso;
+	private Calendar fechaIngreso;
 	private List<PlanDeAhorro> planes;
 	
 	public Cliente(String unNombre, String unApellido, Integer unDni, Calendar unaFechaNac,
@@ -26,7 +27,7 @@ public class Cliente {
 		this.fechaNacimiento = unaFechaNac;
 		this.direccion = unaDireccion;
 		this.mail = unMail;
-		this.fechaIngreso = new Date();
+		this.fechaIngreso = new GregorianCalendar();
 		this.planes = new ArrayList<PlanDeAhorro>();
 	}
 
@@ -46,7 +47,7 @@ public class Cliente {
 		return this.fechaNacimiento;
 	}	
 
-	public Date getFechaIngreso() {
+	public Calendar getFechaIngreso() {
 		return fechaIngreso;
 	}
 	
@@ -67,4 +68,5 @@ public class Cliente {
        
 		return edad;	
 	}
+
 }

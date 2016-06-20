@@ -4,6 +4,9 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -32,6 +35,7 @@ public class PlanDeAhorroTest {
 	Concesionaria concesionariaMock;
 	Suscripto suscriptoMock;
 	Suscripto suscripto2Mock;
+	Suscripto suscripto3Mock;
 
        
     @Before
@@ -41,6 +45,7 @@ public class PlanDeAhorroTest {
     	cliente2Mock = mock(Cliente.class);
     	suscriptoMock = mock(Suscripto.class);
     	suscripto2Mock = mock(Suscripto.class);
+    	suscripto3Mock = mock(Suscripto.class);
     	modeloMock = mock(Modelo.class);
     	plan100Mock =  mock(Plan100.class);
     	adjudicacionMock = mock(Adjudicacion.class);
@@ -131,6 +136,72 @@ public class PlanDeAhorroTest {
 		planDeAhorro.agregarSuscripto(suscripto2Mock);
 
 		assertFalse(planDeAhorro.suscriptosConMayorCantidadDeCuotasPagas().equals(suscriptoMock));
+	}
+	
+	@Test
+	public void mayorCantidadDeCuotasPagasIgualesTest(){
+
+		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(5);
+		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(true);
+		planDeAhorro.agregarSuscripto(suscriptoMock);
+
+		when(suscripto3Mock.cantidadCuotasPagas()).thenReturn(4);
+		when(suscripto3Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		planDeAhorro.agregarSuscripto(suscripto3Mock);
+		
+		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(5);
+		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		planDeAhorro.agregarSuscripto(suscripto2Mock);
+
+		List<Suscripto> suscriptosCuotasPagas = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto2Mock));
+		
+		assertTrue((planDeAhorro.suscriptosConMayorCantidadDeCuotasPagas()).equals(suscriptosCuotasPagas));
+	}
+
+	@Test
+	public void elMasAntiguoEnConcesionariaTest(){
+
+		Calendar fecha1 = new GregorianCalendar(1980, Calendar.FEBRUARY, 11);
+		when(suscriptoMock.getFechaDeIngreso()).thenReturn(fecha1);
+		
+		Calendar fecha2 = new GregorianCalendar(1995, Calendar.JUNE, 29);
+		when(suscripto2Mock.getFechaDeIngreso()).thenReturn(fecha2);
+		
+		Calendar fecha3 = new GregorianCalendar(1980, Calendar.FEBRUARY, 5);
+		when(suscripto3Mock.getFechaDeIngreso()).thenReturn(fecha3);
+	
+		List<Suscripto> todosLosSuscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto2Mock,suscripto3Mock));
+		
+		List<Suscripto> suscriptosAntiguosEnConcesionaria= new ArrayList<Suscripto>(Arrays.asList(suscripto3Mock));
+		
+		assertTrue(planDeAhorro.losMasAntiguosEnConcesionaria(todosLosSuscriptos).equals(suscriptosAntiguosEnConcesionaria));	
+	}
+	
+	@Test
+	public void suscriptoMasAntiguoTest(){
+		
+		Calendar fecha1 = new GregorianCalendar(2010, Calendar.FEBRUARY, 11);
+		when(suscriptoMock.getFechaDeInscripcion()).thenReturn(fecha1);
+		
+		Calendar fecha2 = new GregorianCalendar(2003, Calendar.JUNE, 29);
+		when(suscripto2Mock.getFechaDeInscripcion()).thenReturn(fecha2);
+		
+		Calendar fecha3 = new GregorianCalendar(2003, Calendar.JUNE, 31);
+		when(suscripto3Mock.getFechaDeInscripcion()).thenReturn(fecha3);
+	
+		List<Suscripto> todosLosSuscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto2Mock,suscripto3Mock));
+		
+		
+		assertTrue(planDeAhorro.suscriptoMasAntiguo(todosLosSuscriptos).equals(suscripto2Mock));	
+		
+	}
+	@Test
+	public void seleccionDeClienteTest(){
+
+		when(adjudicacionMock.seleccionDeCliente(planDeAhorro)).thenReturn(suscripto2Mock);
+		
+		assertTrue(planDeAhorro.clienteAdjudicado().equals(suscripto2Mock));	
+		
 	}
 	
 }

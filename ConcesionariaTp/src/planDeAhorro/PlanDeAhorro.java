@@ -77,7 +77,7 @@ public class PlanDeAhorro {
 	public Concesionaria getConcesionaria() {
 		return this.concesionaria;
 	}
-
+ 
 	public List<Suscripto> disponibles() {
 		List<Suscripto> noAdjudicados = new ArrayList<Suscripto>();
 		
@@ -96,9 +96,9 @@ public class PlanDeAhorro {
 			if(suscripto.cantidadCuotasPagas() == mayorCantidadCuotasPagas())
 				suscriptosPagadores.add(suscripto);
 		}
-		return suscriptosPagadores;		
-	}
-
+		return suscriptosPagadores;
+	} 
+ 
 	private Integer mayorCantidadCuotasPagas() {
 		Integer mayorCuotasPagas = 0;
 		
@@ -109,15 +109,16 @@ public class PlanDeAhorro {
 		return mayorCuotasPagas;
 	}
 
-	public List<Suscripto> losMasAntiguosEnConcesionaria(List<Suscripto> suscriptos){
+	public List<Suscripto> losMasAntiguosEnConcesionaria(List<Suscripto> susc){
+		
 		List<Suscripto> mayores = new ArrayList<Suscripto>();
 		
-		for(Suscripto suscripto : suscriptos){
-			if(suscripto.getFechaDeIngreso().equals(elMasAntiguoEnConcesionaria(suscriptos)))
+		for(Suscripto suscripto : susc){
+			if(suscripto.getFechaDeIngreso().equals(elMasAntiguoEnConcesionaria(susc).getFechaDeIngreso()))
 				mayores.add(suscripto);
 		}
-		return mayores;
-	}
+		return mayores;  
+	} 
 
 	private Suscripto elMasAntiguoEnConcesionaria(List<Suscripto> suscriptos) {
 		Suscripto elMasAntiguo = suscriptos.get(0);
@@ -128,6 +129,7 @@ public class PlanDeAhorro {
 		}
 		return elMasAntiguo;
 	}
+	
 	
 	public Suscripto suscriptoMasAntiguo(List<Suscripto> suscriptos){
 		Suscripto elMasAntiguo = suscriptos.get(0);

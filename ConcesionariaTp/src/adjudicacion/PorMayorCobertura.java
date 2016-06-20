@@ -23,7 +23,7 @@ public class PorMayorCobertura implements Adjudicacion{
 			else {
 				adjudicado = plan.suscriptoMasAntiguo(plan.losMasAntiguosEnConcesionaria(suscriptosConMasCuotas));
 			}
-		}
+		} 
 		return adjudicado;
 	}
 }
