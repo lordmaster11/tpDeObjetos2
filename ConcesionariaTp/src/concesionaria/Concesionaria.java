@@ -121,25 +121,27 @@ public class Concesionaria{
 	}
 	
 	public List<PlanDeAhorro> losDiezPlanesConMayorCantidadDeSubscriptos(){
-		List<PlanDeAhorro> planesOrdenados = new ArrayList<PlanDeAhorro>();
+		List<PlanDeAhorro> resultado = new ArrayList<PlanDeAhorro>();
 		List<PlanDeAhorro> planesDesordenados = planes;
 		Integer repeticiones = 0;
 		
-		while(repeticiones < 10 && !(planesDesordenados.isEmpty())){
-			planesOrdenados.add(planConMasSubscriptos(planesDesordenados));
+		while((repeticiones < 10) && ((planesDesordenados.size()>0))){
+			PlanDeAhorro unPlan =this.planConMasSubscriptos(planesDesordenados);
 			
-			planesDesordenados.remove(planConMasSubscriptos(planesDesordenados));
+			resultado.add(unPlan);
+			
+			planesDesordenados.remove(unPlan);
 			repeticiones++;
 		}
-		return planesOrdenados;
+		return resultado;
 	}
 	
 	//PREC: hay por lo menos un plan en la concesionaria.
-	public PlanDeAhorro planConMasSubscriptos(List<PlanDeAhorro> planess){
+	private PlanDeAhorro planConMasSubscriptos(List<PlanDeAhorro> planess){
 		PlanDeAhorro ganador = planess.get(0);
 			
 		for(PlanDeAhorro plan: planess){
-			if(plan.cantSuscriptos() > plan.cantSuscriptos())
+			if(plan.cantSuscriptos() > ganador.cantSuscriptos())
 					ganador = plan;
 		}
 		return ganador;

@@ -85,7 +85,7 @@ public class ConcesionariaTest {
 		
 		verify(fabricaMock).agregarPlanta(plantaMock);
 	}
-	
+	 
 	@Test
 	public void agregarClienteTest(){
 		concesionariaTest.agregarCliente(clienteMock);
@@ -187,4 +187,6 @@ public class ConcesionariaTest {
 		//pregunto si en sus disponibles sigue el nuevo adjudicado
 		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));	
 	}
+	
+	
 }
