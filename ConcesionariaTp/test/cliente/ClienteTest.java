@@ -14,7 +14,7 @@ public class ClienteTest {
 	
 	Cliente clienteTest;
 	Cliente clienteTest2;
-	Date fechaDeIngreso;
+	Calendar fechaDeIngreso;
 
 	@Before
 	public void setUp() throws Exception {
@@ -27,7 +27,7 @@ public class ClienteTest {
 
 	@Test
 	public void testNuevoCliente(){ 	
-		Date fechaIngreso = new Date();
+		Calendar fechaIngreso = Calendar.getInstance();
 		Calendar fechaNac = new GregorianCalendar(1980, Calendar.FEBRUARY, 11);
 		
 		assertTrue(clienteTest.getNombre().equals("Juan"));
