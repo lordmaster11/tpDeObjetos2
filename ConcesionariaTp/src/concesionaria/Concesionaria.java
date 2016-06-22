@@ -92,8 +92,8 @@ public class Concesionaria{
 	    fabrica.quitarUnModeloDeStock(modelo,this.plantaMasCercana(modelo));
 	}
 	
-	public void suscribirCliente(Cliente unCliente,PlanDeAhorro plan) {	
-		plan.suscribirClienteAlPlan(unCliente);
+	public void suscribirClienteAlPlan(Cliente unCliente,PlanDeAhorro plan) {	
+		plan.suscribirCliente(unCliente);
 	}
 
 	public Float gastosAdministrativos() {

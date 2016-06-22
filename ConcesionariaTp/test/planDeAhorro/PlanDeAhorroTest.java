@@ -5,7 +5,6 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -14,21 +13,20 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import planta.Planta;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import concesionaria.Concesionaria;
+import convertirClienteASuscripto.Convertidor;
 import financiamiento.Plan100;
 import modelo.Modelo;
-import stockDeModelo.StockDeModelo;
 import suscripto.Suscripto;
 
 
-public class PlanDeAhorroTest {
-	 
+public class PlanDeAhorroTest {	 
     PlanDeAhorro planDeAhorro;
     Cliente clienteMock;
     Cliente cliente2Mock;
+    Cliente cliente3Mock;
     Modelo modeloMock;
 	Plan100 plan100Mock;
 	Adjudicacion adjudicacionMock;
@@ -36,13 +34,13 @@ public class PlanDeAhorroTest {
 	Suscripto suscriptoMock;
 	Suscripto suscripto2Mock;
 	Suscripto suscripto3Mock;
-
-       
+	Convertidor convertidorMock;
+	
     @Before
-    public void setUp() throws Exception {
-    	 
+    public void setUp() throws Exception {    	 
     	clienteMock = mock(Cliente.class);
     	cliente2Mock = mock(Cliente.class);
+    	cliente3Mock = mock(Cliente.class);
     	suscriptoMock = mock(Suscripto.class);
     	suscripto2Mock = mock(Suscripto.class);
     	suscripto3Mock = mock(Suscripto.class);
@@ -50,19 +48,22 @@ public class PlanDeAhorroTest {
     	plan100Mock =  mock(Plan100.class);
     	adjudicacionMock = mock(Adjudicacion.class);
     	concesionariaMock = mock(Concesionaria.class);
-    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, plan100Mock, adjudicacionMock, 60, concesionariaMock);
-    
+    	convertidorMock = mock(Convertidor.class);
+    	planDeAhorro =  new PlanDeAhorro(125, modeloMock, plan100Mock, adjudicacionMock, 60, concesionariaMock);   
     }
 
 	@Test
 	public void testAgregarCliente() {	
-		planDeAhorro.suscribirClienteAlPlan(clienteMock);
-		assertTrue(planDeAhorro.cantSuscriptos().equals(1));		
+		planDeAhorro.suscribirCliente(clienteMock);
+		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
+	
+		assertTrue(planDeAhorro.cantSuscriptos().equals(1));	
 	}
 	
 	@Test
 	public void testGetSuscriptos() {
-		planDeAhorro.suscribirClienteAlPlan(clienteMock);
+		planDeAhorro.suscribirCliente(clienteMock);
+		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
 		
 		assertTrue(((planDeAhorro.getSubscriptos().get(0)).getCliente()).equals(clienteMock));
 	} 
@@ -96,17 +97,14 @@ public class PlanDeAhorroTest {
 		assertTrue(planDeAhorro.alicuota().equals(1000f));
 	}
 	
-	/**
-	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
-	 * agregarSuscripto deberia ser privado
-	 */
-	
 	@Test
 	public void disponiblesTrueTest(){
-		planDeAhorro.agregarSuscripto(suscriptoMock);
+		planDeAhorro.suscribirCliente(clienteMock);
+		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
 		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
 		
-		planDeAhorro.agregarSuscripto(suscripto2Mock);
+		planDeAhorro.suscribirCliente(cliente2Mock);
+		when(convertidorMock.convertirClienteASuscripto(cliente2Mock, planDeAhorro)).thenReturn(suscripto2Mock);
 		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
 		
 		assertTrue(planDeAhorro.disponibles().contains(suscripto2Mock));
@@ -114,53 +112,60 @@ public class PlanDeAhorroTest {
 
 	@Test
 	public void disponiblesFalseTest(){
-		planDeAhorro.agregarSuscripto(suscriptoMock);
+		planDeAhorro.suscribirCliente(clienteMock);
+		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
 		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
 		
-		planDeAhorro.agregarSuscripto(suscripto2Mock);
+		planDeAhorro.suscribirCliente(cliente2Mock);
+		when(convertidorMock.convertirClienteASuscripto(cliente2Mock, planDeAhorro)).thenReturn(suscripto2Mock);
 		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
-
+		
 		assertFalse(planDeAhorro.disponibles().contains(suscriptoMock));
 	}
-	/**
-	 * hay q ver si esta bien pq se deberia agregar un cliente y no un suscripto
-	 * agregarSuscripto deberia ser privado
+		
+	/** 
+	 * da siempre bien, cambias las cuotas y da siempre verde
 	 */
 	
 	@Test
-	public void mayorCantidadDeCuotasPagasTest(){
+	public void mayorCantidadDeCuotasPagasTest(){	
+		planDeAhorro.suscribirCliente(clienteMock);
+		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
 		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(5);
-		planDeAhorro.agregarSuscripto(suscriptoMock);
 		
+		planDeAhorro.suscribirCliente(cliente2Mock);
+		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscripto2Mock);
 		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(4);
-		planDeAhorro.agregarSuscripto(suscripto2Mock);
-
+		
 		assertFalse(planDeAhorro.suscriptosConMayorCantidadDeCuotasPagas().equals(suscriptoMock));
 	}
 	
 	@Test
-	public void mayorCantidadDeCuotasPagasIgualesTest(){
-
-		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(5);
+	public void mayorCantidadDeCuotasPagasIgualesTest(){	
 		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(true);
-		planDeAhorro.agregarSuscripto(suscriptoMock);
-
-		when(suscripto3Mock.cantidadCuotasPagas()).thenReturn(4);
-		when(suscripto3Mock.todaviaNoFueAdjudicado()).thenReturn(true);
-		planDeAhorro.agregarSuscripto(suscripto3Mock);
+		planDeAhorro.suscribirCliente(clienteMock);
+		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
+		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(5);
 		
-		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(5);
+		
 		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
-		planDeAhorro.agregarSuscripto(suscripto2Mock);
-
-		List<Suscripto> suscriptosCuotasPagas = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto2Mock));
+		planDeAhorro.suscribirCliente(cliente2Mock);
+		when(convertidorMock.convertirClienteASuscripto(cliente2Mock, planDeAhorro)).thenReturn(suscripto2Mock);
+		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(6);
 		
-		assertTrue((planDeAhorro.suscriptosConMayorCantidadDeCuotasPagas()).equals(suscriptosCuotasPagas));
+		
+		when(suscripto3Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		planDeAhorro.suscribirCliente(cliente3Mock);
+		when(convertidorMock.convertirClienteASuscripto(cliente3Mock, planDeAhorro)).thenReturn(suscripto3Mock);
+		when(suscripto3Mock.cantidadCuotasPagas()).thenReturn(5);
+		
+		List<Suscripto> suscriptosCuotasPagas = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto3Mock));
+		
+		assertTrue(planDeAhorro.suscriptosConMayorCantidadDeCuotasPagas().equals(suscriptosCuotasPagas));
 	}
 
 	@Test
 	public void elMasAntiguoEnConcesionariaTest(){
-
 		Calendar fecha1 = new GregorianCalendar(1980, Calendar.FEBRUARY, 11);
 		when(suscriptoMock.getFechaDeIngreso()).thenReturn(fecha1);
 		
@@ -178,8 +183,7 @@ public class PlanDeAhorroTest {
 	}
 	
 	@Test
-	public void suscriptoMasAntiguoTest(){
-		
+	public void suscriptoMasAntiguoTest(){	
 		Calendar fecha1 = new GregorianCalendar(2010, Calendar.FEBRUARY, 11);
 		when(suscriptoMock.getFechaDeInscripcion()).thenReturn(fecha1);
 		
@@ -191,17 +195,13 @@ public class PlanDeAhorroTest {
 	
 		List<Suscripto> todosLosSuscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto2Mock,suscripto3Mock));
 		
-		
-		assertTrue(planDeAhorro.suscriptoMasAntiguo(todosLosSuscriptos).equals(suscripto2Mock));	
-		
-	}
-	@Test
-	public void seleccionDeClienteTest(){
-
-		when(adjudicacionMock.seleccionDeCliente(planDeAhorro)).thenReturn(suscripto2Mock);
-		
-		assertTrue(planDeAhorro.clienteAdjudicado().equals(suscripto2Mock));	
-		
+		assertTrue(planDeAhorro.suscriptoMasAntiguo(todosLosSuscriptos).equals(suscripto2Mock));		
 	}
 	
+	@Test
+	public void seleccionDeClienteTest(){
+		when(adjudicacionMock.seleccionDeCliente(planDeAhorro)).thenReturn(suscripto2Mock);
+		
+		assertTrue(planDeAhorro.clienteAdjudicado().equals(suscripto2Mock));		
+	}	
 }

@@ -6,12 +6,12 @@ import java.util.List;
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
 import concesionaria.Concesionaria;
+import convertirClienteASuscripto.Convertidor;
 import financiamiento.Financiamiento;
 import modelo.Modelo;
 import suscripto.Suscripto;
 
 public class PlanDeAhorro {
-
 	private Integer numeroGrupo;
 	private Modelo modelo;
 	private List<Suscripto> suscriptos;
@@ -19,6 +19,7 @@ public class PlanDeAhorro {
 	private Adjudicacion adjudicacion;
 	private Integer cantidadDeCuotas;
 	private Concesionaria concesionaria;
+	private Convertidor convertidor;
 	
 	public PlanDeAhorro(Integer unNumero, Modelo unModelo, Financiamiento unFinanciamiento,
 			            Adjudicacion unaAdjudicacion, Integer unasCuotas, Concesionaria unaConcesionaria) {
@@ -29,6 +30,7 @@ public class PlanDeAhorro {
 		this.adjudicacion = unaAdjudicacion;
 		this.cantidadDeCuotas = unasCuotas;
 		this.concesionaria = unaConcesionaria;
+		this.convertidor = new Convertidor();
 	} 
 
 	public Float valorADesembolzar(){
@@ -55,19 +57,13 @@ public class PlanDeAhorro {
 		return financiamiento.efectivo(this.getModelo());
 	}
 	
-	public void suscribirClienteAlPlan(Cliente unCliente) {
-		Suscripto suscripto = this.crearSuscripto(unCliente, this);
+	public void suscribirCliente(Cliente unCliente) {
+		Suscripto suscripto = convertidor.convertirClienteASuscripto(unCliente, this);
 		this.agregarSuscripto(suscripto);
 	}
-	/**
-	 *  hay q ver si esta bien pq deberia ser privado este mensaje
-	 */
-	public void agregarSuscripto(Suscripto unSuscripto) {
+
+	private void agregarSuscripto(Suscripto unSuscripto) {
 		suscriptos.add(unSuscripto);
-	}
-	
-	private Suscripto crearSuscripto(Cliente unCliente, PlanDeAhorro plan) {
-		return new Suscripto(unCliente, plan);
 	}
 
 	public Float alicuota() {
@@ -85,8 +81,7 @@ public class PlanDeAhorro {
 			if(suscripto.todaviaNoFueAdjudicado())
 				noAdjudicados.add(suscripto);
 		}
-		return noAdjudicados;
-		
+		return noAdjudicados;	
 	}
 	
 	public List<Suscripto> suscriptosConMayorCantidadDeCuotasPagas(){
@@ -109,8 +104,7 @@ public class PlanDeAhorro {
 		return mayorCuotasPagas;
 	}
 
-	public List<Suscripto> losMasAntiguosEnConcesionaria(List<Suscripto> susc){
-		
+	public List<Suscripto> losMasAntiguosEnConcesionaria(List<Suscripto> susc){	
 		List<Suscripto> mayores = new ArrayList<Suscripto>();
 		
 		for(Suscripto suscripto : susc){
@@ -144,6 +138,4 @@ public class PlanDeAhorro {
 	public Suscripto clienteAdjudicado(){
 		return adjudicacion.seleccionDeCliente(this);
 	}
-
-	
 }

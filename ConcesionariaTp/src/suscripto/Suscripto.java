@@ -2,7 +2,6 @@ package suscripto;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import comprobanteDePago.ComprobanteDePago;
 import planDeAhorro.PlanDeAhorro;
 
 public class Suscripto {
-
 	private Cliente cliente;
 	private Calendar fechaDeInscripcion;
 	private List<ComprobanteDePago> comprobantes;
@@ -21,7 +19,7 @@ public class Suscripto {
 	public Suscripto(Cliente unCliente, PlanDeAhorro plan) {
 		this.cliente = unCliente;
 		this.fechaDeInscripcion = new GregorianCalendar();
-		this.esAdjudicado =false;
+		this.esAdjudicado = false;
 		this.comprobantes = new ArrayList<ComprobanteDePago>();
 		// no entiendo cual es la necesidad de que suscripto conosca un plan.
 		// nose en donde lo usas. la unica vez que utilizas plan de ahorro se 
@@ -66,13 +64,12 @@ public class Suscripto {
 		return cliente.getFechaNacimiento();
 	}
 
-
 	public Calendar getFechaDeInscripcion() {
 		return fechaDeInscripcion;
 	}
 
 	public void seAdjudico() {
-		this.esAdjudicado=true;	
+		this.esAdjudicado = true;	
 	}
 
 	public Cliente getCliente() {	
@@ -107,12 +104,7 @@ public class Suscripto {
 	LO MODIFIQUE COMO CREO QUE VA ASI, y lo ago publico porque lo va utilizar comprobante
 	de pago
 	 * */
-	public Integer proximaCuotaAPagar() {
-		
+	public Integer proximaCuotaAPagar() {	
 		return this.comprobantes.size()+1;
-	}
-
-	
-	
-	
+	}	
 }
