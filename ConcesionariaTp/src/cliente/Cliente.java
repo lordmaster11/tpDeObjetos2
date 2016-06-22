@@ -17,7 +17,7 @@ public class Cliente {
 	private String direccion;
 	private String mail;
 	private Calendar fechaIngreso;
-	private List<PlanDeAhorro> planes;
+	//private List<PlanDeAhorro> planes;
 	
 	public Cliente(String unNombre, String unApellido, Integer unDni, Calendar unaFechaNac,
 			       String unaDireccion, String unMail) {
@@ -27,8 +27,8 @@ public class Cliente {
 		this.fechaNacimiento = unaFechaNac;
 		this.direccion = unaDireccion;
 		this.mail = unMail;
-		this.fechaIngreso = new GregorianCalendar();
-		this.planes = new ArrayList<PlanDeAhorro>();
+		this.fechaIngreso = Calendar.getInstance();
+		//this.planes = new ArrayList<PlanDeAhorro>();
 	}
 
 	public String getNombre(){		

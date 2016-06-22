@@ -175,7 +175,7 @@ public class ConcesionariaTest {
 		assertTrue((concesionariaTest.plantaMasCercana(modeloMock1)).equals(planta2Mock));
 	}
 	
-	@Test
+	@Test //(expected = SinStockException.class)
 	public void adjudicarAutoTest(){
 		when(fabricaMock.stock(modeloMock)).thenReturn(5);
 		when(planDeAhorroMock.getModelo()).thenReturn(modeloMock);
@@ -190,7 +190,8 @@ public class ConcesionariaTest {
 		
 		verify(fabricaMock).quitarUnModeloDeStock(modeloMock, plantaMock);
 		//pregunto si en sus disponibles sigue el nuevo adjudicado
-		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));	
+		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));
+		
 	}
 	
 	@Test

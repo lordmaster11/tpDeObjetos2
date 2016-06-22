@@ -138,4 +138,8 @@ public class PlanDeAhorro {
 	public Suscripto clienteAdjudicado(){
 		return adjudicacion.seleccionDeCliente(this);
 	}
+
+	public void setConvertidor(Convertidor unConvertidor) {
+		this.convertidor=unConvertidor;		
+	}
 }

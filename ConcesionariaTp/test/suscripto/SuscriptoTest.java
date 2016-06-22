@@ -15,8 +15,7 @@ import concesionaria.Concesionaria;
 import planDeAhorro.PlanDeAhorro;
 import suscripto.Suscripto;
 
-public class SuscriptoTest {
-	
+public class SuscriptoTest {	
 	Suscripto suscriptoTest;
 	Cliente clienteMock;
 	PlanDeAhorro planDeAhorroMock;
@@ -33,7 +32,6 @@ public class SuscriptoTest {
 
 	@Test
 	public void testNuevoSuscripto(){ 	
-		
 		Calendar fechaNac = new GregorianCalendar(1980, Calendar.FEBRUARY, 11);
 		Calendar fechaInscripcion = new GregorianCalendar();
 		Calendar fechaIngreso = new GregorianCalendar();
@@ -50,30 +48,26 @@ public class SuscriptoTest {
 	
 	@Test 
 	public void edadSuscriptotest() {
-
-	suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
-	when(clienteMock.edadCliente()).thenReturn(20);
-	assertTrue(suscriptoTest.edadSuscripto().equals(20));
+		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
+		when(clienteMock.edadCliente()).thenReturn(20);
+		assertTrue(suscriptoTest.edadSuscripto().equals(20));
 	}
 	
 	@Test
 	public void aunNoFueAdjudicadoTest() {
-
 		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
 		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(true));
 	}
 	
 	@Test
 	public void fueAdjudicadoTest() {
-
 		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
 		suscriptoTest.seAdjudico();
 		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(false));
 	}
 	
 	@Test
-	public void proximaCuotaAPagarTest() {
-	
+	public void proximaCuotaAPagarTest() {	
 		when(consecionariaMock.gastosAdministrativos()).thenReturn(150f);
 		when(planDeAhorroMock.getConcesionaria()).thenReturn(consecionariaMock);
 		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);
@@ -85,7 +79,6 @@ public class SuscriptoTest {
 		
 	@Test
 	public void cantidadCuotasPagasTest(){
-
 		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);
 		when(consecionariaMock.gastosAdministrativos()).thenReturn(150f);
 		when(planDeAhorroMock.getConcesionaria()).thenReturn(consecionariaMock);
@@ -95,6 +88,4 @@ public class SuscriptoTest {
 
 		assertTrue((suscriptoTest.cantidadCuotasPagas()).equals(2));
 	}
-	
-	//ya estan testeadas las cosas mas importantes flatan algun geter que 
 }
