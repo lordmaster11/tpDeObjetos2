@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.SinStockException;
 import modelo.Modelo;
 import planta.Planta;
 import stockDeModelo.StockDeModelo;
@@ -18,7 +19,7 @@ public class FabricaTest {
 	Fabrica fabricaTest;
 	Planta plantaMock;
 	Modelo modeloMock;
-	Planta planta2Mock;	
+	Planta planta2Mock;
 
 	@Before
 	public void setUp() throws Exception {
@@ -68,8 +69,6 @@ public class FabricaTest {
 	@Test
 	public void teststock() {
 		
-		
-		
 		ArrayList<String> modelos= new ArrayList<String>(Arrays.asList("Peugeot 206","Peugeot 208"));
 		when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
 		
@@ -92,4 +91,24 @@ public class FabricaTest {
 		assertTrue(fabricaTest.stock(modeloMock).equals(6));
 	}
 	
+
+	@Test(expected=SinStockException.class)
+	public void teststockConExcepcion() throws SinStockException{
+		Integer cant = 0;
+		ArrayList<String> modelos= new ArrayList<String>();
+		when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
+		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
+	//	try {
+		//	cant = fabricaTest.stock(modeloMock);
+		//}catch(SinStockException exception){
+		//	assertTrue(fabricaTest.stock(modeloMock).equals(cant));
+	//	}
+		//fabricaTest.agregarPlanta(plantaMock);
+		
+	//	doThrow(new SinStockException()).when(fabricaTest).stock(modeloMock);
+	   fabricaTest.stock(modeloMock);
+		
+		
+
+	}
 }

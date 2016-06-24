@@ -14,6 +14,7 @@ import adjudicacion.Adjudicacion;
 import adjudicacion.PorSorteo;
 import cliente.Cliente;
 import cuponDeAdjudicacion.CuponDeAdjudicacion;
+import excepciones.SinStockException;
 import fabrica.Fabrica;
 import googleMap.GoogleMap;
 import modelo.Modelo;
@@ -43,8 +44,7 @@ public class ConcesionariaTest {
 	Suscripto suscriptoMock;
 	Suscripto suscripto2Mock;
 	SeguroDeVida seguroMock;
-	
-	
+		
 	@Before
 	public void setUp() throws Exception {
 		
@@ -175,7 +175,7 @@ public class ConcesionariaTest {
 		assertTrue((concesionariaTest.plantaMasCercana(modeloMock1)).equals(planta2Mock));
 	}
 	
-	@Test //(expected = SinStockException.class)
+	@Test 
 	public void adjudicarAutoTest(){
 		when(fabricaMock.stock(modeloMock)).thenReturn(5);
 		when(planDeAhorroMock.getModelo()).thenReturn(modeloMock);
@@ -191,6 +191,20 @@ public class ConcesionariaTest {
 		verify(fabricaMock).quitarUnModeloDeStock(modeloMock, plantaMock);
 		//pregunto si en sus disponibles sigue el nuevo adjudicado
 		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));
+		
+	}
+	
+	@Test 
+	public void stockTest(){
+		
+		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<String>(Arrays.asList("Peugeot 208")));
+		ArrayList<Planta> plantas= new ArrayList<Planta>(Arrays.asList(plantaMock));
+		
+		when(fabricaMock.plantasConModelo(modeloMock)).thenReturn(plantas);
+		doThrow(new SinStockException()).when(fabricaMock).stock(modeloMock);
+		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
+		
+		assertTrue(concesionariaTest.stock(modeloMock).equals(0));
 		
 	}
 	
