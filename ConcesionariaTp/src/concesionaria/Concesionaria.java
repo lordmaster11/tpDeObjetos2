@@ -5,6 +5,7 @@ import java.util.List;
 
 import cliente.Cliente;
 import cuponDeAdjudicacion.CuponDeAdjudicacion;
+import excepciones.SinStock;
 import fabrica.Fabrica;
 import googleMap.GoogleMap;
 import modelo.Modelo;
@@ -105,7 +106,11 @@ public class Concesionaria{
 	}
 	
 	public Integer stock(Modelo unModelo){
-		return fabrica.stock(unModelo);
+		try{
+			return fabrica.stock(unModelo);
+		}catch(SinStock str){
+			return 0;
+		}
 	}
 
 	public List<CuponDeAdjudicacion> getCupones() {

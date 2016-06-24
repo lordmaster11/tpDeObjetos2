@@ -39,11 +39,12 @@ public class FabricaTest {
 	@Test
 	public void testActualizarPrecio() {
 		
+		
 		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
 		
 		Planta plantaMock2 = mock(Planta.class);
 		fabricaTest.agregarPlanta(plantaMock2);
-		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<>());
+		when(plantaMock2.nombresDeLosModelos()).thenReturn(new ArrayList<String>());
 		
 		fabricaTest.agregarPlanta(plantaMock);
 		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<String>(Arrays.asList("Peugeot 206")));
@@ -54,6 +55,7 @@ public class FabricaTest {
 		
 		fabricaTest.actualizarPrecio(70000f, modeloMock);
 		verify(modeloMock).setPrecio(70000f);
+		
 	}
 	
 	@Test

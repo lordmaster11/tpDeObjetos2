@@ -3,6 +3,7 @@ package fabrica;
 import java.util.ArrayList;
 import java.util.List;
 
+import excepciones.SinStock;
 import modelo.Modelo;
 import planta.Planta;
 
@@ -43,13 +44,15 @@ public class Fabrica {
 		 unaPlanta.quitarModelo(modelo);	
 	}
 
-	public Integer stock(Modelo unModelo) {
-		
+	public Integer stock(Modelo unModelo) throws SinStock{
 		Integer total = 0;
 		List<Planta> plantas = plantasConModelo(unModelo);
-		
+		if(plantas.size()>0){
 		for(Planta p : plantas)
 			total += p.buscarStockDelModelo(unModelo).getCantidad();
+		}else{
+			throw new SinStock();
+		}
 		return total;
 	}
 }

@@ -3,14 +3,14 @@ package modelo;
 public class Modelo {
 
 	private String nombre;
-	private Integer añoDeLanzamiento;
+	private Integer anhoDeLanzamiento;
 	private Integer puertas;
 	private String clase;
 	private Float precioVenta;
 
-	public Modelo(String unNombre, Integer unAño, Integer nPuertas, String unaClase, Float unPrecio) {
+	public Modelo(String unNombre, Integer unAnho, Integer nPuertas, String unaClase, Float unPrecio) {
 		this.nombre = unNombre;
-		this.añoDeLanzamiento = unAño;
+		this.anhoDeLanzamiento = unAnho;
 		this.puertas = nPuertas;
 		this.clase = unaClase;
 		this.precioVenta = unPrecio;
