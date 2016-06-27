@@ -21,7 +21,6 @@ import financiamiento.Plan100;
 import modelo.Modelo;
 import suscripto.Suscripto;
 
-
 public class PlanDeAhorroTest {	 
     PlanDeAhorro planDeAhorro;
     Cliente clienteMock;
@@ -125,27 +124,9 @@ public class PlanDeAhorroTest {
 		
 		assertFalse(planDeAhorro.disponibles().contains(suscriptoMock));
 	}
-		
-	/** 
-	 * da siempre bien, cambias las cuotas y da siempre verde
-	 */
-	
-//	@Test
-//	public void mayorCantidadDeCuotasPagasTest(){	
-//		planDeAhorro.suscribirCliente(clienteMock);
-//		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
-//		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(7);
-//		
-//		planDeAhorro.suscribirCliente(cliente2Mock);
-//		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscripto2Mock);
-//		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(6);
-//		
-//		assertTrue(planDeAhorro.suscriptosConMayorCantidadDeCuotasPagas().equals(suscriptoMock));
-//	}
-	
+				
 	@Test
 	public void mayorCantidadDeCuotasPagasIgualesTest(){
-
 		planDeAhorro.setConvertidor(convertidorMock);
 		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(true);
 		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
@@ -158,7 +139,6 @@ public class PlanDeAhorroTest {
 		when(convertidorMock.convertirClienteASuscripto(cliente2Mock, planDeAhorro)).thenReturn(suscripto2Mock);
 		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(5);
 		planDeAhorro.suscribirCliente(cliente2Mock);
-		
 		
 		when(suscripto3Mock.todaviaNoFueAdjudicado()).thenReturn(true);
 		when(convertidorMock.convertirClienteASuscripto(cliente3Mock, planDeAhorro)).thenReturn(suscripto3Mock);

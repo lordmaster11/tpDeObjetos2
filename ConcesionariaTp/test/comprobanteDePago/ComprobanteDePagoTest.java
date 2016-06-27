@@ -13,7 +13,6 @@ import planDeAhorro.PlanDeAhorro;
 import suscripto.Suscripto;
 
 public class ComprobanteDePagoTest {
-
 	ComprobanteDePago comprobanteDePago;
 	Suscripto suscriptoMock;
 	PlanDeAhorro planMock;
@@ -29,7 +28,6 @@ public class ComprobanteDePagoTest {
 
 	@Test
 	public void nuevaCuotatest() {
-	
 		when(suscriptoMock.proximaCuotaAPagar()).thenReturn(10);
 		when(planMock.getConcesionaria()).thenReturn(concesionariaMock);
 		comprobanteDePago =  new ComprobanteDePago(planMock,suscriptoMock);

@@ -14,8 +14,7 @@ public class PorSorteo implements Adjudicacion{
 	}
 	 
 	@Override
-	public Suscripto seleccionDeCliente(PlanDeAhorro plan){
-		
+	public Suscripto seleccionDeCliente(PlanDeAhorro plan){		
 		return plan.disponibles().get(rnd.nextInt() );
 	}
 }

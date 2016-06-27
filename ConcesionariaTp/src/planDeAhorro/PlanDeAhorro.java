@@ -124,7 +124,6 @@ public class PlanDeAhorro {
 		return elMasAntiguo;
 	}
 	
-	
 	public Suscripto suscriptoMasAntiguo(List<Suscripto> suscriptos){
 		Suscripto elMasAntiguo = suscriptos.get(0);
 		

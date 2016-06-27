@@ -16,7 +16,6 @@ import planDeAhorro.PlanDeAhorro;
 
 
 public class los10PlanesConMasSuscriptosTest {
-
 	PlanDeAhorro planDeAhorro1Mock;
 	PlanDeAhorro planDeAhorro2Mock;
 	PlanDeAhorro planDeAhorro3Mock;
@@ -35,9 +34,9 @@ public class los10PlanesConMasSuscriptosTest {
 	Concesionaria concesionariaTest;
 	Fabrica fabricaMock;
 	GoogleMap googleMapMock;
+	
 	@Before
 	public void setUp() throws Exception {
-	
 		fabricaMock = mock(Fabrica.class);
 		googleMapMock = mock(GoogleMap.class);
 		concesionariaTest = new Concesionaria ("Rodolfo Lopez 666", fabricaMock, 1000f, googleMapMock);
@@ -55,9 +54,7 @@ public class los10PlanesConMasSuscriptosTest {
 		planDeAhorro12Mock = mock(PlanDeAhorro.class);
 		planDeAhorro13Mock = mock(PlanDeAhorro.class);
 		planDeAhorro14Mock = mock(PlanDeAhorro.class);
-		planDeAhorro15Mock = mock(PlanDeAhorro.class);
-	
-		
+		planDeAhorro15Mock = mock(PlanDeAhorro.class);	
 	}
 
 	@Test
@@ -94,7 +91,6 @@ public class los10PlanesConMasSuscriptosTest {
 		concesionariaTest.agregarPlanDeAhorro(planDeAhorro14Mock);
 		concesionariaTest.agregarPlanDeAhorro(planDeAhorro15Mock);
 		
-		
 		List<PlanDeAhorro> planesEsperadosEnOrden= new ArrayList<PlanDeAhorro>
 		                                          (Arrays.asList(planDeAhorro1Mock,
 		                                        		  planDeAhorro14Mock,planDeAhorro13Mock,planDeAhorro12Mock,
@@ -103,5 +99,4 @@ public class los10PlanesConMasSuscriptosTest {
 		
 		assertTrue(concesionariaTest.losDiezPlanesConMayorCantidadDeSubscriptos().equals(planesEsperadosEnOrden));
 		}
-
 }

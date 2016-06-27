@@ -8,8 +8,7 @@ import suscripto.Suscripto;
 public class PorMayorCobertura implements Adjudicacion{
 	
 	@Override
-	public Suscripto seleccionDeCliente(PlanDeAhorro plan) {
-		
+	public Suscripto seleccionDeCliente(PlanDeAhorro plan) {		
 		Suscripto adjudicado;
 		List<Suscripto> suscriptosConMasCuotas = plan.suscriptosConMayorCantidadDeCuotasPagas();
 		

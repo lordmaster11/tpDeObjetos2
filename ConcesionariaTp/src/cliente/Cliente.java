@@ -1,15 +1,8 @@
 package cliente;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import planDeAhorro.PlanDeAhorro;
 
 public class Cliente {
-
 	private String nombre;
 	private String apellido;
 	private Integer dni;
@@ -17,8 +10,7 @@ public class Cliente {
 	private String direccion;
 	private String mail;
 	private Calendar fechaIngreso;
-	//private List<PlanDeAhorro> planes;
-	
+		
 	public Cliente(String unNombre, String unApellido, Integer unDni, Calendar unaFechaNac,
 			       String unaDireccion, String unMail) {
 		this.nombre = unNombre;
@@ -28,7 +20,6 @@ public class Cliente {
 		this.direccion = unaDireccion;
 		this.mail = unMail;
 		this.fechaIngreso = Calendar.getInstance();
-		//this.planes = new ArrayList<PlanDeAhorro>();
 	}
 
 	public String getNombre(){		
@@ -64,9 +55,7 @@ public class Cliente {
         
         	if(mes<0 || (mes==0 && dia<0)){
             edad--;
-        	}
-       
+        	}      
 		return edad;	
 	}
-
 }

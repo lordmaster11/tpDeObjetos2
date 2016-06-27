@@ -1,6 +1,5 @@
 package cuponDeAdjudicacion;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.Before;
@@ -11,15 +10,13 @@ import planDeAhorro.PlanDeAhorro;
 import suscripto.Suscripto;
 
 public class CuponDeAdjudicacionTest {
-	
 	Suscripto suscriptoMock;
 	PlanDeAhorro planMock;
 	CuponDeAdjudicacion cuponTest;
 	Concesionaria concesionariaMock;
 
 	@Before
-	public void setUp() throws Exception {
-		
+	public void setUp() throws Exception {	
 		Concesionaria concesionariaMock = mock(Concesionaria.class);
 		
 		planMock = mock(PlanDeAhorro.class);

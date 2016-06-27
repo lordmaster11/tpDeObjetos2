@@ -15,7 +15,6 @@ import modelo.Modelo;
 import planDeAhorro.PlanDeAhorro;
 
 public class MayorCoberturaTest {
-
     Adjudicacion porMayorCoberturaTest;	
     PlanDeAhorro planDeAhorroMock;
     Suscripto suscriptoMock;
@@ -25,19 +24,15 @@ public class MayorCoberturaTest {
 	
 	@Before
 	public void setUp() throws Exception {
-
 		porMayorCoberturaTest = new PorMayorCobertura();
-		
 		suscriptoMock = mock(Suscripto.class);		
 		suscriptoMock2 = mock(Suscripto.class); 
 		suscriptoMock3 = mock(Suscripto.class); 
-		
 		planDeAhorroMock = mock(PlanDeAhorro.class);				
 	} 
 
 	@Test
-	public void testSeleccionDeClientePorMayorCoberturaPorCantidadDeCuotasPagas() {
-		
+	public void testSeleccionDeClientePorMayorCoberturaPorCantidadDeCuotasPagas() {	
 		List<Suscripto> suscriptos;
 		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock));
 		
@@ -47,8 +42,7 @@ public class MayorCoberturaTest {
 	}
 	
 	@Test
-	public void testSeleccionDeClientePorMayorCoberturaPorMayorAntiguedadEnConcesionaria() {
-		
+	public void testSeleccionDeClientePorMayorCoberturaPorMayorAntiguedadEnConcesionaria() {	
 		List<Suscripto> suscriptos;
 		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock, suscriptoMock2));
 		
@@ -64,7 +58,6 @@ public class MayorCoberturaTest {
 	
 	@Test
 	public void testSeleccionDeClientePorMayorCoberturaPorMayorAntiguedadEnElPlan() {
-		
 		List<Suscripto> suscriptos;
 		suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock, suscriptoMock2, suscriptoMock3));
 		
@@ -74,7 +67,6 @@ public class MayorCoberturaTest {
 		suscriptosMasAntiguosEnConcesionaria = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock, suscriptoMock3));
 		
 		when(planDeAhorroMock.losMasAntiguosEnConcesionaria(suscriptos)).thenReturn(suscriptosMasAntiguosEnConcesionaria);
-		
 		
 		when(planDeAhorroMock.suscriptoMasAntiguo(suscriptosMasAntiguosEnConcesionaria)).thenReturn(suscriptoMock3);
 		

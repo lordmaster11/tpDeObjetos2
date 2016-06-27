@@ -40,8 +40,7 @@ public class Planta{
 		return nombres;
 	}
 
-	public void agregarModelo(Modelo modelo) {
-		
+	public void agregarModelo(Modelo modelo) {	
 		if(existeElModelo(modelo)){
 			StockDeModelo stock = buscarStockDelModelo(modelo);
 			stock.agregarCantidad();

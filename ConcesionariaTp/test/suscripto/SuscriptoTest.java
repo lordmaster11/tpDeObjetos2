@@ -31,21 +31,34 @@ public class SuscriptoTest {
 	}
 
 	@Test
-	public void testNuevoSuscripto(){ 	
+	public void getFechaNacTest(){ 	
 		Calendar fechaNac = new GregorianCalendar(1980, Calendar.FEBRUARY, 11);
-		Calendar fechaInscripcion = new GregorianCalendar();
-		Calendar fechaIngreso = new GregorianCalendar();
 		
+		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);		
 		when(clienteMock.getFechaNacimiento()).thenReturn(fechaNac);
-		when(clienteMock.getFechaIngreso()).thenReturn(fechaIngreso);
-	
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
 		
-		assertTrue(suscriptoTest.getFecNac().equals(fechaNac));
-		assertTrue(suscriptoTest.getFechaDeIngreso().equals(fechaIngreso));
-		assertTrue(suscriptoTest.getFechaDeInscripcion().equals(fechaIngreso));		
+		assertTrue(suscriptoTest.getFechaNac().equals(fechaNac));	
 	} 
 	
+	@Test
+	public void fechaIngresoTest(){ 	
+		Calendar fechaIngreso = Calendar.getInstance();
+		
+		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
+		when(clienteMock.getFechaIngreso()).thenReturn(fechaIngreso);
+	
+		assertTrue(suscriptoTest.getFechaDeIngreso().equals(fechaIngreso));	
+	} 
+	
+	@Test
+	public void fechaDeInscripcionTest(){ 	
+		Calendar fechaInscripcion = Calendar.getInstance();
+		
+		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);
+			
+		assertTrue(suscriptoTest.getFechaDeInscripcion().equals(fechaInscripcion));		
+	} 
+		
 	@Test 
 	public void edadSuscriptotest() {
 		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	

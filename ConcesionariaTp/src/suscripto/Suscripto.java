@@ -2,7 +2,6 @@ package suscripto;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import cliente.Cliente;
@@ -18,7 +17,7 @@ public class Suscripto {
 	
 	public Suscripto(Cliente unCliente, PlanDeAhorro plan) {
 		this.cliente = unCliente;
-		this.fechaDeInscripcion = new GregorianCalendar();
+		this.fechaDeInscripcion = Calendar.getInstance();	
 		this.esAdjudicado = false;
 		this.comprobantes = new ArrayList<ComprobanteDePago>();		
 		this.planDeAhorro = plan;
@@ -37,11 +36,10 @@ public class Suscripto {
 	}
 
 	public Calendar getFechaDeIngreso() {
-
 		return cliente.getFechaIngreso();
 	}
 	
-	public Calendar getFecNac() {
+	public Calendar getFechaNac() {
 		return cliente.getFechaNacimiento();
 	}
 

@@ -12,7 +12,6 @@ import googleMap.GoogleMap;
 import planta.Planta;
 
 public class GoogleMapTest {
-
 	Random randomMock;
 	Planta plantaMock;
 	GoogleMap googleMapTest;
@@ -25,7 +24,6 @@ public class GoogleMapTest {
  
 	@Test
 	public void calcularDistanciaTest() {
-
 		when(randomMock.nextInt()).thenReturn(3);
 
 		googleMapTest = new GoogleMap(randomMock);

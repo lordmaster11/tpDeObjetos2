@@ -12,7 +12,6 @@ import stockDeModelo.StockDeModelo;
 import concesionaria.Concesionaria;
 
 public class StockDeModeloTest {
-
 	StockDeModelo stockTest;
 	Modelo modeloMock;
 	Concesionaria concesionariaMock;

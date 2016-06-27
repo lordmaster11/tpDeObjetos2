@@ -7,8 +7,7 @@ public class StockDeModelo{
 	private Modelo modelo;
 	private Integer cantidadDelStock;
 
-	public StockDeModelo(Modelo unModelo){
-		
+	public StockDeModelo(Modelo unModelo){	
 		this.modelo = unModelo;
 		this.cantidadDelStock = 1;
 	} 

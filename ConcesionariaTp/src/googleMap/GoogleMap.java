@@ -12,8 +12,7 @@ public class GoogleMap {
 		this.random = ran;	
 	}
 	
-	public Integer calcularDistancia(Planta unaPlanta)
-	{
+	public Integer calcularDistancia(Planta unaPlanta) {
 		return (random.nextInt() * 3000 + 1);
 	}		
 }

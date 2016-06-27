@@ -10,7 +10,6 @@ import modelo.Modelo;
 import suscripto.Suscripto;
 
 public class SeguroDeVidaTest {
-	
 	SeguroDeVida seguroDeVidaTest;
 	Suscripto suscriptoMock;
 	Modelo modeloMock;

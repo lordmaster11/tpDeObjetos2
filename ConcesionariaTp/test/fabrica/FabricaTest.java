@@ -14,8 +14,7 @@ import modelo.Modelo;
 import planta.Planta;
 import stockDeModelo.StockDeModelo;
 
-public class FabricaTest {
-	
+public class FabricaTest {	
 	Fabrica fabricaTest;
 	Planta plantaMock;
 	Modelo modeloMock;
@@ -29,8 +28,6 @@ public class FabricaTest {
 		planta2Mock = mock(Planta.class);
 	}
 	
-	//El int que devuelve size() es ahora un Integer para poder mandarle
-	// el mensaje equals y que de verde el coverage
 	@Test 
 	public void testAgregarPlanta() {
 		fabricaTest.agregarPlanta(plantaMock);
@@ -39,8 +36,6 @@ public class FabricaTest {
 	
 	@Test
 	public void testActualizarPrecio() {
-		
-		
 		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
 		
 		Planta plantaMock2 = mock(Planta.class);
@@ -55,20 +50,18 @@ public class FabricaTest {
 		when(stockMock.getModelo()).thenReturn(modeloMock);
 		
 		fabricaTest.actualizarPrecio(70000f, modeloMock);
-		verify(modeloMock).setPrecio(70000f);
-		
+		verify(modeloMock).setPrecio(70000f);	
 	}
 	
 	@Test
-	public void testQuitarUnModeloDeStock() {
-		
+	public void testQuitarUnModeloDeStock() {	
 		fabricaTest.quitarUnModeloDeStock(modeloMock,plantaMock);
 		
 		verify(plantaMock).quitarModelo(modeloMock);
 	}
+	
 	@Test
 	public void teststock() {
-		
 		ArrayList<String> modelos= new ArrayList<String>(Arrays.asList("Peugeot 206","Peugeot 208"));
 		when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
 		
@@ -84,7 +77,6 @@ public class FabricaTest {
 		when(plantaMock.buscarStockDelModelo(modeloMock)).thenReturn(stockDeModeloMock);
 		when(planta2Mock.buscarStockDelModelo(modeloMock)).thenReturn(stockDeModeloMock);
 		
-		
 		fabricaTest.agregarPlanta(planta2Mock);
 		fabricaTest.agregarPlanta(plantaMock);
 		
@@ -93,22 +85,13 @@ public class FabricaTest {
 	
 
 	@Test(expected=SinStockException.class)
-	public void teststockConExcepcion() throws SinStockException{
-		Integer cant = 0;
-		ArrayList<String> modelos= new ArrayList<String>();
-		when(plantaMock.nombresDeLosModelos()).thenReturn(modelos);
-		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
-	//	try {
-		//	cant = fabricaTest.stock(modeloMock);
-		//}catch(SinStockException exception){
-		//	assertTrue(fabricaTest.stock(modeloMock).equals(cant));
-	//	}
-		//fabricaTest.agregarPlanta(plantaMock);
+	public void teststockConExcepcion() {
+		fabricaTest.stock(modeloMock);
 		
-	//	doThrow(new SinStockException()).when(fabricaTest).stock(modeloMock);
-	   fabricaTest.stock(modeloMock);
-		
-		
-
+//		try{
+//			fabricaTest.stock(modeloMock);
+//			fail();
+//		}catch(SinStockException str){		
+//		}
 	}
 }

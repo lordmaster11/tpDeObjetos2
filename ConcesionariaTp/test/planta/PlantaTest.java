@@ -11,7 +11,6 @@ import org.junit.Test;
 import stockDeModelo.StockDeModelo;
 
 public class PlantaTest {
-
 	Planta plantaTest;
 	Modelo modeloMock;
 	StockDeModelo stockMock;
@@ -27,7 +26,6 @@ public class PlantaTest {
   
 	@Test
 	public void testStockDeModelo() {
-		
 		when(modeloMock.getNombre()).thenReturn("peugeot 206");
 		when(stockMock.getModelo()).thenReturn(modeloMock);
 
@@ -39,7 +37,6 @@ public class PlantaTest {
 		
 	@Test
 	public void quitarUnModeloTest() {
-
 		when(modeloMock.getNombre()).thenReturn("peugeot 206");
 		when(stockMock.getModelo()).thenReturn(modeloMock);
 		when(stockMock.getCantidad()).thenReturn(6);
@@ -52,7 +49,6 @@ public class PlantaTest {
 	
 	@Test
 	public void quitarUltimoModeloTest() {
-
 		when(modeloMock.getNombre()).thenReturn("peugeot 206");
 		when(stockMock.getModelo()).thenReturn(modeloMock);
 		when(stockMock.getCantidad()).thenReturn(1);

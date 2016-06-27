@@ -15,7 +15,6 @@ import planDeAhorro.PlanDeAhorro;
 import suscripto.Suscripto;
 
 public class PorSorteoTest {
-
 	Adjudicacion porSorteoTest;
 	Random randomMock;
 	Suscripto clienteMock;
@@ -25,11 +24,9 @@ public class PorSorteoTest {
 	@Before
 	public void setUp() throws Exception {
 		randomMock = mock(Random.class);
-		porSorteoTest = new PorSorteo(randomMock);
-				
+		porSorteoTest = new PorSorteo(randomMock);		
 		clienteMock = mock(Suscripto.class);
 		clienteMock2 = mock(Suscripto.class); 
-		
 		planDeAhorroMock = mock(PlanDeAhorro.class);
 	}
 

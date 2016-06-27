@@ -70,11 +70,9 @@ public class ConcesionariaTest {
 	@Test 
 	public void testGastoDeFlete(){
 		concesionariaTest.gastoDeFlete(plantaMock);
-		//que no se puede devolver ningun resultado porque
+		//no se puede devolver ningun resultado porque
 		//estamos manejando un random, y si esta mal porque!?
 		//como testearlo?
-		//si se considera un "smell", porque???
-		//y acordarse porque me dice el profesor que es un smell??
 	}
 	
 	@Test
@@ -189,14 +187,13 @@ public class ConcesionariaTest {
 		concesionariaTest.adjudicarAuto(planDeAhorroMock);
 		
 		verify(fabricaMock).quitarUnModeloDeStock(modeloMock, plantaMock);
-		//pregunto si en sus disponibles sigue el nuevo adjudicado
+		
 		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));
 		
 	}
 	
 	@Test 
 	public void stockTest(){
-		
 		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<String>(Arrays.asList("Peugeot 208")));
 		ArrayList<Planta> plantas= new ArrayList<Planta>(Arrays.asList(plantaMock));
 		
@@ -205,7 +202,6 @@ public class ConcesionariaTest {
 		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
 		
 		assertTrue(concesionariaTest.stock(modeloMock).equals(0));
-		
 	}
 	
 	@Test
@@ -217,8 +213,6 @@ public class ConcesionariaTest {
 		concesionariaTest.agregarPlanDeAhorro(planDeAhorroMock);
 		concesionariaTest.cobrarCuota(suscriptoMock,planDeAhorroMock);
 		
-		verify(suscriptoMock).pagarCuota(planDeAhorroMock);
-		
+		verify(suscriptoMock).pagarCuota(planDeAhorroMock);	
 	}
-	
 }

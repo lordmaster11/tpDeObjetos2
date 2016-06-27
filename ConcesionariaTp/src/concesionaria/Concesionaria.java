@@ -15,7 +15,6 @@ import seguroDeVida.SeguroDeVida;
 import suscripto.Suscripto;
 
 public class Concesionaria{
-	
 	private String direccion;
 	private Fabrica fabrica;
 	private List<Cliente> clientes;
@@ -48,7 +47,6 @@ public class Concesionaria{
 		clientes.add(cliente);
 	}
 	
-	
 	public void agregarPlanDeAhorro(PlanDeAhorro plan){
 		planes.add(plan);
 	}
@@ -77,7 +75,6 @@ public class Concesionaria{
 	}
 	
 	public void adjudicarAuto(PlanDeAhorro unPlan){
-	
 		if(stock(unPlan.getModelo())>0){
 			
 			Suscripto unSuscripto = unPlan.clienteAdjudicado();
@@ -153,22 +150,16 @@ public class Concesionaria{
 	}
 
 	public void setSeguro(SeguroDeVida seguroDeVida) {
-		this.seguro=seguroDeVida;
-		
+		this.seguro=seguroDeVida;	
 	}
 
 	public void cobrarCuota(Suscripto suscripto,PlanDeAhorro plan) {
-
 		for(PlanDeAhorro p:planes){
 			if(p==plan)
 				for(Suscripto s: plan.getSubscriptos()){
 					if(s== suscripto)
 					s.pagarCuota(plan);
-				
 		}	
 	  }
-	}
-	
-	
-	
+	}	
 }

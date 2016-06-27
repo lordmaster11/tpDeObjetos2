@@ -6,7 +6,6 @@ import planDeAhorro.PlanDeAhorro;
 import suscripto.Suscripto;
 
 public class ComprobanteDePago {
-
 	private Suscripto suscripto;
 	private Integer numeroDeCuota;
 	private Date fechaDePago;
@@ -25,7 +24,5 @@ public class ComprobanteDePago {
 
 	public Integer getNumeroDeCuotas() {
 		return this.numeroDeCuota;
-	}
-
-	
+	}	
 }
