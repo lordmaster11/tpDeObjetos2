@@ -6,6 +6,8 @@ import static org.mockito.Mockito.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import modelo.Modelo;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,6 +23,7 @@ public class SuscriptoTest {
 	PlanDeAhorro planDeAhorroMock;
 	ComprobanteDePago comprobanteMock;
 	Concesionaria consecionariaMock;
+	Modelo modeloMock;
 
 	@Before
 	public void setUp() throws Exception {
@@ -28,13 +31,14 @@ public class SuscriptoTest {
 		clienteMock = mock(Cliente.class);
 		planDeAhorroMock = mock(PlanDeAhorro.class);
 		comprobanteMock = mock(ComprobanteDePago.class);
+		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
+		modeloMock = mock(Modelo.class);
 	}
 
 	@Test
 	public void getFechaNacTest(){ 	
 		Calendar fechaNac = new GregorianCalendar(1980, Calendar.FEBRUARY, 11);
 		
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);		
 		when(clienteMock.getFechaNacimiento()).thenReturn(fechaNac);
 		
 		assertTrue(suscriptoTest.getFechaNac().equals(fechaNac));	
@@ -44,7 +48,6 @@ public class SuscriptoTest {
 	public void fechaIngresoTest(){ 	
 		Calendar fechaIngreso = Calendar.getInstance();
 		
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
 		when(clienteMock.getFechaIngreso()).thenReturn(fechaIngreso);
 	
 		assertTrue(suscriptoTest.getFechaDeIngreso().equals(fechaIngreso));	
@@ -53,28 +56,26 @@ public class SuscriptoTest {
 	@Test
 	public void fechaDeInscripcionTest(){ 	
 		Calendar fechaInscripcion = Calendar.getInstance();
-		
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);
 			
 		assertTrue(suscriptoTest.getFechaDeInscripcion().equals(fechaInscripcion));		
 	} 
 		
 	@Test 
 	public void edadSuscriptotest() {
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
+		
 		when(clienteMock.edadCliente()).thenReturn(20);
 		assertTrue(suscriptoTest.edadSuscripto().equals(20));
 	}
 	
 	@Test
 	public void aunNoFueAdjudicadoTest() {
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
+	
 		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(true));
 	}
 	
 	@Test
 	public void fueAdjudicadoTest() {
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);	
+	
 		suscriptoTest.seAdjudico();
 		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(false));
 	}
@@ -83,7 +84,6 @@ public class SuscriptoTest {
 	public void proximaCuotaAPagarTest() {	
 		when(consecionariaMock.gastosAdministrativos()).thenReturn(150f);
 		when(planDeAhorroMock.getConcesionaria()).thenReturn(consecionariaMock);
-		suscriptoTest = new Suscripto(clienteMock, planDeAhorroMock);
 		
 		suscriptoTest.pagarCuota(planDeAhorroMock);	
 
@@ -100,5 +100,16 @@ public class SuscriptoTest {
 		suscriptoTest.pagarCuota(planDeAhorroMock);	
 
 		assertTrue((suscriptoTest.cantidadCuotasPagas()).equals(2));
+	}
+	@Test
+	public void valorTotalPagadoDelAtoTest(){
+		
+		when(planDeAhorroMock.alicuota(suscriptoTest)).thenReturn(10000f);
+		when(planDeAhorroMock.getModelo()).thenReturn(modeloMock);
+		when(planDeAhorroMock.getConcesionaria()).thenReturn(consecionariaMock);
+		suscriptoTest.pagarCuota(planDeAhorroMock);
+		suscriptoTest.pagarCuota(planDeAhorroMock);
+		
+		assertTrue((suscriptoTest.valorPagadoDelAuto()).equals(20000f));
 	}
 }

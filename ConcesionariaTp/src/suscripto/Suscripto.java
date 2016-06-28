@@ -70,5 +70,16 @@ public class Suscripto {
 	
 	public Integer proximaCuotaAPagar() {	
 		return this.comprobantes.size()+1;
+	}
+
+	public Float valorPagadoDelAuto() {
+		Float total = 0f;
+		
+		for(ComprobanteDePago comprobante:comprobantes){
+		
+			total = total + comprobante.getAlicuota();
+		}
+		
+		return total;
 	}	
 }
