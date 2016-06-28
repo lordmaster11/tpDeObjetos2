@@ -90,10 +90,12 @@ public class PlanDeAhorroTest {
 	}
 		
 	@Test
-	public void alicuotaTest(){ 			
-		when(plan100Mock.valorTotalEnCuotas(modeloMock)).thenReturn(60000f);
+	public void alicuotaTest(){
+		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(10);
+		when(suscriptoMock.valorPagadoDelAuto()).thenReturn(10000f);
+		when(plan100Mock.valorTotalEnCuotas(modeloMock)).thenReturn(60000f);//60cuotas
 		
-		assertTrue(planDeAhorro.alicuota().equals(1000f));
+		assertTrue(planDeAhorro.alicuota(suscriptoMock).equals(1000f));
 	}
 	
 	@Test

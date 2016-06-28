@@ -66,8 +66,14 @@ public class PlanDeAhorro {
 		suscriptos.add(unSuscripto);
 	}
 
-	public Float alicuota() {
-		return financiamiento.valorTotalEnCuotas(getModelo()) / cantidadDeCuotas;
+	//Lo que hace este metodo es calcular el valor de la cuota nueva a pagar.En caso
+	// de que exista algun cambio en el valor del automovil este calcula esa diferencia
+	// en las cuotas que resten por pagar.
+	
+	public Float alicuota(Suscripto unSuscripto) {
+		return (financiamiento.valorTotalEnCuotas(getModelo())-unSuscripto.valorPagadoDelAuto()) 
+				/( cantidadDeCuotas - unSuscripto.cantidadCuotasPagas());
+		
 	}
 
 	public Concesionaria getConcesionaria() {

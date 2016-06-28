@@ -17,12 +17,17 @@ public class ComprobanteDePago {
 		this.suscripto = suscripto;
 		this.numeroDeCuota = suscripto.proximaCuotaAPagar();
 		this.fechaDePago = new Date();
-		this.alicuota = plan.alicuota();
+		this.alicuota = plan.alicuota(suscripto);
 		this.gastosAdministrativos = plan.getConcesionaria().gastosAdministrativos();
 		this.seguroDeVida = plan.getConcesionaria().montoDelSeguro(suscripto,plan.getModelo());
 	}
 
 	public Integer getNumeroDeCuotas() {
 		return this.numeroDeCuota;
+	}
+
+	public Float getAlicuota() {
+
+		return this.alicuota;
 	}	
 }
