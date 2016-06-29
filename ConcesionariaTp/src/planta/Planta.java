@@ -2,12 +2,12 @@ package planta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import modelo.Modelo;
 import stockDeModelo.StockDeModelo;
 
-public class Planta{
-	
+public class Planta{	
 	private List<StockDeModelo> stocks;
 	private String direccion;
 
@@ -21,14 +21,11 @@ public class Planta{
 	}
 	
 	public StockDeModelo buscarStockDelModelo(Modelo model){
-		StockDeModelo stockQueBusco = null;
-		 
-		for(StockDeModelo stock : stocks){
-			if(stock.getModelo().getNombre()==(model.getNombre())){
-				stockQueBusco = stock;
-			}
-		}
-		return stockQueBusco;
+		return stocks.stream()
+				     .filter(stock -> (stock.getModelo().getNombre())
+				     .equals(model.getNombre()))
+				     .collect(Collectors.toList())
+				     .get(0);
 	}
 	
 	public ArrayList<String> nombresDeLosModelos(){
@@ -43,8 +40,7 @@ public class Planta{
 	public void agregarModelo(Modelo modelo) {	
 		if(existeElModelo(modelo)){
 			StockDeModelo stock = buscarStockDelModelo(modelo);
-			stock.agregarCantidad();
-			
+			stock.agregarCantidad();			
 		}else{
 			this.agregarStock(new StockDeModelo(modelo));
 		}

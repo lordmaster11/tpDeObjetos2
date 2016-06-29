@@ -61,23 +61,20 @@ public class SuscriptoTest {
 	} 
 		
 	@Test 
-	public void edadSuscriptotest() {
-		
+	public void edadSuscriptotest() {	
 		when(clienteMock.edadCliente()).thenReturn(20);
 		assertTrue(suscriptoTest.edadSuscripto().equals(20));
 	}
 	
 	@Test
-	public void aunNoFueAdjudicadoTest() {
-	
-		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(true));
+	public void noFueAdjudicadoTest() {
+		assertTrue(suscriptoTest.noFueAdjudicado().equals(true));
 	}
 	
 	@Test
 	public void fueAdjudicadoTest() {
-	
 		suscriptoTest.seAdjudico();
-		assertTrue(suscriptoTest.todaviaNoFueAdjudicado().equals(false));
+		assertTrue(suscriptoTest.noFueAdjudicado().equals(false));
 	}
 	
 	@Test
@@ -102,11 +99,11 @@ public class SuscriptoTest {
 		assertTrue((suscriptoTest.cantidadCuotasPagas()).equals(2));
 	}
 	@Test
-	public void valorTotalPagadoDelAtoTest(){
-		
+	public void valorTotalPagadoDelAtoTest(){	
 		when(planDeAhorroMock.alicuota(suscriptoTest)).thenReturn(10000f);
 		when(planDeAhorroMock.getModelo()).thenReturn(modeloMock);
 		when(planDeAhorroMock.getConcesionaria()).thenReturn(consecionariaMock);
+		
 		suscriptoTest.pagarCuota(planDeAhorroMock);
 		suscriptoTest.pagarCuota(planDeAhorroMock);
 		

@@ -27,7 +27,7 @@ public class Suscripto {
 		return cliente.edadCliente();
 	}
 
-	public Boolean todaviaNoFueAdjudicado() {
+	public Boolean noFueAdjudicado() {
 		return !esAdjudicado;
 	}
 
@@ -73,13 +73,10 @@ public class Suscripto {
 	}
 
 	public Float valorPagadoDelAuto() {
-		Float total = 0f;
-		
-		for(ComprobanteDePago comprobante:comprobantes){
-		
-			total = total + comprobante.getAlicuota();
-		}
-		
-		return total;
+		Double suma = comprobantes
+			    .stream()
+			    .mapToDouble(ComprobanteDePago::getAlicuota)
+			    .sum();
+		return suma.floatValue();	
 	}	
 }

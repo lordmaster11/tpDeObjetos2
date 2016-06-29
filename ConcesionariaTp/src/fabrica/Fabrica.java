@@ -2,6 +2,7 @@ package fabrica;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import excepciones.SinStockException;
 import modelo.Modelo;
@@ -23,13 +24,9 @@ public class Fabrica {
 	}
 	 
 	public List<Planta> plantasConModelo(Modelo m){
-		ArrayList<Planta> plantasEncontradas = new ArrayList<Planta>(); 
-	
-		for(Planta unaPlanta : plantas){
-			if(unaPlanta.nombresDeLosModelos().contains(m.getNombre()))
-				plantasEncontradas.add(unaPlanta);
-		}
-		return plantasEncontradas;
+		return plantas.stream()
+				.filter(planta -> planta.nombresDeLosModelos().contains(m.getNombre()))
+				.collect(Collectors.toList());
 	}
 
 	public void agregarPlanta(Planta planta) {

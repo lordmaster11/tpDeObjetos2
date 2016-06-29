@@ -150,7 +150,7 @@ public class Concesionaria{
 	}
 
 	public void setSeguro(SeguroDeVida seguroDeVida) {
-		this.seguro=seguroDeVida;
+		this.seguro=seguroDeVida;	
 	}
 
 	public void cobrarCuota(Suscripto suscripto,PlanDeAhorro plan) {

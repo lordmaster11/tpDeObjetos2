@@ -70,9 +70,6 @@ public class ConcesionariaTest {
 	@Test 
 	public void testGastoDeFlete(){
 		concesionariaTest.gastoDeFlete(plantaMock);
-		//no se puede devolver ningun resultado porque
-		//estamos manejando un random, y si esta mal porque!?
-		//como testearlo?
 	}
 	
 	@Test
@@ -191,7 +188,7 @@ public class ConcesionariaTest {
 		assertFalse(planDeAhorroMock.disponibles().contains(suscriptoMock));
 		
 	}
-	
+		
 	@Test 
 	public void stockTest(){
 		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<String>(Arrays.asList("Peugeot 208")));

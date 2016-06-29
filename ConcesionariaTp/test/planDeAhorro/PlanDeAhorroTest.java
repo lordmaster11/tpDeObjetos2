@@ -103,13 +103,13 @@ public class PlanDeAhorroTest {
 		planDeAhorro.suscribirCliente(clienteMock);
 		
 		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
-		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
+		when(suscriptoMock.noFueAdjudicado()).thenReturn(false);
 		
 		planDeAhorro.setConvertidor(convertidorMock);
 		when(convertidorMock.convertirClienteASuscripto(cliente2Mock, planDeAhorro)).thenReturn(suscripto2Mock);
 		
 		planDeAhorro.suscribirCliente(cliente2Mock);
-		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		when(suscripto2Mock.noFueAdjudicado()).thenReturn(true);
 		
 		assertTrue(planDeAhorro.disponibles().contains(suscripto2Mock));
 	}
@@ -118,11 +118,11 @@ public class PlanDeAhorroTest {
 	public void disponiblesFalseTest(){
 		planDeAhorro.suscribirCliente(clienteMock);
 		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
-		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(false);
+		when(suscriptoMock.noFueAdjudicado()).thenReturn(false);
 		
 		planDeAhorro.suscribirCliente(cliente2Mock);
 		when(convertidorMock.convertirClienteASuscripto(cliente2Mock, planDeAhorro)).thenReturn(suscripto2Mock);
-		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		when(suscripto2Mock.noFueAdjudicado()).thenReturn(true);
 		
 		assertFalse(planDeAhorro.disponibles().contains(suscriptoMock));
 	}
@@ -130,19 +130,19 @@ public class PlanDeAhorroTest {
 	@Test
 	public void mayorCantidadDeCuotasPagasIgualesTest(){
 		planDeAhorro.setConvertidor(convertidorMock);
-		when(suscriptoMock.todaviaNoFueAdjudicado()).thenReturn(true);
+		when(suscriptoMock.noFueAdjudicado()).thenReturn(true);
 		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
 		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(6);
 		
 		planDeAhorro.suscribirCliente(clienteMock);
 		
-		when(suscripto2Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		when(suscripto2Mock.noFueAdjudicado()).thenReturn(true);
 
 		when(convertidorMock.convertirClienteASuscripto(cliente2Mock, planDeAhorro)).thenReturn(suscripto2Mock);
 		when(suscripto2Mock.cantidadCuotasPagas()).thenReturn(5);
 		planDeAhorro.suscribirCliente(cliente2Mock);
 		
-		when(suscripto3Mock.todaviaNoFueAdjudicado()).thenReturn(true);
+		when(suscripto3Mock.noFueAdjudicado()).thenReturn(true);
 		when(convertidorMock.convertirClienteASuscripto(cliente3Mock, planDeAhorro)).thenReturn(suscripto3Mock);
 		when(suscripto3Mock.cantidadCuotasPagas()).thenReturn(6);
 		planDeAhorro.suscribirCliente(cliente3Mock);

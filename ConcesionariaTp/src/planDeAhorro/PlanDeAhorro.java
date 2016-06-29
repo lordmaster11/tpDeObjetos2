@@ -2,6 +2,7 @@ package planDeAhorro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import adjudicacion.Adjudicacion;
 import cliente.Cliente;
@@ -67,77 +68,54 @@ public class PlanDeAhorro {
 	}
 
 	//Lo que hace este metodo es calcular el valor de la cuota nueva a pagar.En caso
-	// de que exista algun cambio en el valor del automovil este calcula esa diferencia
-	// en las cuotas que resten por pagar.
+	//de que exista algun cambio en el valor del automovil este calcula esa diferencia
+	//en las cuotas que resten por pagar.
 	
 	public Float alicuota(Suscripto unSuscripto) {
 		return (financiamiento.valorTotalEnCuotas(getModelo())-unSuscripto.valorPagadoDelAuto()) 
-				/( cantidadDeCuotas - unSuscripto.cantidadCuotasPagas());
-		
+				/( cantidadDeCuotas - unSuscripto.cantidadCuotasPagas());	
 	}
 
 	public Concesionaria getConcesionaria() {
 		return this.concesionaria;
 	}
- 
+ 	
 	public List<Suscripto> disponibles() {
-		List<Suscripto> noAdjudicados = new ArrayList<Suscripto>();
-		
-		for(Suscripto suscripto: suscriptos){
-			if(suscripto.todaviaNoFueAdjudicado())
-				noAdjudicados.add(suscripto);
-		}
-		return noAdjudicados;	
+		return suscriptos.stream().filter(suscripto -> suscripto.noFueAdjudicado()).collect(Collectors.toList());	
 	}
 	
 	public List<Suscripto> suscriptosConMayorCantidadDeCuotasPagas(){
-		List<Suscripto> suscriptosPagadores = new ArrayList<Suscripto>();
-		
-		for(Suscripto suscripto : disponibles()){
-			if(suscripto.cantidadCuotasPagas() == mayorCantidadCuotasPagas())
-				suscriptosPagadores.add(suscripto);
-		}
-		return suscriptosPagadores;
+		return disponibles().stream()
+							.filter(suscripto -> suscripto.cantidadCuotasPagas().equals(this.mayorCantidadCuotasPagas()))
+							.collect(Collectors.toList());
 	} 
  
 	private Integer mayorCantidadCuotasPagas() {
-		Integer mayorCuotasPagas = 0;
-		
-		for(Suscripto suscripto : disponibles()) {
-			if(suscripto.cantidadCuotasPagas() > mayorCuotasPagas)
-				mayorCuotasPagas = suscripto.cantidadCuotasPagas();
-		}
-		return mayorCuotasPagas;
-	}
-
-	public List<Suscripto> losMasAntiguosEnConcesionaria(List<Suscripto> susc){	
-		List<Suscripto> mayores = new ArrayList<Suscripto>();
-		
-		for(Suscripto suscripto : susc){
-			if(suscripto.getFechaDeIngreso().equals(elMasAntiguoEnConcesionaria(susc).getFechaDeIngreso()))
-				mayores.add(suscripto);
-		}
-		return mayores;  
-	} 
-
-	private Suscripto elMasAntiguoEnConcesionaria(List<Suscripto> suscriptos) {
-		Suscripto elMasAntiguo = suscriptos.get(0);
-		
-		for(Suscripto suscripto : suscriptos) {
-			if(suscripto.getFechaDeIngreso().before(elMasAntiguo.getFechaDeIngreso()))
-				elMasAntiguo = suscripto;
-		}
-		return elMasAntiguo;
+		return disponibles().stream()
+							.max((Suscripto s1, Suscripto s2)-> s1.cantidadCuotasPagas()
+							.compareTo(s2.cantidadCuotasPagas()))
+							.get().cantidadCuotasPagas();
 	}
 	
-	public Suscripto suscriptoMasAntiguo(List<Suscripto> suscriptos){
-		Suscripto elMasAntiguo = suscriptos.get(0);
+	public List<Suscripto> losMasAntiguosEnConcesionaria(List<Suscripto> lsSuscriptos){	
+		return lsSuscriptos.stream()
+				   		  .filter(suscripto -> suscripto.getFechaDeIngreso()
+				          .equals(elMasAntiguoEnConcesionaria(lsSuscriptos).getFechaDeIngreso()))
+				          .collect(Collectors.toList());  
+	} 
+	
+	private Suscripto elMasAntiguoEnConcesionaria(List<Suscripto> lsSuscriptos) {
+		return lsSuscriptos.stream()
+						   .min((Suscripto s1, Suscripto s2)-> s1.getFechaDeIngreso()
+						   .compareTo(s2.getFechaDeIngreso()))
+						   .get();
+	}
 		
-		for(Suscripto suscripto : suscriptos) {
-			if(suscripto.getFechaDeInscripcion().before(elMasAntiguo.getFechaDeInscripcion()))
-				elMasAntiguo = suscripto;
-		}
-		return elMasAntiguo;
+	public Suscripto suscriptoMasAntiguo(List<Suscripto> lsSuscriptos){
+		return lsSuscriptos.stream()
+				   		   .min((Suscripto s1, Suscripto s2)-> s1.getFechaDeInscripcion()
+				   		   .compareTo(s2.getFechaDeInscripcion()))
+				           .get();
 	}
 	
 	public Suscripto clienteAdjudicado(){
@@ -145,6 +123,6 @@ public class PlanDeAhorro {
 	}
 
 	public void setConvertidor(Convertidor unConvertidor) {
-		this.convertidor=unConvertidor;		
+		this.convertidor = unConvertidor;		
 	}
 }
