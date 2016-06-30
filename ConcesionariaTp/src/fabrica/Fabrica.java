@@ -17,12 +17,11 @@ public class Fabrica {
 	}
 	
 	public void actualizarPrecio(Float precioNuevo, Modelo model){
-		List<Planta> plantasEncontradas = plantasConModelo(model);
-		
-		for(Planta p:plantasEncontradas)
-			p.buscarStockDelModelo(model).getModelo().setPrecio(precioNuevo);
+		plantasConModelo(model).stream()
+							   .forEach(planta -> planta.buscarStockDelModelo(model)
+				               .getModelo().setPrecio(precioNuevo));
 	}
-	 
+	
 	public List<Planta> plantasConModelo(Modelo m){
 		return plantas.stream()
 				.filter(planta -> planta.nombresDeLosModelos().contains(m.getNombre()))

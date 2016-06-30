@@ -190,6 +190,15 @@ public class ConcesionariaTest {
 	}
 		
 	@Test 
+	public void adjudicarAutoExceptionTest(){
+		when(fabricaMock.stock(modeloMock)).thenReturn(0);
+		
+		concesionariaTest.adjudicarAuto(planDeAhorroMock);
+		
+		doThrow(new SinStockException()).when(fabricaMock).stock(modeloMock);
+	}
+	
+	@Test 
 	public void stockTest(){
 		when(plantaMock.nombresDeLosModelos()).thenReturn(new ArrayList<String>(Arrays.asList("Peugeot 208")));
 		ArrayList<Planta> plantas= new ArrayList<Planta>(Arrays.asList(plantaMock));

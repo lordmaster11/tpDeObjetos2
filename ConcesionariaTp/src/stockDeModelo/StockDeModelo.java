@@ -33,4 +33,8 @@ public class StockDeModelo{
 	public Modelo getModelo() {
 		return modelo;
 	}
+	
+	public String getNombreDelModelo() {
+		return modelo.getNombre();
+	}
 }

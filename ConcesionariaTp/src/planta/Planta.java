@@ -28,15 +28,12 @@ public class Planta{
 				     .get(0);
 	}
 	
-	public ArrayList<String> nombresDeLosModelos(){
-		ArrayList<String> nombres = new ArrayList<String>();
-		
-		for(StockDeModelo stock : stocks){
-			nombres.add(stock.getModelo().getNombre());
-		}
-		return nombres;
+	public List<String> nombresDeLosModelos(){
+		return  stocks.stream()
+	                  .map(StockDeModelo::getNombreDelModelo)
+	                  .collect(Collectors.toList());
 	}
-
+	
 	public void agregarModelo(Modelo modelo) {	
 		if(existeElModelo(modelo)){
 			StockDeModelo stock = buscarStockDelModelo(modelo);
