@@ -64,7 +64,7 @@ public class PlanDeAhorroTest {
 		planDeAhorro.suscribirCliente(clienteMock);
 		when(convertidorMock.convertirClienteASuscripto(clienteMock, planDeAhorro)).thenReturn(suscriptoMock);
 		
-		assertTrue(((planDeAhorro.getSubscriptos().get(0)).getCliente()).equals(clienteMock));
+		assertTrue(((planDeAhorro.getSuscriptos().get(0)).getCliente()).equals(clienteMock));
 	} 
 
 	@Test

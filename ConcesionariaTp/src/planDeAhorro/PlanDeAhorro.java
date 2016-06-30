@@ -38,7 +38,7 @@ public class PlanDeAhorro {
 		return this.financiamiento.valorTotalEnCuotas(modelo);
 	}
 	
-	public List<Suscripto> getSubscriptos() {
+	public List<Suscripto> getSuscriptos() {
 		return this.suscriptos;
 	}
 

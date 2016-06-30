@@ -214,7 +214,7 @@ public class ConcesionariaTest {
 	public void pagarCuotaTest(){
 		when(suscriptoMock.cantidadCuotasPagas()).thenReturn(10);		
 		List<Suscripto> suscriptos = new ArrayList<Suscripto>(Arrays.asList(suscriptoMock,suscripto2Mock));
-		when(planDeAhorroMock.getSubscriptos()).thenReturn(suscriptos);	
+		when(planDeAhorroMock.getSuscriptos()).thenReturn(suscriptos);	
 		concesionariaTest.agregarPlanDeAhorro(planDeAhorro2Mock);
 		concesionariaTest.agregarPlanDeAhorro(planDeAhorroMock);
 		concesionariaTest.cobrarCuota(suscriptoMock,planDeAhorroMock);

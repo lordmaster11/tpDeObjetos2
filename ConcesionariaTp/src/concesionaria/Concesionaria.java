@@ -121,14 +121,14 @@ public class Concesionaria{
 	public List<PlanDeAhorro> getPlanes() {
 		return planes;
 	}
-	
+		
 	public List<PlanDeAhorro> losDiezPlanesConMayorCantidadDeSubscriptos(){
 		List<PlanDeAhorro> resultado = new ArrayList<PlanDeAhorro>();
 		List<PlanDeAhorro> planesDesordenados = planes;
 		Integer repeticiones = 0;
 		
 		while((repeticiones < 10) && ((planesDesordenados.size()>0))){
-			PlanDeAhorro unPlan =this.planConMasSubscriptos(planesDesordenados);
+			PlanDeAhorro unPlan =this.planConMasSuscriptos(planesDesordenados);
 			
 			resultado.add(unPlan);
 			
@@ -138,17 +138,13 @@ public class Concesionaria{
 		return resultado;
 	}
 	
-	//PREC: hay por lo menos un plan en la concesionaria.
-	private PlanDeAhorro planConMasSubscriptos(List<PlanDeAhorro> planess){
-		PlanDeAhorro ganador = planess.get(0);
-			
-		for(PlanDeAhorro plan: planess){
-			if(plan.cantSuscriptos() > ganador.cantSuscriptos())
-					ganador = plan;
-		}
-		return ganador;
+	private PlanDeAhorro planConMasSuscriptos(List<PlanDeAhorro> planess){
+		return planess.stream()
+					  .max((PlanDeAhorro p1, PlanDeAhorro p2)-> p1.cantSuscriptos()
+					  .compareTo(p2.cantSuscriptos()))
+					  .get();
 	}
-
+	
 	public void setSeguro(SeguroDeVida seguroDeVida) {
 		this.seguro=seguroDeVida;	
 	}
@@ -156,7 +152,7 @@ public class Concesionaria{
 	public void cobrarCuota(Suscripto suscripto,PlanDeAhorro plan) {
 		for(PlanDeAhorro p:planes){
 			if(p==plan)
-				for(Suscripto s: plan.getSubscriptos()){
+				for(Suscripto s: plan.getSuscriptos()){
 					if(s== suscripto)
 					s.pagarCuota(plan);
 		}	
