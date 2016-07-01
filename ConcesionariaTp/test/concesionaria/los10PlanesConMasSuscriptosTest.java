@@ -99,4 +99,30 @@ public class los10PlanesConMasSuscriptosTest {
 		
 		assertTrue(concesionariaTest.losDiezPlanesConMayorCantidadDeSubscriptos().equals(planesEsperadosEnOrden));
 		}
+	
+	
+	@Test
+	public void losPlanesConMasCantidadDeSuscriptosMenosDe10Test() {
+		when(planDeAhorro1Mock.cantSuscriptos()).thenReturn(15);
+		when(planDeAhorro2Mock.cantSuscriptos()).thenReturn(14);
+		when(planDeAhorro3Mock.cantSuscriptos()).thenReturn(13);
+		when(planDeAhorro4Mock.cantSuscriptos()).thenReturn(12);
+		when(planDeAhorro5Mock.cantSuscriptos()).thenReturn(11);
+		
+		
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorro1Mock);
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorro2Mock);
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorro3Mock);
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorro4Mock);
+		concesionariaTest.agregarPlanDeAhorro(planDeAhorro5Mock);
+		
+		List<PlanDeAhorro> planesEsperadosEnOrden= new ArrayList<PlanDeAhorro>
+        (Arrays.asList(planDeAhorro1Mock,
+      		  planDeAhorro2Mock,planDeAhorro3Mock,planDeAhorro4Mock,
+      		  planDeAhorro5Mock));
+
+assertTrue(concesionariaTest.losDiezPlanesConMayorCantidadDeSubscriptos().equals(planesEsperadosEnOrden));
+
+	}
+	
 }
