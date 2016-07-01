@@ -67,7 +67,7 @@ public class PlanDeAhorro {
 		suscriptos.add(unSuscripto);
 	}
 
-	//Lo que hace este metodo es calcular el valor de la cuota nueva a pagar.En caso
+	//Calcula el valor de la cuota nueva a pagar.En caso
 	//de que exista algun cambio en el valor del automovil este calcula esa diferencia
 	//en las cuotas que resten por pagar.
 	

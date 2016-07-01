@@ -87,11 +87,5 @@ public class FabricaTest {
 	@Test(expected=SinStockException.class)
 	public void teststockConExcepcion() {
 		fabricaTest.stock(modeloMock);
-		
-//		try{
-//			fabricaTest.stock(modeloMock);
-//			fail();
-//		}catch(SinStockException str){		
-//		}
 	}
 }

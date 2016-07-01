@@ -75,7 +75,7 @@ public class Concesionaria{
 	}
 	
 	public void adjudicarAuto(PlanDeAhorro unPlan){
-		if(stock(unPlan.getModelo())>0){
+		if(pedirStock(unPlan.getModelo())>0){
 			
 			Suscripto unSuscripto = unPlan.clienteAdjudicado();
 			unSuscripto.seAdjudico();
@@ -102,7 +102,7 @@ public class Concesionaria{
 		return seguro.montoAPagar(suscripto, modelo);
 	}
 	
-	public Integer stock(Modelo unModelo){
+	public Integer pedirStock(Modelo unModelo){
 		try{
 			return fabrica.stock(unModelo);
 		}catch(SinStockException str){

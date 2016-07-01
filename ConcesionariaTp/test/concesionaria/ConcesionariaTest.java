@@ -207,7 +207,7 @@ public class ConcesionariaTest {
 		doThrow(new SinStockException()).when(fabricaMock).stock(modeloMock);
 		when(modeloMock.getNombre()).thenReturn("Peugeot 206");
 		
-		assertTrue(concesionariaTest.stock(modeloMock).equals(0));
+		assertTrue(concesionariaTest.pedirStock(modeloMock).equals(0));
 	}
 	
 	@Test
